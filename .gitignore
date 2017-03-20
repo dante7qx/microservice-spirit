@@ -4,7 +4,7 @@
 *.war
 *.ear
 
-/target/
+target/
 .project
 .classpath
 .DS_Store
