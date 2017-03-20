@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: project-config-server
+  profiles:
+    active: test,dev,uat,prod

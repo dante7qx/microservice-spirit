@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: project-sysmgr-api
+#  cloud:
+#    config:
+#      profile: ${config.profile:test}
+#      discovery:
+#        enabled: true
+#        service-id: PROJECT-CONFIG-SERVER
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${eureka.host:localhost}:${eureka.port:8761}/eureka/
