@@ -34,7 +34,7 @@ public class ResourceSpecification {
 				Predicate authorityIn = root.get("authority").get("id").as(Long.class)
 						.in(roleJoin.join("authoritys").get("id").as(Long.class));
 				Predicate userIdEq = cb.equal(userRoot.get("id").as(Long.class), userId);
-				query.distinct(true);
+//				query.distinct(true);
 				query.where(cb.and(authorityIn, userIdEq));
 				query.orderBy(cb.asc(parentResourceJoin.get("showOrder")), cb.asc(root.get("showOrder")));
 				return query.getRestriction();
