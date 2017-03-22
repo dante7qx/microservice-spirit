@@ -1,12 +1,12 @@
 spring:
   application:
     name: project-sysmgr-api
-#  cloud:
-#    config:
-#      profile: ${config.profile:test}
-#      discovery:
-#        enabled: true
-#        service-id: PROJECT-CONFIG-SERVER
+  cloud:
+    config:
+      profile: ${config.profile:native}
+      discovery:
+        enabled: true
+        service-id: PROJECT-CONFIG-SERVER
 eureka:
   client:
     service-url:

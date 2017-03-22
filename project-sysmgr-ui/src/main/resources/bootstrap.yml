@@ -1,6 +1,12 @@
 spring:
   application:
     name: project-sysmgr-ui
+  cloud:
+    config:
+      profile: ${config.profile:native}
+      discovery:
+        enabled: true
+        service-id: PROJECT-CONFIG-SERVER
 eureka:
   client:
     service-url:

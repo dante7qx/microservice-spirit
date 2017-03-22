@@ -1,5 +1,7 @@
 spring:
   application:
     name: project-config-server
-  profiles:
-    active: test,dev,uat,prod
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${eureka.host:localhost}:${eureka.port:8761}/eureka/

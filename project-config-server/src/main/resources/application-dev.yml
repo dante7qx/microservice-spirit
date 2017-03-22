@@ -2,5 +2,15 @@ spring:
   cloud:
     config:
       server:
-        native:
-          searchLocations: file://Users/dante/Documents/Project/spring/microservice/config-repo
+        git:
+          uri: https://github.com/dante7qx/microservice-spirit
+          search-paths:
+            - project-config-repo
+#          username: dante7qx
+#          password: Dante2012
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: 
+    password: 
+    virtual-host: /project-config
