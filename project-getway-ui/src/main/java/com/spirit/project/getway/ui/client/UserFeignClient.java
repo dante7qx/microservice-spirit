@@ -20,6 +20,7 @@ public interface UserFeignClient {
 	@RequestMapping(method = RequestMethod.POST, value = "/login/{account}")
 	public BaseResp<LoginUserVO> findByAccount(@PathVariable("account") String account);
 	
+	
 	@RequestMapping(method = RequestMethod.POST, value = "/login_user_menu/{userId}")
 	public BaseResp<List<LoginUserMenuVO>> findUserMenuByUserId(@PathVariable("userId") Long userId);
 	

@@ -3,3 +3,7 @@ server:
 spring:
   profiles:
     active: ${config.profile:dev}
+logging:
+  level:
+    root: info
+    com.netflix.discovery.TimedSupervisorTask: 'OFF'
