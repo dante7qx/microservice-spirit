@@ -3,7 +3,9 @@
 *.jar
 *.war
 *.ear
+*.log
 
+logs/
 target/
 .project
 .classpath
