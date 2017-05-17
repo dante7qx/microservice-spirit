@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.spirit.project.commom.dto.req.PageReq;
 import com.spirit.project.commom.dto.resp.BaseResp;
 import com.spirit.project.commom.dto.resp.PageResp;
+import com.spirit.project.feignconfig.FeignClientConfig;
 import com.spirit.project.sysmgr.ui.client.fallback.ServiceModuleFeignClientFallback;
 import com.spirit.project.sysmgr.ui.constant.SpiritServiceConsts;
 import com.spirit.project.sysmgr.ui.vo.servicemodule.ServiceModuleVO;
 
-@FeignClient(name = SpiritServiceConsts.PROJECT_SYSMGR_SERVER_NAME, fallback = ServiceModuleFeignClientFallback.class)
+@FeignClient(name = SpiritServiceConsts.PROJECT_SYSMGR_SERVER_NAME, fallback = ServiceModuleFeignClientFallback.class, configuration=FeignClientConfig.class)
 public interface ServiceModuleFeignClient {
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/servicemodule/query_page")

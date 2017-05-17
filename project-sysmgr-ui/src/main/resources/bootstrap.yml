@@ -1,9 +1,11 @@
 spring:
   application:
     name: project-sysmgr-ui
+  profiles:
+    active: ${config.profile:dev}
   cloud:
     config:
-      profile: ${config.profile:native}
+      profile: ${config.profile:dev}
       label: ${config.label:v1}
       discovery:
         enabled: true
@@ -12,8 +14,4 @@ eureka:
   client:
     service-url:
       defaultZone: http://${eureka.host:localhost}:${eureka.port:8761}/eureka/
-hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 5000
-logging:
-  level:
-    root: info
-    com.netflix.discovery.TimedSupervisorTask: 'off'
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 50000

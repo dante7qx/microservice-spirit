@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.spirit.project.commom.dto.resp.BaseResp;
+import com.spirit.project.feignconfig.FeignClientConfig;
 import com.spirit.project.getway.ui.client.fallback.UserFeignClientFallback;
 import com.spirit.project.getway.ui.constant.SpiritServiceConsts;
 import com.spirit.project.getway.ui.vo.LoginUserMenuVO;
 import com.spirit.project.getway.ui.vo.LoginUserVO;
 
-@FeignClient(name = SpiritServiceConsts.PROJECT_USER_SERVER_NAME, fallback = UserFeignClientFallback.class)
+@FeignClient(name = SpiritServiceConsts.PROJECT_USER_SERVER_NAME, fallback = UserFeignClientFallback.class, configuration=FeignClientConfig.class)
 public interface UserFeignClient {
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/login/{account}")

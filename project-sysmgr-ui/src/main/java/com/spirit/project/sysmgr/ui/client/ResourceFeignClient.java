@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.spirit.project.commom.dto.resp.BaseResp;
+import com.spirit.project.feignconfig.FeignClientConfig;
 import com.spirit.project.sysmgr.ui.client.fallback.ResourceFeignClientFallback;
 import com.spirit.project.sysmgr.ui.constant.SpiritServiceConsts;
 import com.spirit.project.sysmgr.ui.vo.resource.ResourceVO;
 
-@FeignClient(name = SpiritServiceConsts.PROJECT_SYSMGR_SERVER_NAME, fallback = ResourceFeignClientFallback.class)
+@FeignClient(name = SpiritServiceConsts.PROJECT_SYSMGR_SERVER_NAME, fallback = ResourceFeignClientFallback.class, configuration=FeignClientConfig.class)
 public interface ResourceFeignClient {
 
 	@RequestMapping(method = RequestMethod.POST, value = "/resource/query_by_id/{id}")

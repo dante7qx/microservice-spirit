@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.spirit.project.commom.dto.resp.BaseResp;
+import com.spirit.project.feignconfig.FeignClientConfig;
 import com.spirit.project.sysmgr.ui.client.fallback.AuthorityFeignClientFallback;
 import com.spirit.project.sysmgr.ui.constant.SpiritServiceConsts;
 import com.spirit.project.sysmgr.ui.vo.authority.AuthorityVO;
 
-@FeignClient(name = SpiritServiceConsts.PROJECT_SYSMGR_SERVER_NAME, fallback = AuthorityFeignClientFallback.class)
+@FeignClient(name = SpiritServiceConsts.PROJECT_SYSMGR_SERVER_NAME, fallback = AuthorityFeignClientFallback.class, configuration=FeignClientConfig.class)
 public interface AuthorityFeignClient {
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/authority/query_by_id/{id}")
