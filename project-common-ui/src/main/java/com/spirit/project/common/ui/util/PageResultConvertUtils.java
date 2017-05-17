@@ -10,4 +10,7 @@ public class PageResultConvertUtils {
 		return pageResult;
 	}
 	
+	public static void main(String[] args) {
+		// for maven package
+	}
 }

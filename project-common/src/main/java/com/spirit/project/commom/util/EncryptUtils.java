@@ -12,4 +12,8 @@ public class EncryptUtils {
 	public static boolean match(String rawPassword, String password) {
 		return bcryptEncoder.matches(rawPassword, password);
 	}
+	
+	public static void main(String[] args) {
+		// for maven package
+	}
 }
