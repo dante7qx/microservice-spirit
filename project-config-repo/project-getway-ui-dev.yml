@@ -10,6 +10,6 @@ spring:
     virtual-host: /project-config
 zuul:
   routes:
-    amp-sysmgr-ui:
+    project-sysmgr-ui:
       path: /sysmgr/**
       sensitive-headers: null
