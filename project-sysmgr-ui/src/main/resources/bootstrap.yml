@@ -4,6 +4,7 @@ spring:
   cloud:
     config:
       profile: ${config.profile:native}
+      label: ${config.label:v1}
       discovery:
         enabled: true
         service-id: PROJECT-CONFIG-SERVER
@@ -15,4 +16,4 @@ hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 5000
 logging:
   level:
     root: info
-    com.netflix.discovery.TimedSupervisorTask: off
+    com.netflix.discovery.TimedSupervisorTask: 'off'
