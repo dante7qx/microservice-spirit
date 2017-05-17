@@ -132,7 +132,7 @@ public class RoleController {
 	/**
 	 * 参数校验
 	 * 
-	 * @param userReqDTO
+	 * @param roleReqDTO
 	 * @return
 	 */
 	private boolean checkParam(RoleReqDTO roleReqDTO) {

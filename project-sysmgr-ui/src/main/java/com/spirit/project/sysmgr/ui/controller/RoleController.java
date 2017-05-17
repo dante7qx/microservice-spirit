@@ -22,6 +22,12 @@ import com.spirit.project.sysmgr.ui.vo.role.AuthorityRoleTreeVO;
 import com.spirit.project.sysmgr.ui.vo.role.RoleTreeVO;
 import com.spirit.project.sysmgr.ui.vo.role.RoleVO;
 
+/**
+ * 角色 UI Controller
+ * 
+ * @author dante
+ *
+ */
 @RestController
 @RequestMapping("/role")
 public class RoleController {

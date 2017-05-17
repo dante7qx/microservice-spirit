@@ -32,6 +32,12 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	/**
+	 * 分页查询用户
+	 * 
+	 * @param pageReq
+	 * @return
+	 */
 	@PostMapping("/query_page")
 	public BaseResp<PageResp<UserRespDTO>> queryUserPage(@RequestBody PageReq pageReq) {
 		BaseResp<PageResp<UserRespDTO>> result = new BaseResp<PageResp<UserRespDTO>>();
@@ -45,6 +51,12 @@ public class UserController {
 		return result;
 	}
 	
+	/**
+	 * 根据id获取用户
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@PostMapping(value = "/query_by_id/{id}")
 	public BaseResp<UserRespDTO> queryByUserId(@PathVariable Long id) {
 		BaseResp<UserRespDTO> result = new BaseResp<UserRespDTO>();
@@ -58,6 +70,12 @@ public class UserController {
 		return result;
 	}
 	
+	/**
+	 * 新增用户
+	 * 
+	 * @param userReqDto
+	 * @return
+	 */
 	@PostMapping("/add")
 	public BaseResp<UserRespDTO> addUser(@RequestBody UserReqDTO userReqDto) {
 		BaseResp<UserRespDTO> result = new BaseResp<UserRespDTO>();
@@ -75,6 +93,12 @@ public class UserController {
 		return result;
 	}
 	
+	/**
+	 * 更新用户
+	 * 
+	 * @param userReqDto
+	 * @return
+	 */
 	@PostMapping("/update")
 	public BaseResp<UserRespDTO> updateUser(@RequestBody UserReqDTO userReqDto) {
 		BaseResp<UserRespDTO> result = new BaseResp<UserRespDTO>();
@@ -92,6 +116,12 @@ public class UserController {
 		return result;
 	}
 	
+	/**
+	 * 删除用户（逻辑删除）
+	 * 
+	 * @param userReqDto
+	 * @return
+	 */
 	@DeleteMapping(value = "/delete")
 	public BaseResp<?> deleteUser(@RequestBody UserReqDTO userReqDto) {
 		BaseResp<?> result = new BaseResp<>();

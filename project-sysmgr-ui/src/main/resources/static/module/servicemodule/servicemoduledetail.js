@@ -57,12 +57,6 @@ var ServiceModuleDetailPage = {
 				this.loadDataById(true);
 			} else {
 				$('#serviceModuleDetailForm').form('clear');
-				var nodes = $('#authorityTree').tree('getChecked');
-				if(nodes) {
-					$.each(nodes, function(i, node) {
-						$('#authorityTree').tree('uncheck', node.target);
-					}); 
-				}
 			}
 		},
 		del: function() {

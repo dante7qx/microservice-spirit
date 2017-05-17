@@ -90,7 +90,6 @@ public abstract class SpiritServiceTemplate<Req, Resp, P> {
 	 * 
 	 * @param reqDTO
 	 * @param po
-	 * @param isNew
 	 * @return
 	 */
 	protected abstract P convertReqDtoToPo(Req reqDTO);

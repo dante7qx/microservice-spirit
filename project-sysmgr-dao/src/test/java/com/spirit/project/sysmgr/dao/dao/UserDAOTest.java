@@ -15,7 +15,7 @@ public class UserDAOTest extends BaseSysMgrDaoTest {
 	private UserDAO userDAO;
 
 	@Test
-	public void testFindAll() {
+	public void testFindAll() { 
 		try {
 			List<UserPO> users = userDAO.findAll();
 			System.out.println(users);

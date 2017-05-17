@@ -29,6 +29,12 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	/**
+	 * 分页查询用户
+	 * 
+	 * @param pageReq
+	 * @return
+	 */
 	@PreAuthorize("hasAuthority('sysmgr.user.query')")
 	@PostMapping(value = "/query_page")
 	public PageResult<UserVO> queryUserPage(PageReq pageReq) {

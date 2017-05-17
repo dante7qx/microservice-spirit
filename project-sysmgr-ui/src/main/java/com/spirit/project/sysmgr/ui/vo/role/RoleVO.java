@@ -2,6 +2,12 @@ package com.spirit.project.sysmgr.ui.vo.role;
 
 import java.util.Set;
 
+/**
+ * 角色 VO
+ * 
+ * @author dante
+ *
+ */
 public class RoleVO {
 	private Long id;
 	private String name;

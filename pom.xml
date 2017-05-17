@@ -46,12 +46,11 @@
 		<module>project-common</module>
 		<module>project-common-dao</module>
 		<module>project-common-api</module>
-		<moudle>project-common-ui</moudle>
-		
-		<moudle>project-getway-ui</moudle>
+		<module>project-common-ui</module>
+		<module>project-getway-ui</module>
 		<module>project-sysmgr-dao</module>
 		<module>project-sysmgr-api</module>
-		<moudle>project-sysmgr-ui</moudle>
+		<module>project-sysmgr-ui</module>
 	</modules>
 
 	<parent>

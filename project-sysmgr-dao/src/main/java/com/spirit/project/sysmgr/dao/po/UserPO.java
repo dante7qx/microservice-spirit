@@ -15,6 +15,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ * 
+ * @author dante
+ *
+ */
 @Entity
 @Table(name = "t_user")
 public class UserPO implements Serializable {
