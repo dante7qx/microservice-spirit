@@ -93,6 +93,7 @@ var AuthorityPage = {
 		newNodeAttr['id'] = data['id'];
 		newNodeAttr['name'] = data['name'];
 		newNodeAttr['code'] = data['code'];
+		newNodeAttr['showOrder'] = data['showOrder'];
 		newNodeAttr['authorityDesc'] = data['authorityDesc'];
 		newNodeAttr['pid'] = data['pid'];
 		newNode['attributes'] = newNodeAttr;
@@ -167,6 +168,7 @@ var AuthorityPage = {
 					$.messager.alert('错误','系统错误，请联系系统管理员', 'error');
 					return;
 				}
+				sourceNode['attributes']['pid'] = targetId;
 			}
 		});
 	}

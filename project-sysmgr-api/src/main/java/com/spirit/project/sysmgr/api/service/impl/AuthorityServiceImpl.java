@@ -115,6 +115,10 @@ public class AuthorityServiceImpl implements AuthorityService {
 	protected AuthorityRespDTO convertPoToRespDto(AuthorityPO authorityPO) {
 		AuthorityRespDTO authorityRespDTO = new AuthorityRespDTO();
 		BeanUtils.copyProperties(authorityPO, authorityRespDTO);
+		AuthorityPO parentAuthorityPO = authorityPO.getParentAuthority();
+		if(parentAuthorityPO != null) {
+			authorityRespDTO.setPid(parentAuthorityPO.getId());
+		}
 		return authorityRespDTO;
 	}
 

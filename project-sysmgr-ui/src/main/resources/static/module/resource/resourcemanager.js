@@ -66,7 +66,7 @@ var ResourcePage = {
 			hnasys.util.controlFormBtn(editable, 'resourceFormBtnContainer');
 			$('#resourceForm').form('clear').form('load', node['attributes']);
 			this.initAuthorityCombotree( node['attributes']['authorityId']);
-			$('#pid','#resourceForm').val(node['attributes']['parentId']);
+			$('#pid','#resourceForm').val(node['attributes']['pid']);
 			hnasys.util.isEditForm('resourceForm', editable);
 		}
 	},
@@ -151,7 +151,7 @@ var ResourcePage = {
 		newNodeAttr['url'] = data['url'];
 		newNodeAttr['serviceModuleId'] = data['serviceModuleId'];
 		newNodeAttr['authorityId'] = data['authorityId'];
-		newNodeAttr['parentId'] = data['parentId'];
+		newNodeAttr['pid'] = data['pid'];
 		newNodeAttr['fullId'] = data['fullId'];
 		newNodeAttr['showOrder'] = data['showOrder'];
 		newNode['attributes'] = newNodeAttr;
@@ -226,6 +226,7 @@ var ResourcePage = {
 					$.messager.alert('错误','系统错误，请联系系统管理员', 'error');
 					return;
 				}
+				sourceNode['attributes']['pid'] = targetId;
 			}
 		});
 	}
