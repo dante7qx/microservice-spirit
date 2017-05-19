@@ -22,8 +22,9 @@ withEnv(['PATH=/usr/local/bin:$PATH']) {
             input "现在执行部署？"
         }
     }
+    
     node {
-        lock(resource: 'WEB_PAAS', inversePrecedence: true) {
+    //    lock(resource: 'WEB_PAAS', inversePrecedence: true) {
             stage('部署') {
                 /*
                 sh 'bash ./pipeline/buildImage.sh dev -queue'
@@ -56,6 +57,6 @@ withEnv(['PATH=/usr/local/bin:$PATH']) {
                 */
             }
             milestone()
-        }
+      //  }
     }
 }
