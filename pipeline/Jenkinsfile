@@ -33,7 +33,7 @@ withEnv(['PATH=/usr/local/bin:$PATH']) {
                 sh "bash ./pipeline/waitDeployment.sh dev -queue"
                 */
                 
-                echo "代码检查"
+                echo "部署"
             }
             stage('接口测试') {
                 echo "接口测试"
@@ -47,6 +47,7 @@ withEnv(['PATH=/usr/local/bin:$PATH']) {
                 */
             }
             stage('界面测试') {
+                echo "界面测试"
                 /*
                 withEnv(['PATH=/opt/jdk1.7.0_67/bin:/usr/local/bin:$PATH','JAVA_HOME=/opt/jdk1.7.0_67']) {
                     dir('e2e-test') {
