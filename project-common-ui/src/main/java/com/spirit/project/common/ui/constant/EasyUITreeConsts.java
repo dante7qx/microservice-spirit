@@ -1,18 +1,18 @@
 package com.spirit.project.common.ui.constant;
 
-public interface EasyUITreeConsts {
+public class EasyUITreeConsts {
 	
 	/**
 	 * 树的展开状态
 	 */
-	public final static String STATE_OPEN = "open";
-	public final static String STATE_CLOSED = "closed";
+	public static final String STATE_OPEN = "open";
+	public static final String STATE_CLOSED = "closed";
 	
 	/**
 	 * 树的拖拽位置
 	 */
-	public final static String POINT_TOP = "top";
-	public final static String POINT_BOTTOM = "bottom";
-	public final static String POINT_APPEND = "append";
+	public static final  String POINT_TOP = "top";
+	public static final String POINT_BOTTOM = "bottom";
+	public static final String POINT_APPEND = "append";
 	
 }

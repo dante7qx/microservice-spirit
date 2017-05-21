@@ -20,6 +20,10 @@ import com.google.common.collect.Lists;
  *
  */
 public class SpiritDaoUtils {
+	
+	private SpiritDaoUtils() {
+		throw new IllegalAccessError("SpiritDaoUtils 工具类，不能实例化！");
+	}
 
 	/**
 	 * 构造排序, 默认按照主键（id）倒序（desc）
@@ -43,7 +47,9 @@ public class SpiritDaoUtils {
 				sort = new Sort(buildDirection(dir), col);
 				continue;
 			}
-			sort.and(new Sort(buildDirection(dir), col));
+			if(sort != null) {
+				sort.and(new Sort(buildDirection(dir), col));
+			}
 		}
 		return sort;
 	}
@@ -73,6 +79,8 @@ public class SpiritDaoUtils {
 					break;
 				case "desc":
 					orders.add(cb.desc(root.get(col)));
+					break;
+				default:
 					break;
 				}
 			}

@@ -6,16 +6,16 @@ package com.spirit.project.common.ui.constant;
  * @author dante
  *
  */
-public interface SpiritSessionConfigConsts {
+public class SpiritSessionConfigConsts {
 	
 	/**
 	 * session在redis中的命名控件
 	 */
-	public final static String REDIS_NAMESPACE = "PROJECT_SESSION";
+	public static final String REDIS_NAMESPACE = "PROJECT_SESSION";
 	
 	/**
 	 * session过期时间，默认 1800s（30分钟）
 	 */
-	public final static int MAX_INACTIVE_INTERVAL_IN_SECONDS = 3600;
+	public static final int MAX_INACTIVE_INTERVAL_IN_SECONDS = 3600;
 	
 }

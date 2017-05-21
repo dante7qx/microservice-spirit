@@ -23,7 +23,7 @@ import com.spirit.project.common.api.exception.SpiritAPIServiceException;
  * 
  * @author dante
  *
- * @param <Req> ReqDTO
+ * @param <REQ> ReqDTO
  * @param <RESP> RespDTO
  * @param <P> 数据库PO
  */

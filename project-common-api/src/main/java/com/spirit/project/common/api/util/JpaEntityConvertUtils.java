@@ -13,6 +13,10 @@ public class JpaEntityConvertUtils {
 	
 	private static final Logger logger = LoggerFactory.getLogger(JpaEntityConvertUtils.class);
 	
+	private JpaEntityConvertUtils() {
+		throw new IllegalAccessError("JpaEntityConvertUtils 工具类，不能实例化！");
+	}
+	
 	/**
 	 * 根据查询结果，在返回类中定义一个构造函数，字段顺序要和查询顺序完全一致
 	 * 
