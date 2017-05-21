@@ -24,10 +24,10 @@ import com.spirit.project.common.api.exception.SpiritAPIServiceException;
  * @author dante
  *
  * @param <Req> ReqDTO
- * @param <Resp> RespDTO
+ * @param <RESP> RespDTO
  * @param <P> 数据库PO
  */
-public abstract class SpiritServiceTemplate<Req, Resp, P> {
+public abstract class SpiritServiceTemplate<REQ, RESP, P> {
 	
 	@Autowired
 	private JpaRepository<P, Long> jpaRepository;
@@ -40,14 +40,13 @@ public abstract class SpiritServiceTemplate<Req, Resp, P> {
 	 * @param pageReq
 	 * @return
 	 */
-	protected PageResp<Resp> findPage(PageReq pageReq) throws SpiritAPIServiceException {
-		PageResp<Resp> pageResp = null;
+	protected PageResp<RESP> findPage(PageReq pageReq) throws SpiritAPIServiceException {
 		int pageNo = pageReq.getPageNo();
 		int pageSize = pageReq.getPageSize();
 		String sortCol = pageReq.getSort();
 		String sortDir = pageReq.getOrder();
 		Map<String, Object> filter = pageReq.getQ();
-		Page<P> page = null;
+		Page<P> page;
 		Pageable pageRequest = buildPageRequest(pageNo, pageSize, sortCol, sortDir);
 		if(!filter.isEmpty()) {
 			Specification<P> spec = buildSpecification(filter);
@@ -55,12 +54,12 @@ public abstract class SpiritServiceTemplate<Req, Resp, P> {
 		} else {
 			page = jpaRepository.findAll(pageRequest);
 		}
-		pageResp = new PageResp<Resp>();
+		PageResp<RESP> pageResp = new PageResp<RESP>();
 		List<P> dbList = page.getContent();
 		if(!CollectionUtils.isEmpty(dbList)) {
-			List<Resp> list = Lists.newArrayList();
+			List<RESP> list = Lists.newArrayList();
 			for (P po : dbList) {
-				Resp t = convertPoToRespDto(po);
+				RESP t = convertPoToRespDto(po);
 				list.add(t);
 			}
 			pageResp.setResult(list);
@@ -92,7 +91,7 @@ public abstract class SpiritServiceTemplate<Req, Resp, P> {
 	 * @param po
 	 * @return
 	 */
-	protected abstract P convertReqDtoToPo(Req reqDTO);
+	protected abstract P convertReqDtoToPo(REQ reqDTO);
 	
 	/**
 	 * 将数据库的实体类转化为RespDTO对象
@@ -100,7 +99,7 @@ public abstract class SpiritServiceTemplate<Req, Resp, P> {
 	 * @param domain
 	 * @return
 	 */
-	protected abstract Resp convertPoToRespDto(P po);
+	protected abstract RESP convertPoToRespDto(P po);
 	
 	/**
 	 * 构造查询条件
