@@ -12,7 +12,7 @@
         def sonarRunnerHome
         stage('代码检查') {
             sonarRunnerHome = tool 'Sonar Runner'
-            sh "${sonarRunnerHome} -Dsonar.login='dante' -Dsonar.password='iamdante' -Dsonar.host.url=http://localhost:9000"
+            sh "${sonarRunnerHome}/sonar-scanner -Dsonar.login='dante' -Dsonar.password='iamdante' -Dsonar.host.url=http://localhost:9000"
             /*
             sh "bash ./pipeline/checkSonarStatus.sh"
             */
