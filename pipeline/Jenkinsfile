@@ -1,4 +1,4 @@
-withEnv(['PATH=/usr/local/bin:$PATH']) {
+//withEnv(['PATH=/usr/local/bin:$PATH']) {
     node {
         stage('代码更新') {
             checkout scm: [$class: 'GitSCM', branches: [[name: '*/v1']],
@@ -8,10 +8,12 @@ withEnv(['PATH=/usr/local/bin:$PATH']) {
           //  sh "phpunit"
             echo "单元测试"
         }
+        
+        def sonarRunnerHome
         stage('代码检查') {
-            echo "代码检查"
+            sonarRunnerHome = tool 'Sonar Runner'
+            sh "${sonarRunnerHome} -Dsonar.login='dante' -Dsonar.password='iamdante' -Dsonar.host.url=http://localhost:9000"
             /*
-            sh "sonar-scanner -Dsonar.login='jenkins' -Dsonar.password='jenkins' -Dsonar.host.url=http://sonar.haihangyun.com"
             sh "bash ./pipeline/checkSonarStatus.sh"
             */
         }
@@ -60,4 +62,4 @@ withEnv(['PATH=/usr/local/bin:$PATH']) {
             milestone()
         }
     } 
-}
+//}
