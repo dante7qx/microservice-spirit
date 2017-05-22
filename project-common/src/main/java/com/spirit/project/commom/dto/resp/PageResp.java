@@ -15,6 +15,10 @@ public class PageResp<T> {
 	private int totalPage;
 
 	private long totalCount;
+	
+	public PageResp() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public List<T> getResult() {
 		if(result == null) {

@@ -22,22 +22,24 @@ public class SpiritPrincipal implements UserDetails {
 
 	private SpiritLoginUser spiritLoginUser;
 	private String password;
-	
-	
+
 	public SpiritPrincipal() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public SpiritPrincipal(SpiritLoginUser spiritLoginUser, String password) {
 		this.spiritLoginUser = spiritLoginUser;
 		this.password = password;
 	}
 
+	/**
+	 * 当前认证实体的所有权限
+	 */
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<GrantedAuthority> grantedAuthoritys = Lists.newLinkedList();
 		Set<String> authoritys = this.getSpiritLoginUser().getAuthoritys();
-		if(!CollectionUtils.isEmpty(authoritys)) {
+		if (!CollectionUtils.isEmpty(authoritys)) {
 			grantedAuthoritys = AuthorityUtils.createAuthorityList(authoritys.toArray(new String[authoritys.size()]));
 		}
 		return grantedAuthoritys;
@@ -76,24 +78,29 @@ public class SpiritPrincipal implements UserDetails {
 	public SpiritLoginUser getSpiritLoginUser() {
 		return spiritLoginUser;
 	}
-	
+
+	/**
+	 * 重写equals()方法
+	 */
 	@Override
 	public boolean equals(Object obj) {
-		if(obj instanceof SpiritPrincipal) {
-			SpiritPrincipal sp = (SpiritPrincipal) obj;
-			return getUsername().equals(sp.getUsername());
+		if (obj == null) {
+			return false;
+		}
+		if (this.getClass() == obj.getClass()) {
+			return getUsername().equals(((SpiritPrincipal) obj).getUsername());
 		}
 		return false;
 	}
-	
+
 	@Override
 	public int hashCode() {
-		return getUsername().hashCode(); 
+		return getUsername().hashCode();
 	}
 
 	@Override
 	public String toString() {
 		return "SpiritPrincipal [spiritLoginUser=" + spiritLoginUser + "]";
 	}
-	
+
 }
