@@ -140,6 +140,12 @@ public class UserController {
 		return result;
 	}
 	
+	/**
+	 * 锁定用户
+	 * 
+	 * @param userReqDto
+	 * @return
+	 */
 	@PostMapping(value = "/lock_user")
 	public BaseResp<?> lockUser(@RequestBody UserReqDTO userReqDto) {
 		BaseResp<?> result = new BaseResp<>();
