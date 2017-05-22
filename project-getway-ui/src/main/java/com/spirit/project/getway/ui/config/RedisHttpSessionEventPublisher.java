@@ -13,6 +13,12 @@ import org.springframework.security.web.context.HttpSessionSecurityContextReposi
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.util.StringUtils;
 
+/**
+ * Session监听类
+ * 
+ * @author dante
+ *
+ */
 public class RedisHttpSessionEventPublisher extends HttpSessionEventPublisher {
 	private static final Logger logger = LoggerFactory.getLogger(RedisHttpSessionEventPublisher.class);
 	
@@ -23,17 +29,16 @@ public class RedisHttpSessionEventPublisher extends HttpSessionEventPublisher {
 		super.sessionCreated(event);
 		HttpSession session = event.getSession();
 		SessionInformation sessionInfo = sessionRegistry.getSessionInformation(session.getId());
-		if(sessionInfo != null) {
-			if(!StringUtils.isEmpty(sessionInfo.getPrincipal())) {
-				logger.info("session {}->{} create.", session.getId(), sessionInfo.getPrincipal());
-			}
+		if(sessionInfo != null && !StringUtils.isEmpty(sessionInfo.getPrincipal())) {
+			logger.info("session {}->{} create.", session.getId(), sessionInfo.getPrincipal());
 		}
 		logger.info("session ({}) create", session.getId());
 	}
 
 	public void sessionDestroyed(HttpSessionEvent event) {
 		HttpSession session = event.getSession();
-		SecurityContext sc = (SecurityContext) session.getAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY);
+		SecurityContext sc = (SecurityContext) session
+				.getAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY);
 		if(sc != null) {
 			String principal = sc.getAuthentication().getPrincipal().toString();
 			logger.info("session ({})->{} destroy.", session.getId(), principal);

@@ -12,6 +12,10 @@ import com.spirit.project.common.ui.security.SpiritPrincipal;
  */
 public class LoginUserUtils {
 	
+	private LoginUserUtils() {
+		throw new IllegalAccessError("LoginUserUtils 工具类，不能实例化！");
+	}
+	
 	/**
 	 * 当前登录用户
 	 * 
@@ -21,7 +25,7 @@ public class LoginUserUtils {
 		SpiritLoginUser loginUser = null;
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
-		if(principal != null || principal instanceof SpiritLoginUser) {
+		if(principal != null && principal instanceof SpiritLoginUser) {
 			SpiritPrincipal spiritPrincipal = (SpiritPrincipal) principal;
 			loginUser = spiritPrincipal.getSpiritLoginUser();
 		}

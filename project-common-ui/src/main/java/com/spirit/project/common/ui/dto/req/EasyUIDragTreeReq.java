@@ -1,12 +1,22 @@
 package com.spirit.project.common.ui.dto.req;
 
+/**
+ * Jquery EasyUI 拖拽树公共请求类
+ * 
+ * @author dante
+ *
+ */
 public class EasyUIDragTreeReq {
+	
 	private String point;
 	private Long targetId;
 	private Long targetPid;
 	private Integer targetShowOrder;
 	private Long sourceId;
 	private Long updateUser;
+	
+	public EasyUIDragTreeReq() {
+	}
 
 	public String getPoint() {
 		return point;

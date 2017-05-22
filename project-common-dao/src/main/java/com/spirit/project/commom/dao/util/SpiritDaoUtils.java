@@ -1,6 +1,7 @@
 package com.spirit.project.commom.dao.util;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -19,8 +20,8 @@ import com.google.common.collect.Lists;
  * @author dante
  *
  */
-public class SpiritDaoUtils {
-	
+public final class SpiritDaoUtils {
+
 	private SpiritDaoUtils() {
 		throw new IllegalAccessError("SpiritDaoUtils 工具类，不能实例化！");
 	}
@@ -47,7 +48,7 @@ public class SpiritDaoUtils {
 				sort = new Sort(buildDirection(dir), col);
 				continue;
 			}
-			if(sort != null) {
+			if (sort != null) {
 				sort.and(new Sort(buildDirection(dir), col));
 			}
 		}
@@ -72,7 +73,7 @@ public class SpiritDaoUtils {
 			int sortColLength = sortColArr.length;
 			for (int i = 0; i < sortColLength; i++) {
 				String col = sortColArr[i].trim();
-				String dir = sortDirArr[i].trim().toLowerCase();
+				String dir = sortDirArr[i].trim().toLowerCase(Locale.ENGLISH);
 				switch (dir) {
 				case "asc":
 					orders.add(cb.asc(root.get(col)));
@@ -92,7 +93,7 @@ public class SpiritDaoUtils {
 
 	private static Direction buildDirection(String sortDir) {
 		Direction direction = Direction.ASC;
-		switch (sortDir.trim().toLowerCase()) {
+		switch (sortDir.trim().toLowerCase(Locale.ENGLISH)) {
 		case "asc":
 			direction = Direction.ASC;
 			break;

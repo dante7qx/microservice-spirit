@@ -11,6 +11,12 @@ import org.springframework.util.CollectionUtils;
 
 import com.google.common.collect.Lists;
 
+/**
+ * 认证实体类
+ * 
+ * @author dante
+ *
+ */
 public class SpiritPrincipal implements UserDetails {
 	private static final long serialVersionUID = 1L;
 
@@ -19,6 +25,7 @@ public class SpiritPrincipal implements UserDetails {
 	
 	
 	public SpiritPrincipal() {
+		// TODO Auto-generated constructor stub
 	}
 	
 	public SpiritPrincipal(SpiritLoginUser spiritLoginUser, String password) {

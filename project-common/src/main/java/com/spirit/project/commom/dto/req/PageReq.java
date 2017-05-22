@@ -5,16 +5,22 @@ import java.util.Map;
 
 import com.google.common.collect.Maps;
 
+/**
+ * 分页公共请求类
+ * 
+ * @author dante
+ *
+ */
 public class PageReq implements Serializable {
 
 	private static final long serialVersionUID = 8203920565787050102L;
 	
-	private final static int DEFAULT_PAGENO = 1;
-	private final static int DEFAULT_PAGESIZE = 20;
-	private final static int MAX_PAGESIZE = 500;
+	private static final int DEFAULT_PAGENO = 1;
+	private static final int DEFAULT_PAGESIZE = 20;
+	private static final int MAX_PAGESIZE = 500;
 	
-	public final static String ASC = "asc";
-	public final static String DESC = "desc";
+	public static final String ASC = "asc";
+	public static final String DESC = "desc";
 
 	private int pageNo = DEFAULT_PAGENO;
 	private int pageSize = DEFAULT_PAGESIZE;
@@ -24,6 +30,7 @@ public class PageReq implements Serializable {
 	private Map<String, Object> q;
 	
 	public PageReq() {
+		// 默认构造方法
 	}
 
 	public void setPage(int page) {
