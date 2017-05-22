@@ -15,11 +15,11 @@ import com.spirit.project.getway.ui.vo.LoginUserVO;
 
 @Component
 public class UserFeignClientFallback implements UserFeignClient {
-	private final static Logger logger = LoggerFactory.getLogger(UserFeignClientFallback.class);
+	private final static Logger LOGGER = LoggerFactory.getLogger(UserFeignClientFallback.class);
 
 	@Override
 	public BaseResp<LoginUserVO> findByAccount(String account) {
-		logger.error("findByAccount account {} hystrix.", account);
+		LOGGER.error("findByAccount account {} hystrix.", account);
 		BaseResp<LoginUserVO> resp = new BaseResp<LoginUserVO>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;
@@ -27,7 +27,7 @@ public class UserFeignClientFallback implements UserFeignClient {
 
 	@Override
 	public BaseResp<List<LoginUserMenuVO>> findUserMenuByUserId(Long userId) {
-		logger.error("findUserMenuByUserId user {} hystrix.", userId);
+		LOGGER.error("findUserMenuByUserId user {} hystrix.", userId);
 		BaseResp<List<LoginUserMenuVO>> resp = new BaseResp<List<LoginUserMenuVO>>();
 		LoginUserMenuVO userMenu = new LoginUserMenuVO();
 		userMenu.setName("暂时不可用");

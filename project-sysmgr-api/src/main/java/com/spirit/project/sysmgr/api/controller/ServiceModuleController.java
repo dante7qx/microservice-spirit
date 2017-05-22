@@ -25,7 +25,7 @@ import com.spirit.project.sysmgr.api.service.ServiceModuleService;
 @RestController
 @RequestMapping("/servicemodule")
 public class ServiceModuleController {
-	private static final Logger logger = LoggerFactory.getLogger(ServiceModuleController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ServiceModuleController.class);
 
 	@Autowired
 	private ServiceModuleService serviceModuleService;
@@ -37,7 +37,7 @@ public class ServiceModuleController {
 			PageResp<ServiceModuleRespDTO> pageResp = serviceModuleService.findPage(pageReq);
 			result.setData(pageResp);
 		} catch (SpiritAPIServiceException e) {
-			logger.error("queryServiceModulePage {} error.", pageReq, e);
+			LOGGER.error("queryServiceModulePage {} error.", pageReq, e);
 			result.setResultCode(RespCodeEnum.FAILURE.code());
 		}
 		return result;
@@ -50,7 +50,7 @@ public class ServiceModuleController {
 			ServiceModuleRespDTO serviceModuleResp = serviceModuleService.findById(id);
 			result.setData(serviceModuleResp);
 		} catch (SpiritAPIServiceException e) {
-			logger.error("queryByServiceModuleId ServiceModuleId: {} error.", id, e);
+			LOGGER.error("queryByServiceModuleId ServiceModuleId: {} error.", id, e);
 			result.setResultCode(RespCodeEnum.FAILURE.code());
 		}
 		return result;
@@ -63,7 +63,7 @@ public class ServiceModuleController {
 			List<ServiceModuleRespDTO> serviceModuleResp = serviceModuleService.findServiceModuleResps();
 			result.setData(serviceModuleResp);
 		} catch (SpiritAPIServiceException e) {
-			logger.error("queryAllServiceModule error.", e);
+			LOGGER.error("queryAllServiceModule error.", e);
 			result.setResultCode(RespCodeEnum.FAILURE.code());
 		}
 		return result;
@@ -81,7 +81,7 @@ public class ServiceModuleController {
 			result.setData(serviceModuleRespDto);
 		} catch (SpiritAPIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("addServiceModule serviceModule: {} error.", serviceModuleReqDto, e);
+			LOGGER.error("addServiceModule serviceModule: {} error.", serviceModuleReqDto, e);
 		}
 		return result;
 	}
@@ -98,7 +98,7 @@ public class ServiceModuleController {
 			result.setData(serviceModuleRespDto);
 		} catch (SpiritAPIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("updateServiceModule serviceModule: {} error.", serviceModuleReqDto, e);
+			LOGGER.error("updateServiceModule serviceModule: {} error.", serviceModuleReqDto, e);
 		}
 		return result;
 	}
@@ -109,7 +109,7 @@ public class ServiceModuleController {
 		try {
 			serviceModuleService.deleteById(id);
 		} catch (SpiritAPIServiceException e) {
-			logger.error("deleteByServiceModuleId serviceModuleId: {} error.", id, e);
+			LOGGER.error("deleteByServiceModuleId serviceModuleId: {} error.", id, e);
 			result.setResultCode(RespCodeEnum.FAILURE.code());
 		}
 		return result;

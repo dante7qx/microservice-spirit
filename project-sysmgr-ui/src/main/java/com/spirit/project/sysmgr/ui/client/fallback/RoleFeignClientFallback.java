@@ -17,11 +17,11 @@ import com.spirit.project.sysmgr.ui.vo.role.RoleVO;
 @Component
 public class RoleFeignClientFallback implements RoleFeignClient {
 	
-	private final static Logger logger = LoggerFactory.getLogger(RoleFeignClientFallback.class);
+	private final static Logger LOGGER = LoggerFactory.getLogger(RoleFeignClientFallback.class);
 
 	@Override
 	public BaseResp<PageResp<RoleVO>> findPage(PageReq pageReq) {
-		logger.error("findByPage pageReq {} fallback.", pageReq);
+		LOGGER.error("findByPage pageReq {} fallback.", pageReq);
 		BaseResp<PageResp<RoleVO>> resp = new BaseResp<PageResp<RoleVO>>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;
@@ -29,7 +29,7 @@ public class RoleFeignClientFallback implements RoleFeignClient {
 
 	@Override
 	public BaseResp<RoleVO> findByRoleId(Long id) {
-		logger.error("findByRoleId id {} fallback.", id);
+		LOGGER.error("findByRoleId id {} fallback.", id);
 		BaseResp<RoleVO> resp = new BaseResp<RoleVO>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;
@@ -37,7 +37,7 @@ public class RoleFeignClientFallback implements RoleFeignClient {
 
 	@Override
 	public BaseResp<List<RoleVO>> findAllRole() {
-		logger.error("findAllRole fallback.");
+		LOGGER.error("findAllRole fallback.");
 		BaseResp<List<RoleVO>> resp = new BaseResp<List<RoleVO>>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;
@@ -45,7 +45,7 @@ public class RoleFeignClientFallback implements RoleFeignClient {
 
 	@Override
 	public BaseResp<RoleVO> addRole(RoleVO roleVO) {
-		logger.error("addRole roleVO {} fallback.", roleVO);
+		LOGGER.error("addRole roleVO {} fallback.", roleVO);
 		BaseResp<RoleVO> resp = new BaseResp<RoleVO>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;
@@ -53,7 +53,7 @@ public class RoleFeignClientFallback implements RoleFeignClient {
 
 	@Override
 	public BaseResp<RoleVO> updateRole(RoleVO roleVO) {
-		logger.error("updateRole roleVO {} fallback.", roleVO);
+		LOGGER.error("updateRole roleVO {} fallback.", roleVO);
 		BaseResp<RoleVO> resp = new BaseResp<RoleVO>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;
@@ -61,7 +61,7 @@ public class RoleFeignClientFallback implements RoleFeignClient {
 
 	@Override
 	public BaseResp<?> deleteByRoleId(Long id) {
-		logger.error("deleteByRoleId id {} fallback.", id);
+		LOGGER.error("deleteByRoleId id {} fallback.", id);
 		BaseResp<?> resp = new BaseResp<>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;
@@ -69,7 +69,7 @@ public class RoleFeignClientFallback implements RoleFeignClient {
 
 	@Override
 	public BaseResp<List<AuthorityRoleVO>> findAuthorityRoleByRoleId(Long id) {
-		logger.error("findAuthorityRoleByRoleId id {} fallback.", id);
+		LOGGER.error("findAuthorityRoleByRoleId id {} fallback.", id);
 		BaseResp<List<AuthorityRoleVO>> resp = new BaseResp<List<AuthorityRoleVO>>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;

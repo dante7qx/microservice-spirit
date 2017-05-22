@@ -27,7 +27,7 @@ import com.spirit.project.sysmgr.dao.po.UserPO;
 @Transactional(readOnly = true)
 public class AuthorityServiceImpl implements AuthorityService {
 
-	private final static Logger logger = LoggerFactory.getLogger(AuthorityServiceImpl.class);
+	private final static Logger LOGGER = LoggerFactory.getLogger(AuthorityServiceImpl.class);
 
 	@Autowired
 	private AuthorityDAO authorityDAO;
@@ -46,7 +46,7 @@ public class AuthorityServiceImpl implements AuthorityService {
 				authorityRespDTOs.add(convertPoToRespDto(po));
 			}
 		} catch (SpiritDaoException e) {
-			logger.error("AuthorityDAO findRootAuthority error.", e);
+			LOGGER.error("AuthorityDAO findRootAuthority error.", e);
 			throw new SpiritAPIServiceException("AuthorityDAO findRootAuthority error.", e);
 		}
 		return authorityRespDTOs;
@@ -61,7 +61,7 @@ public class AuthorityServiceImpl implements AuthorityService {
 				authorityRespDTOs.add(convertPoToRespDto(po));
 			}
 		} catch (SpiritDaoException e) {
-			logger.error("AuthorityDAO findByPid {} error.", pid, e);
+			LOGGER.error("AuthorityDAO findByPid {} error.", pid, e);
 			throw new SpiritAPIServiceException("AuthorityDAO findByPid error.", e);
 		}
 		return authorityRespDTOs;
@@ -80,7 +80,7 @@ public class AuthorityServiceImpl implements AuthorityService {
 		try {
 			authoritys = authorityDAO.findByParentId(id);
 		} catch (SpiritDaoException e) {
-			logger.error("AuthorityDAO findByParentId {} error.", id, e);
+			LOGGER.error("AuthorityDAO findByParentId {} error.", id, e);
 			throw new SpiritAPIServiceException("AuthorityDAO findByParentId error.", e);
 		}
 

@@ -11,27 +11,27 @@ import com.spirit.project.commom.util.DateUtils.TimeFormat;
 
 public class DateUtilsTest {
 	
-	private final static Logger logger = LoggerFactory.getLogger(DateUtilsTest.class);
+	private final static Logger LOGGER = LoggerFactory.getLogger(DateUtilsTest.class);
 	
 	@Test
 	public void testGetCurrentDate() {
 		String date = DateUtils.getCurrentDate();
 		Assert.assertNotNull(date);
-		logger.debug("date: {}",date);
+		LOGGER.debug("date: {}",date);
 	}
 	
 	@Test
 	public void testGetCurrentDatetime() {
 		String date = DateUtils.getCurrentDatetime();
 		Assert.assertNotNull(date);
-		logger.debug("date: {}",date);
+		LOGGER.debug("date: {}",date);
 	}
 	
 	@Test
 	public void testGetCurrentDateWithMilliSecond() {
 		String date = DateUtils.getCurrentDateWithMilliSecond();
 		Assert.assertNotNull(date);
-		logger.debug("date: {}",date);
+		LOGGER.debug("date: {}",date);
 	}
 	
 	@Test
@@ -42,7 +42,7 @@ public class DateUtilsTest {
 		String yearMonth = DateUtils.formatDate(date, TimeFormat.SHORT_DATE_PATTERN_YEAR_MONTH);
 		Assert.assertNotNull(dateStr);
 		Assert.assertNotNull(dateTimeStr);
-		logger.debug("\n dateStr: {} \n dateTimeStr: {} \n yearMonth: {}", dateStr, dateTimeStr, yearMonth);
+		LOGGER.debug("\n dateStr: {} \n dateTimeStr: {} \n yearMonth: {}", dateStr, dateTimeStr, yearMonth);
 	}
 	
 }

@@ -18,7 +18,7 @@ import com.spirit.project.getway.ui.vo.LoginUserVO;
 @Service
 public class SpiritUserDetailsService implements UserDetailsService {
 	
-	private Logger logger = LoggerFactory.getLogger(SpiritUserDetailsService.class);
+	private Logger LOGGER = LoggerFactory.getLogger(SpiritUserDetailsService.class);
 	
 	@Autowired
 	private UserService userService;
@@ -32,7 +32,7 @@ public class SpiritUserDetailsService implements UserDetailsService {
 				throw new UsernameNotFoundException("用户名["+account+"]不存在！");
 			}
 		} catch (SpiritUIServiceException e) {
-			logger.error("loadUserByUsername error, Account:{}", account, e);
+			LOGGER.error("loadUserByUsername error, Account:{}", account, e);
 			throw new UsernameNotFoundException("用户名["+account+"]认证失败！", e);
 		}
 		return convertToSpiritPrincipal(loginUserVO);

@@ -54,7 +54,7 @@ public abstract class SpiritServiceTemplate<REQ, RESP, P> {
 		} else {
 			page = jpaRepository.findAll(pageRequest);
 		}
-		PageResp<RESP> pageResp = new PageResp<RESP>();
+		PageResp<RESP> pageResp = new PageResp<>();
 		List<P> dbList = page.getContent();
 		if(!CollectionUtils.isEmpty(dbList)) {
 			List<RESP> list = Lists.newArrayList();

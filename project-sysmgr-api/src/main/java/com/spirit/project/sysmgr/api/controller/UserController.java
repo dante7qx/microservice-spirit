@@ -27,7 +27,7 @@ import com.spirit.project.sysmgr.api.service.UserService;
 @RequestMapping("/user")
 public class UserController {
 
-	private final static Logger logger = LoggerFactory.getLogger(UserController.class);
+	private final static Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 	
 	@Autowired
 	private UserService userService;
@@ -45,7 +45,7 @@ public class UserController {
 			PageResp<UserRespDTO> pageResp = userService.findPage(pageReq);
 			result.setData(pageResp);
 		} catch (SpiritAPIServiceException e) {
-			logger.error("queryUserPage error.", e);
+			LOGGER.error("queryUserPage error.", e);
 			result.setResultCode(RespCodeEnum.FAILURE.code());
 		}
 		return result;
@@ -64,7 +64,7 @@ public class UserController {
 			UserRespDTO userResp = userService.findById(id);
 			result.setData(userResp);
 		} catch (Exception e) {
-			logger.error("queryByUserId userId: {} error.", id, e);
+			LOGGER.error("queryByUserId userId: {} error.", id, e);
 			result.setResultCode(RespCodeEnum.FAILURE.code());
 		}
 		return result;
@@ -88,7 +88,7 @@ public class UserController {
 			result.setData(userRespDto);
 		} catch (SpiritAPIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("addUser user: {} error.", userReqDto, e);
+			LOGGER.error("addUser user: {} error.", userReqDto, e);
 		}
 		return result;
 	}
@@ -111,7 +111,7 @@ public class UserController {
 			result.setData(userRespDto);
 		} catch (SpiritAPIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("updateUser user: {} error.", userReqDto, e);
+			LOGGER.error("updateUser user: {} error.", userReqDto, e);
 		}
 		return result;
 	}
@@ -129,7 +129,7 @@ public class UserController {
 			userService.delete(userReqDto);
 		} catch (SpiritAPIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("deleteUser userReqDto: {} error.", userReqDto, e);
+			LOGGER.error("deleteUser userReqDto: {} error.", userReqDto, e);
 		}
 		return result;
 	}
@@ -141,7 +141,7 @@ public class UserController {
 			userService.lockUser(userReqDto);
 		} catch (SpiritAPIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("lockUser userReqDto: {} error.", userReqDto, e);
+			LOGGER.error("lockUser userReqDto: {} error.", userReqDto, e);
 		}
 		return result;
 	}
@@ -153,7 +153,7 @@ public class UserController {
 			userService.releaseLockUser(userReqDto);
 		} catch (SpiritAPIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("releaseLockUser userReqDto: {} error.", userReqDto, e);
+			LOGGER.error("releaseLockUser userReqDto: {} error.", userReqDto, e);
 		}
 		return result;
 	}
@@ -165,7 +165,7 @@ public class UserController {
 			result.setData(userService.checkPassword(userModifyPasswordReqDTO));
 		} catch (SpiritAPIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("userModifyPasswordReqDTO error.", userModifyPasswordReqDTO, e);
+			LOGGER.error("userModifyPasswordReqDTO error.", userModifyPasswordReqDTO, e);
 		}
 		return result;
 	}
@@ -181,7 +181,7 @@ public class UserController {
 			userService.modifyPassword(userModifyPasswordReqDTO);
 		} catch (SpiritAPIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("modifyPassword error.", userModifyPasswordReqDTO, e);
+			LOGGER.error("modifyPassword error.", userModifyPasswordReqDTO, e);
 		}
 		return result;
 	}
@@ -193,7 +193,7 @@ public class UserController {
 			UserRespDTO userResp = userService.findByAccount(account);
 			result.setData(userResp);
 		} catch (Exception e) {
-			logger.error("queryByAccount account: {} error.", account, e);
+			LOGGER.error("queryByAccount account: {} error.", account, e);
 		}
 		return result;
 	}
@@ -205,7 +205,7 @@ public class UserController {
 			List<UserRespDTO> userResps = userService.findByRoleId(roleId);
 			result.setData(userResps);
 		} catch (Exception e) {
-			logger.error("queryByRoleId roleId: {} error.", roleId, e);
+			LOGGER.error("queryByRoleId roleId: {} error.", roleId, e);
 		}
 		return result;
 	}

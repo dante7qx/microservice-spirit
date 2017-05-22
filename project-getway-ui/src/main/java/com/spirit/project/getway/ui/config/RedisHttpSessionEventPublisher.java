@@ -20,7 +20,7 @@ import org.springframework.util.StringUtils;
  *
  */
 public class RedisHttpSessionEventPublisher extends HttpSessionEventPublisher {
-	private static final Logger logger = LoggerFactory.getLogger(RedisHttpSessionEventPublisher.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(RedisHttpSessionEventPublisher.class);
 	
 	@Autowired
 	private SessionRegistry sessionRegistry;
@@ -30,9 +30,9 @@ public class RedisHttpSessionEventPublisher extends HttpSessionEventPublisher {
 		HttpSession session = event.getSession();
 		SessionInformation sessionInfo = sessionRegistry.getSessionInformation(session.getId());
 		if(sessionInfo != null && !StringUtils.isEmpty(sessionInfo.getPrincipal())) {
-			logger.info("session {}->{} create.", session.getId(), sessionInfo.getPrincipal());
+			LOGGER.info("session {}->{} create.", session.getId(), sessionInfo.getPrincipal());
 		}
-		logger.info("session ({}) create", session.getId());
+		LOGGER.info("session ({}) create", session.getId());
 	}
 
 	public void sessionDestroyed(HttpSessionEvent event) {
@@ -41,7 +41,7 @@ public class RedisHttpSessionEventPublisher extends HttpSessionEventPublisher {
 				.getAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY);
 		if(sc != null) {
 			String principal = sc.getAuthentication().getPrincipal().toString();
-			logger.info("session ({})->{} destroy.", session.getId(), principal);
+			LOGGER.info("session ({})->{} destroy.", session.getId(), principal);
 		}
 		super.sessionDestroyed(event);
 	}

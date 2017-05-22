@@ -21,14 +21,25 @@ import com.spirit.project.sysmgr.ui.service.ResourceService;
 import com.spirit.project.sysmgr.ui.vo.resource.ResourceTreeVO;
 import com.spirit.project.sysmgr.ui.vo.resource.ResourceVO;
 
+/**
+ * 资源 UI Controller
+ * 
+ * @author dante
+ *
+ */
 @RestController
 @RequestMapping("/resource")
 public class ResourceController {
-	private static final Logger logger = LoggerFactory.getLogger(ResourceController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ResourceController.class);
 	
 	@Autowired
 	private ResourceService resourceService;
 	
+	/**
+	 * 获取资源树
+	 * 
+	 * @return
+	 */
 	@PreAuthorize("hasAuthority('sysmgr.resource.query')")
 	@PostMapping("/query_tree")
 	public List<ResourceTreeVO> queryResourceTree() {
@@ -42,26 +53,38 @@ public class ResourceController {
 			root.setChildren(childTrees);
 			trees.add(root);
 		} catch (SpiritUIServiceException e) {
-			logger.error("queryResourceTree error.", e);
+			LOGGER.error("queryResourceTree error.", e);
 		}
 		return trees;
 	}
 	
+	/**
+	 * 更新资源
+	 * 
+	 * @param resourceVO
+	 * @return
+	 */
 	@PreAuthorize("hasAuthority('sysmgr.resource.update')")
 	@PostMapping("/update_resource")
 	public BaseResp<ResourceVO> updateResource(ResourceVO resourceVO) {
-		BaseResp<ResourceVO> result = new BaseResp<ResourceVO>();
+		BaseResp<ResourceVO> result = new BaseResp<>();
 		try {
 			resourceVO.setUpdateUser(LoginUserUtils.loginUserId());
 			ResourceVO resourceResp = resourceService.updateResource(resourceVO);
 			result.setData(resourceResp);
 		} catch (SpiritUIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("updateResource resourceVO: {} error.", resourceVO, e);
+			LOGGER.error("updateResource resourceVO: {} error.", resourceVO, e);
 		}
 		return result;
 	}
 	
+	/**
+	 * 资源的拖拽
+	 * 
+	 * @param dragTreeReq
+	 * @return
+	 */
 	@PreAuthorize("hasAuthority('sysmgr.resource.update')")
 	@PostMapping("/update_when_drag")
 	public BaseResp<?> updateResourceWhenDrap(EasyUIDragTreeReq dragTreeReq) {
@@ -71,11 +94,17 @@ public class ResourceController {
 			resourceService.updateResourceWhenDrag(dragTreeReq);
 		} catch (SpiritUIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("updateResourceWhenDrap dragTree {} error.", dragTreeReq, e);
+			LOGGER.error("updateResourceWhenDrap dragTree {} error.", dragTreeReq, e);
 		}
 		return result;
 	}
 	
+	/**
+	 * 根据id删除资源
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@PreAuthorize("hasAuthority('sysmgr.resource.delete')")
 	@PostMapping("/delete_by_id")
 	public BaseResp<?> deleteByResourceId(Long id) {
@@ -84,7 +113,7 @@ public class ResourceController {
 			resourceService.deleteByResourceId(id);
 		} catch (SpiritUIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("deleteByResourceId id: {} error.", id, e);
+			LOGGER.error("deleteByResourceId id: {} error.", id, e);
 		}
 		return result;
 	}

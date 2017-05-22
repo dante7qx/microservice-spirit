@@ -19,7 +19,7 @@ import com.spirit.project.getway.ui.vo.LoginUserMenuVO;
 @Controller
 public class IndexController {
 
-	private final static Logger logger = LoggerFactory.getLogger(IndexController.class);
+	private final static Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
 	
 	@Autowired
 	private UserService userService;
@@ -31,7 +31,7 @@ public class IndexController {
 		try {
 			menus = userService.findUserResourceByUserId(loginUser.getId());
 		} catch (SpiritUIServiceException e) {
-			logger.error("用户 {} 访问系统错误", loginUser, e);
+			LOGGER.error("用户 {} 访问系统错误", loginUser, e);
 		}
 		model.addAttribute("menus", menus);
 		return "index/navtop";

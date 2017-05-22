@@ -14,11 +14,11 @@ import com.spirit.project.sysmgr.ui.vo.resource.ResourceVO;
 @Component
 public class ResourceFeignClientFallback implements ResourceFeignClient {
 
-	private final static Logger logger = LoggerFactory.getLogger(ResourceFeignClientFallback.class);
+	private final static Logger LOGGER = LoggerFactory.getLogger(ResourceFeignClientFallback.class);
 	
 	@Override
 	public BaseResp<ResourceVO> findByResourceId(Long id) {
-		logger.error("findByResourceId id {} fallback.", id);
+		LOGGER.error("findByResourceId id {} fallback.", id);
 		BaseResp<ResourceVO> resp = new BaseResp<ResourceVO>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;
@@ -26,7 +26,7 @@ public class ResourceFeignClientFallback implements ResourceFeignClient {
 
 	@Override
 	public BaseResp<List<ResourceVO>> findByResourcePid(Long pid) {
-		logger.error("findByResourcePid pid {} fallback.", pid);
+		LOGGER.error("findByResourcePid pid {} fallback.", pid);
 		BaseResp<List<ResourceVO>> resp = new BaseResp<List<ResourceVO>>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;
@@ -34,7 +34,7 @@ public class ResourceFeignClientFallback implements ResourceFeignClient {
 
 	@Override
 	public BaseResp<List<ResourceVO>> findRootResource() {
-		logger.error("findRootResource fallback.");
+		LOGGER.error("findRootResource fallback.");
 		BaseResp<List<ResourceVO>> resp = new BaseResp<List<ResourceVO>>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;
@@ -42,7 +42,7 @@ public class ResourceFeignClientFallback implements ResourceFeignClient {
 
 	@Override
 	public BaseResp<ResourceVO> addResource(ResourceVO resourceVO) {
-		logger.error("addResource resourceVO {} fallback.", resourceVO);
+		LOGGER.error("addResource resourceVO {} fallback.", resourceVO);
 		BaseResp<ResourceVO> resp = new BaseResp<ResourceVO>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;
@@ -50,7 +50,7 @@ public class ResourceFeignClientFallback implements ResourceFeignClient {
 
 	@Override
 	public BaseResp<ResourceVO> updateResource(ResourceVO resourceVO) {
-		logger.error("updateResource resourceVO {} fallback.", resourceVO);
+		LOGGER.error("updateResource resourceVO {} fallback.", resourceVO);
 		BaseResp<ResourceVO> resp = new BaseResp<ResourceVO>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;
@@ -58,7 +58,7 @@ public class ResourceFeignClientFallback implements ResourceFeignClient {
 
 	@Override
 	public BaseResp<?> deleteByResourceId(Long id) {
-		logger.error("deleteByResourceId id {} fallback.", id);
+		LOGGER.error("deleteByResourceId id {} fallback.", id);
 		BaseResp<?> resp = new BaseResp<>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;

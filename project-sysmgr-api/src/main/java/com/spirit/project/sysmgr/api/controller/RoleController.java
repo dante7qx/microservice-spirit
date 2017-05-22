@@ -26,7 +26,7 @@ import com.spirit.project.sysmgr.api.service.RoleService;
 @RestController
 @RequestMapping("/role")
 public class RoleController {
-	private static final Logger logger = LoggerFactory.getLogger(RoleController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(RoleController.class);
 
 	@Autowired
 	private RoleService roleService;
@@ -38,7 +38,7 @@ public class RoleController {
 			PageResp<RoleRespDTO> pageResp = roleService.findPage(pageReq);
 			result.setData(pageResp);
 		} catch (SpiritAPIServiceException e) {
-			logger.error("queryRolePage error.", e);
+			LOGGER.error("queryRolePage error.", e);
 			result.setResultCode(RespCodeEnum.FAILURE.code());
 		}
 		return result;
@@ -51,7 +51,7 @@ public class RoleController {
 			RoleRespDTO roleResp = roleService.findById(id);
 			result.setData(roleResp);
 		} catch (SpiritAPIServiceException e) {
-			logger.error("queryByRoleId roleId: {} error.", id, e);
+			LOGGER.error("queryByRoleId roleId: {} error.", id, e);
 			result.setResultCode(RespCodeEnum.FAILURE.code());
 		}
 		return result;
@@ -64,7 +64,7 @@ public class RoleController {
 			List<RoleRespDTO> roleResps = roleService.findAllRoles();
 			result.setData(roleResps);
 		} catch (SpiritAPIServiceException e) {
-			logger.error("queryAllRole error.", e);
+			LOGGER.error("queryAllRole error.", e);
 			result.setResultCode(RespCodeEnum.FAILURE.code());
 		}
 		return result;
@@ -77,7 +77,7 @@ public class RoleController {
 			List<AuthorityRoleRespDTO> authorityRoleRespDTOs = roleService.findAuthorityRoleByRoleId(id);
 			result.setData(authorityRoleRespDTOs);
 		} catch (SpiritAPIServiceException e) {
-			logger.error("queryByAuthorityRoleId roleId: {} error.", id, e);
+			LOGGER.error("queryByAuthorityRoleId roleId: {} error.", id, e);
 			result.setResultCode(RespCodeEnum.FAILURE.code());
 		}
 		return result;
@@ -95,7 +95,7 @@ public class RoleController {
 			result.setData(roleRespDto);
 		} catch (SpiritAPIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("addRole role: {} error.", roleReqDto, e);
+			LOGGER.error("addRole role: {} error.", roleReqDto, e);
 		}
 		return result;
 	}
@@ -112,7 +112,7 @@ public class RoleController {
 			result.setData(roleRespDto);
 		} catch (SpiritAPIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("updateRole role: {} error.", roleReqDto, e);
+			LOGGER.error("updateRole role: {} error.", roleReqDto, e);
 		}
 		return result;
 	}
@@ -123,7 +123,7 @@ public class RoleController {
 		try {
 			roleService.deleteById(id);
 		} catch (SpiritAPIServiceException e) {
-			logger.error("deleteByRoleId roleId: {} error.", id, e);
+			LOGGER.error("deleteByRoleId roleId: {} error.", id, e);
 			result.setResultCode(RespCodeEnum.FAILURE.code());
 		}
 		return result;

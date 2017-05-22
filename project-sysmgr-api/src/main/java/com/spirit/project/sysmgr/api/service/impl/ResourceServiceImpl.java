@@ -34,7 +34,7 @@ import com.spirit.project.sysmgr.dao.po.UserPO;
 @Transactional(readOnly = true)
 public class ResourceServiceImpl implements ResourceService {
 
-	private final static Logger logger = LoggerFactory.getLogger(ResourceServiceImpl.class);
+	private final static Logger LOGGER = LoggerFactory.getLogger(ResourceServiceImpl.class);
 
 	@Autowired
 	private ResourceDAO resourceDAO;
@@ -53,7 +53,7 @@ public class ResourceServiceImpl implements ResourceService {
 				resourceRespDTOs.add(convertPoToRespDto(po));
 			}
 		} catch (SpiritDaoException e) {
-			logger.error("ResourceDAO findRootResource error.", e);
+			LOGGER.error("ResourceDAO findRootResource error.", e);
 			throw new SpiritAPIServiceException("ResourceDAO findRootResource error.", e);
 		}
 		return resourceRespDTOs;
@@ -68,7 +68,7 @@ public class ResourceServiceImpl implements ResourceService {
 				resourceRespDTOs.add(convertPoToRespDto(po));
 			}
 		} catch (SpiritDaoException e) {
-			logger.error("ResourceDAO findByPid {} error.", pid, e);
+			LOGGER.error("ResourceDAO findByPid {} error.", pid, e);
 			throw new SpiritAPIServiceException("ResourceDAO findByPid error.", e);
 		}
 		return resourceRespDTOs;
@@ -93,7 +93,7 @@ public class ResourceServiceImpl implements ResourceService {
 		try {
 			resources = resourceDAO.findByPid(id);
 		} catch (SpiritDaoException e) {
-			logger.error("ResourceDAO findByParentId {} error.", id, e);
+			LOGGER.error("ResourceDAO findByParentId {} error.", id, e);
 			throw new SpiritAPIServiceException("ResourceDAO findByParentId error.", e);
 		}
 		if (!CollectionUtils.isEmpty(resources)) {
@@ -125,7 +125,7 @@ public class ResourceServiceImpl implements ResourceService {
 		try {
 			pids = resourceDAO.findAllParentId();
 		} catch (SpiritDaoException e) {
-			logger.error("ResourceDAO findAllParentId {} error.", e);
+			LOGGER.error("ResourceDAO findAllParentId {} error.", e);
 			throw new SpiritAPIServiceException("ResourceDAO findAllParentId error.", e);
 		}
 		List<ResourcePO> resourcePOs = resourceDAO.findAll(ResourceSpecification.findResourceTreeByUserId(userId));

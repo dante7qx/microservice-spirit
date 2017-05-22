@@ -21,10 +21,16 @@ import com.spirit.project.sysmgr.ui.service.UserService;
 import com.spirit.project.sysmgr.ui.vo.user.UserModifyPasswordVO;
 import com.spirit.project.sysmgr.ui.vo.user.UserVO;
 
+/**
+ * 用户管理 UI Controller
+ * 
+ * @author dante
+ *
+ */
 @RestController
 @RequestMapping("/user")
 public class UserController {
-	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
 	private UserService userService;
@@ -42,39 +48,57 @@ public class UserController {
 		try {
 			result = userService.findPage(pageReq);
 		} catch (SpiritUIServiceException e) {
-			logger.error("queryUserPage {} error.", pageReq, e);
+			LOGGER.error("queryUserPage {} error.", pageReq, e);
 		}
 		return result;
 	}
 
+	/**
+	 * 根据id获取用户
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@PreAuthorize("hasAuthority('sysmgr.user.query')")
 	@PostMapping(value = "/query_by_id")
 	public BaseResp<UserVO> queryByUserId(Long id) {
-		BaseResp<UserVO> result = new BaseResp<UserVO>();
+		BaseResp<UserVO> result = new BaseResp<>();
 		try {
 			UserVO userVO = userService.findByUserId(id);
 			result.setData(userVO);
 		} catch (SpiritUIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("queryByUserId userId: {} error.", id, e);
+			LOGGER.error("queryByUserId userId: {} error.", id, e);
 		}
 		return result;
 	}
 
+	/**
+	 * 根据account获取用户
+	 * 
+	 * @param account
+	 * @return
+	 */
 	@PreAuthorize("hasAuthority('sysmgr.user.query')")
 	@PostMapping(value = "/query_by_account")
 	public BaseResp<UserVO> queryByAccount(String account) {
-		BaseResp<UserVO> result = new BaseResp<UserVO>();
+		BaseResp<UserVO> result = new BaseResp<>();
 		try {
 			UserVO userVO = userService.findByAccount(account);
 			result.setData(userVO);
 		} catch (SpiritUIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("queryByAccount account: {} error.", account, e);
+			LOGGER.error("queryByAccount account: {} error.", account, e);
 		}
 		return result;
 	}
 
+	/**
+	 * 根据roleId获取用户
+	 * 
+	 * @param roleId
+	 * @return
+	 */
 	@PreAuthorize("hasAuthority('sysmgr.user.query')")
 	@PostMapping(value = "/query_by_role_id")
 	public List<UserVO> queryByRoleId(Long roleId) {
@@ -82,26 +106,38 @@ public class UserController {
 		try {
 			result = userService.findByRoleId(roleId);
 		} catch (SpiritUIServiceException e) {
-			logger.error("queryByRoleId roleId: {} error.", roleId, e);
+			LOGGER.error("queryByRoleId roleId: {} error.", roleId, e);
 		}
 		return result;
 	}
 
+	/**
+	 * 更新用户
+	 * 
+	 * @param userVO
+	 * @return
+	 */
 	@PreAuthorize("hasAuthority('sysmgr.user.update')")
 	@PostMapping(value = "/update_user")
 	public BaseResp<UserVO> updateUser(UserVO userVO) {
-		BaseResp<UserVO> result = new BaseResp<UserVO>();
+		BaseResp<UserVO> result = new BaseResp<>();
 		try {
 			userVO.setUpdateUser(LoginUserUtils.loginUserId());
 			UserVO userVOResp = userService.updateUser(userVO);
 			result.setData(userVOResp);
 		} catch (SpiritUIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("updateUser userVO: {} error.", userVO, e);
+			LOGGER.error("updateUser userVO: {} error.", userVO, e);
 		}
 		return result;
 	}
 
+	/**
+	 * 删除用户
+	 * 
+	 * @param userVO
+	 * @return
+	 */
 	@PreAuthorize("hasAuthority('sysmgr.user.delete')")
 	@PostMapping(value = "/delete_user")
 	public BaseResp<?> deleteUser(UserVO userVO) {
@@ -111,11 +147,17 @@ public class UserController {
 			userService.deleteUser(userVO);
 		} catch (SpiritUIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("deleteByUserId id: {} error.", userVO, e);
+			LOGGER.error("deleteByUserId id: {} error.", userVO, e);
 		}
 		return result;
 	}
 	
+	/**
+	 * 锁定用户
+	 * 
+	 * @param userVO
+	 * @return
+	 */
 	@PreAuthorize("hasAuthority('sysmgr.user.update')")
 	@PostMapping(value = "/lock_user")
 	public BaseResp<?> lockUser(UserVO userVO) {
@@ -125,11 +167,17 @@ public class UserController {
 			userService.lockUser(userVO);
 		} catch (SpiritUIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("lockUser {} error.", userVO, e);
+			LOGGER.error("lockUser {} error.", userVO, e);
 		}
 		return result;
 	}
 	
+	/**
+	 * 解锁用户
+	 * 
+	 * @param userVO
+	 * @return
+	 */
 	@PreAuthorize("hasAuthority('sysmgr.user.update')")
 	@PostMapping(value = "/release_lock_user")
 	public BaseResp<?> releaseLockUser(UserVO userVO) {
@@ -139,25 +187,37 @@ public class UserController {
 			userService.releaseLockUser(userVO);
 		} catch (SpiritUIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("releaseLockUser {} error.", userVO, e);
+			LOGGER.error("releaseLockUser {} error.", userVO, e);
 		}
 		return result;
 	}
 	
+	/**
+	 * 检查用户密码
+	 * 
+	 * @param userModifyPasswordVO
+	 * @return
+	 */
 	@PreAuthorize("hasAuthority('sysmgr.user.update')")
 	@PostMapping(value = "/check_password")
 	public BaseResp<Boolean> checkPassword(UserModifyPasswordVO userModifyPasswordVO) {
-		BaseResp<Boolean> result = new BaseResp<Boolean>();
+		BaseResp<Boolean> result = new BaseResp<>();
 		try {
 			userModifyPasswordVO.setUpdateUser(LoginUserUtils.loginUserId());
 			result.setData(userService.checkPassword(userModifyPasswordVO));
 		} catch (SpiritUIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("checkPassword {} error.", userModifyPasswordVO, e);
+			LOGGER.error("checkPassword {} error.", userModifyPasswordVO, e);
 		}
 		return result;
 	}
 	
+	/**
+	 * 修改用户密码
+	 * 
+	 * @param userModifyPasswordVO
+	 * @return
+	 */
 	@PreAuthorize("hasAuthority('sysmgr.user.update')")
 	@PostMapping(value = "/modify_password")
 	public BaseResp<?> modifyPassword(UserModifyPasswordVO userModifyPasswordVO) {
@@ -167,7 +227,7 @@ public class UserController {
 			userService.modifyPassword(userModifyPasswordVO);
 		} catch (SpiritUIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("modifyPassword {} error.", userModifyPasswordVO, e);
+			LOGGER.error("modifyPassword {} error.", userModifyPasswordVO, e);
 		}
 		return result;
 	}

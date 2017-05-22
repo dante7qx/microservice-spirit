@@ -16,11 +16,11 @@ import com.spirit.project.sysmgr.ui.vo.user.UserVO;
 
 @Component
 public class UserFeignClientFallback implements UserFeignClient {
-	private final static Logger logger = LoggerFactory.getLogger(UserFeignClientFallback.class);
+	private final static Logger LOGGER = LoggerFactory.getLogger(UserFeignClientFallback.class);
 
 	@Override
 	public BaseResp<PageResp<UserVO>> findPage(PageReq pageReq) {
-		logger.error("findByPage pageReq {} fallback.", pageReq);
+		LOGGER.error("findByPage pageReq {} fallback.", pageReq);
 		BaseResp<PageResp<UserVO>> resp = new BaseResp<PageResp<UserVO>>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;
@@ -28,7 +28,7 @@ public class UserFeignClientFallback implements UserFeignClient {
 
 	@Override
 	public BaseResp<UserVO> findByUserId(Long id) {
-		logger.error("findByUserId id {} fallback.", id);
+		LOGGER.error("findByUserId id {} fallback.", id);
 		BaseResp<UserVO> resp = new BaseResp<UserVO>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;
@@ -36,7 +36,7 @@ public class UserFeignClientFallback implements UserFeignClient {
 
 	@Override
 	public BaseResp<List<UserVO>> findByRoleId(Long roleId) {
-		logger.error("findByRoleId roleId {} fallback.", roleId);
+		LOGGER.error("findByRoleId roleId {} fallback.", roleId);
 		BaseResp<List<UserVO>> resp = new BaseResp<List<UserVO>>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;
@@ -44,7 +44,7 @@ public class UserFeignClientFallback implements UserFeignClient {
 
 	@Override
 	public BaseResp<UserVO> addUser(UserVO userVO) {
-		logger.error("addUser userVO {} fallback.", userVO);
+		LOGGER.error("addUser userVO {} fallback.", userVO);
 		BaseResp<UserVO> resp = new BaseResp<UserVO>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;
@@ -52,7 +52,7 @@ public class UserFeignClientFallback implements UserFeignClient {
 
 	@Override
 	public BaseResp<UserVO> updateUser(UserVO userVO) {
-		logger.error("updateUser userVO {} fallback.", userVO);
+		LOGGER.error("updateUser userVO {} fallback.", userVO);
 		BaseResp<UserVO> resp = new BaseResp<UserVO>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;
@@ -60,7 +60,7 @@ public class UserFeignClientFallback implements UserFeignClient {
 
 	@Override
 	public BaseResp<?> deleteUser(UserVO userVO) {
-		logger.error("deleteUser {} fallback.", userVO);
+		LOGGER.error("deleteUser {} fallback.", userVO);
 		BaseResp<?> resp = new BaseResp<>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;
@@ -68,7 +68,7 @@ public class UserFeignClientFallback implements UserFeignClient {
 
 	@Override
 	public BaseResp<UserVO> findByAccount(String account) {
-		logger.error("findByAccount account {} fallback.", account);
+		LOGGER.error("findByAccount account {} fallback.", account);
 		BaseResp<UserVO> resp = new BaseResp<UserVO>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;
@@ -76,7 +76,7 @@ public class UserFeignClientFallback implements UserFeignClient {
 
 	@Override
 	public BaseResp<?> lockUser(UserVO userVO) {
-		logger.error("lockUser {} fallback.", userVO);
+		LOGGER.error("lockUser {} fallback.", userVO);
 		BaseResp<?> resp = new BaseResp<>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;
@@ -84,7 +84,7 @@ public class UserFeignClientFallback implements UserFeignClient {
 
 	@Override
 	public BaseResp<?> releaseLockUser(UserVO userVO) {
-		logger.error("releaseLockUser {} fallback.", userVO);
+		LOGGER.error("releaseLockUser {} fallback.", userVO);
 		BaseResp<?> resp = new BaseResp<>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;
@@ -92,7 +92,7 @@ public class UserFeignClientFallback implements UserFeignClient {
 	
 	@Override
 	public BaseResp<Boolean> checkPassword(UserModifyPasswordVO userModifyPasswordVO) {
-		logger.error("checkPassword {} fallback.", userModifyPasswordVO);
+		LOGGER.error("checkPassword {} fallback.", userModifyPasswordVO);
 		BaseResp<Boolean> resp = new BaseResp<>();
 		resp.setData(false);
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
@@ -101,7 +101,7 @@ public class UserFeignClientFallback implements UserFeignClient {
 
 	@Override
 	public BaseResp<?> modifyPassword(UserModifyPasswordVO userModifyPasswordVO) {
-		logger.error("modifyPassword {} fallback.", userModifyPasswordVO);
+		LOGGER.error("modifyPassword {} fallback.", userModifyPasswordVO);
 		BaseResp<?> resp = new BaseResp<>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;

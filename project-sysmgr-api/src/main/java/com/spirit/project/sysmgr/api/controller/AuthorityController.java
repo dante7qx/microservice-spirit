@@ -22,7 +22,7 @@ import com.spirit.project.sysmgr.api.service.AuthorityService;
 @RestController
 @RequestMapping("/authority")
 public class AuthorityController {
-private static final Logger logger = LoggerFactory.getLogger(AuthorityController.class);
+private static final Logger LOGGER = LoggerFactory.getLogger(AuthorityController.class);
 	
 	@Autowired
 	private AuthorityService authorityService;
@@ -35,7 +35,7 @@ private static final Logger logger = LoggerFactory.getLogger(AuthorityController
 			result.setData(authorityResp);
 		} catch (SpiritAPIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("queryByAuthorityId id: {} error.", id, e);
+			LOGGER.error("queryByAuthorityId id: {} error.", id, e);
 		}
 		return result;
 	}
@@ -48,7 +48,7 @@ private static final Logger logger = LoggerFactory.getLogger(AuthorityController
 			result.setData(authorityResp);
 		} catch (SpiritAPIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("queryByAuthorityPid pid: {} error.", pid, e);
+			LOGGER.error("queryByAuthorityPid pid: {} error.", pid, e);
 		}
 		return result;
 	}
@@ -61,7 +61,7 @@ private static final Logger logger = LoggerFactory.getLogger(AuthorityController
 			result.setData(authorityResp);
 		} catch (SpiritAPIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("queryRootAuthority error.", e);
+			LOGGER.error("queryRootAuthority error.", e);
 		}
 		return result;
 	}
@@ -74,7 +74,7 @@ private static final Logger logger = LoggerFactory.getLogger(AuthorityController
 			result.setData(authorityResp);
 		} catch (SpiritAPIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("addAuthority authorityReq: {} error.", authorityReq, e);
+			LOGGER.error("addAuthority authorityReq: {} error.", authorityReq, e);
 		}
 		return result;
 	}
@@ -87,7 +87,7 @@ private static final Logger logger = LoggerFactory.getLogger(AuthorityController
 			result.setData(authorityResp);
 		} catch (SpiritAPIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("updateAuthority authorityReq: {} error.", authorityReq, e);
+			LOGGER.error("updateAuthority authorityReq: {} error.", authorityReq, e);
 		}
 		return result;
 	}
@@ -99,7 +99,7 @@ private static final Logger logger = LoggerFactory.getLogger(AuthorityController
 			authorityService.deleteById(id);
 		} catch (SpiritAPIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("deleteById id: {} error.", id, e);
+			LOGGER.error("deleteById id: {} error.", id, e);
 		}
 		return result;
 	}

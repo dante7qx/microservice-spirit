@@ -35,7 +35,7 @@ public class PageReq implements Serializable {
 
 	public void setPage(int page) {
 		if(page > MAX_PAGESIZE) {
-			page = MAX_PAGESIZE;
+			this.pageNo = MAX_PAGESIZE;
 		} 
 		this.pageNo = page;
 	}

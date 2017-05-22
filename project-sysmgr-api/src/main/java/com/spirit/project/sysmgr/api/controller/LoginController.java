@@ -18,7 +18,7 @@ import com.spirit.project.sysmgr.api.service.UserService;
 
 @RestController
 public class LoginController {
-	private final static Logger logger = LoggerFactory.getLogger(LoginController.class);
+	private final static Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 
 	@Autowired
 	private UserService userService;
@@ -29,11 +29,11 @@ public class LoginController {
 	public BaseResp<UserAuthRespDTO> login(@PathVariable String account) {
 		BaseResp<UserAuthRespDTO> result = new BaseResp<UserAuthRespDTO>();
 		try {
-			logger.info("用户： {} 请求登录.", account);
+			LOGGER.info("用户： {} 请求登录.", account);
 			UserAuthRespDTO userAuthRespDTO = userService.loginAccount(account);
 			result.setData(userAuthRespDTO);
 		} catch (Exception e) {
-			logger.error("login account: {} error.", account, e);
+			LOGGER.error("login account: {} error.", account, e);
 			result.setResultCode(RespCodeEnum.FAILURE.code());
 		}
 		return result;
@@ -46,7 +46,7 @@ public class LoginController {
 			List<UserResourceRespDTO> userResources = resourceService.findUserResourceByUserId(userId);
 			result.setData(userResources);
 		} catch (Exception e) {
-			logger.error("loginUserMenu userId: {} error.", userId, e);
+			LOGGER.error("loginUserMenu userId: {} error.", userId, e);
 			result.setResultCode(RespCodeEnum.FAILURE.code());
 		}
 		return result;

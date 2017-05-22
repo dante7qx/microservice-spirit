@@ -22,7 +22,7 @@ import com.spirit.project.sysmgr.api.service.ResourceService;
 @RestController
 @RequestMapping("/resource")
 public class ResourceController {
-	private static final Logger logger = LoggerFactory.getLogger(ResourceController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ResourceController.class);
 
 	@Autowired
 	private ResourceService resourceService;
@@ -35,7 +35,7 @@ public class ResourceController {
 			result.setData(resourceResp);
 		} catch (SpiritAPIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("queryByResourceId id: {} error.", id, e);
+			LOGGER.error("queryByResourceId id: {} error.", id, e);
 		}
 		return result;
 	}
@@ -48,7 +48,7 @@ public class ResourceController {
 			result.setData(resourceResp);
 		} catch (SpiritAPIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("queryByResourcePid pid: {} error.", pid, e);
+			LOGGER.error("queryByResourcePid pid: {} error.", pid, e);
 		}
 		return result;
 	}
@@ -61,7 +61,7 @@ public class ResourceController {
 			result.setData(resourceResp);
 		} catch (SpiritAPIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("queryRootResource error.", e);
+			LOGGER.error("queryRootResource error.", e);
 		}
 		return result;
 	}
@@ -74,7 +74,7 @@ public class ResourceController {
 			result.setData(authorityResp);
 		} catch (SpiritAPIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("addResource resourceReq: {} error.", resourceReq, e);
+			LOGGER.error("addResource resourceReq: {} error.", resourceReq, e);
 		}
 		return result;
 	}
@@ -87,7 +87,7 @@ public class ResourceController {
 			result.setData(authorityResp);
 		} catch (SpiritAPIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("updateResource resourceReq: {} error.", resourceReq, e);
+			LOGGER.error("updateResource resourceReq: {} error.", resourceReq, e);
 		}
 		return result;
 	}
@@ -99,7 +99,7 @@ public class ResourceController {
 			resourceService.deleteById(id);
 		} catch (SpiritAPIServiceException e) {
 			result.setResultCode(RespCodeEnum.FAILURE.code());
-			logger.error("deleteById id: {} error.", id, e);
+			LOGGER.error("deleteById id: {} error.", id, e);
 		}
 		return result;
 	}

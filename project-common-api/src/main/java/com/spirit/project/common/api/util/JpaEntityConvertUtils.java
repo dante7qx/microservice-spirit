@@ -11,7 +11,7 @@ import com.google.common.collect.Lists;
 
 public class JpaEntityConvertUtils {
 	
-	private static final Logger logger = LoggerFactory.getLogger(JpaEntityConvertUtils.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(JpaEntityConvertUtils.class);
 	
 	private JpaEntityConvertUtils() {
 		throw new IllegalAccessError("JpaEntityConvertUtils 工具类，不能实例化！");
@@ -41,7 +41,7 @@ public class JpaEntityConvertUtils {
                 returnList.add(constructor.newInstance(o));    
             }
         } catch (Exception e) {
-        	logger.error("JpaEntityConvertUtils castEntity error.", e);
+        	LOGGER.error("JpaEntityConvertUtils castEntity error.", e);
 		}
         return returnList;    
     } 

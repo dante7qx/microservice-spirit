@@ -15,7 +15,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 
 @Configuration
 public class DruidDatasourceConfig {
-	private Logger logger = LoggerFactory.getLogger(DruidDatasourceConfig.class);
+	private Logger LOGGER = LoggerFactory.getLogger(DruidDatasourceConfig.class);
 	
 	@Value("${spring.datasource.url}")
 	private String dbUrl;
@@ -76,7 +76,7 @@ public class DruidDatasourceConfig {
         try {  
             datasource.setFilters(filters);  
         } catch (SQLException e) {  
-            logger.error("druid configuration initialization filter", e);  
+            LOGGER.error("druid configuration initialization filter", e);  
         }  
           
         return datasource;  
