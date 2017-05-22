@@ -23,6 +23,12 @@ import com.spirit.project.sysmgr.api.dto.req.UserReqDTO;
 import com.spirit.project.sysmgr.api.dto.resp.UserRespDTO;
 import com.spirit.project.sysmgr.api.service.UserService;
 
+/**
+ * 用户 REST API 
+ * 
+ * @author dante
+ *
+ */
 @RestController
 @RequestMapping("/user")
 public class UserController {
