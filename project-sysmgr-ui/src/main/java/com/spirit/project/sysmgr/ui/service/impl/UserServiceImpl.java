@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@HystrixCommand
 	public PageResult<UserVO> findPage(PageReq pageReq) throws SpiritUIServiceException {
-		PageResult<UserVO> pageResult = new PageResult<UserVO>();
+		PageResult<UserVO> pageResult = new PageResult<>();
 		BaseResp<PageResp<UserVO>> resp = userFeignClient.findPage(pageReq);
 		if (resp.getResultCode() != RespCodeEnum.SUCCESS.code()) {
 			throw new SpiritUIServiceException(resp.getResultCode() + "");

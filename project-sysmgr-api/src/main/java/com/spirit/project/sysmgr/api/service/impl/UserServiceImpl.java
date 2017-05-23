@@ -128,8 +128,7 @@ public class UserServiceImpl extends SpiritServiceTemplate<UserReqDTO, UserRespD
 	 */
 	private UserRespDTO recoverDelUser(UserReqDTO userReqDTO, UserPO delUserPO) {
 		Long id = delUserPO.getId();
-		UserPO delUser = delUserPO;
-		delUser = convertReqDtoToPo(userReqDTO);
+		UserPO delUser = convertReqDtoToPo(userReqDTO);
 		delUser.setId(id);
 		delUser.setPassword(EncryptUtils.encrypt(userReqDTO.getPassword()));
 		delUser.setStatus(UserConsts.STATUS_NORMAL);

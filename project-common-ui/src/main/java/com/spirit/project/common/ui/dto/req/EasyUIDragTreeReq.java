@@ -16,6 +16,7 @@ public class EasyUIDragTreeReq {
 	private Long updateUser;
 	
 	public EasyUIDragTreeReq() {
+		// 默认构造函数
 	}
 
 	public String getPoint() {

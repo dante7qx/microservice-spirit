@@ -64,8 +64,8 @@ public final class SpiritDaoUtils {
 	 * @param sortCol
 	 * @param sortDir
 	 */
-	public static void buildSpecificationOrder(Root<? extends Object> root, CriteriaQuery<? extends Object> query, CriteriaBuilder cb, String sortCol,
-			String sortDir) {
+	public static void buildSpecificationOrder(Root<? extends Object> root, CriteriaQuery<? extends Object> query,
+			CriteriaBuilder cb, String sortCol, String sortDir) {
 		if (!StringUtils.isEmpty(sortCol)) {
 			List<Order> orders = Lists.newArrayList();
 			String[] sortColArr = sortCol.trim().split(",");
@@ -99,6 +99,8 @@ public final class SpiritDaoUtils {
 			break;
 		case "desc":
 			direction = Direction.DESC;
+			break;
+		default:
 			break;
 		}
 		return direction;

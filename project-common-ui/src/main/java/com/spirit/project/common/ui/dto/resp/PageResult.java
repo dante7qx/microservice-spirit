@@ -10,6 +10,7 @@ public class PageResult<T> {
 	private long total;
 	
 	public PageResult() {
+		// 默认构造函数
 	}
 	
 	public PageResult(List<T> rows, long total) {
@@ -18,7 +19,7 @@ public class PageResult<T> {
 		this.total = total;
 	}
 
-	public List<? extends Object> getRows() {
+	public List<T> getRows() {
 		if(rows == null) {
 			rows = Lists.newArrayList();
 		}
