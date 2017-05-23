@@ -15,25 +15,32 @@ import com.spirit.project.sysmgr.ui.client.fallback.ServiceModuleFeignClientFall
 import com.spirit.project.sysmgr.ui.constant.SpiritServiceConsts;
 import com.spirit.project.sysmgr.ui.vo.servicemodule.ServiceModuleVO;
 
+/**
+ * 服务模块Feign Client
+ * 
+ * @author dante
+ *
+ */
 @FeignClient(name = SpiritServiceConsts.PROJECT_SYSMGR_SERVER_NAME, fallback = ServiceModuleFeignClientFallback.class, configuration=FeignClientConfig.class)
 public interface ServiceModuleFeignClient {
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/servicemodule/query_page")
-	public BaseResp<PageResp<ServiceModuleVO>> findPage(PageReq pageReq);
+	BaseResp<PageResp<ServiceModuleVO>> findPage(PageReq pageReq);
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/servicemodule/query_by_id/{id}")
-	public BaseResp<ServiceModuleVO> findByServiceModuleId(@PathVariable("id") Long id);
+	BaseResp<ServiceModuleVO> findByServiceModuleId(@PathVariable("id") Long id);
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/servicemodule/query_all")
-	public BaseResp<List<ServiceModuleVO>> findAllServiceModule();
+	BaseResp<List<ServiceModuleVO>> findAllServiceModule();
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/servicemodule/add")
-	public BaseResp<ServiceModuleVO> addServiceModule(ServiceModuleVO serviceModuleVO);
+	BaseResp<ServiceModuleVO> addServiceModule(ServiceModuleVO serviceModuleVO);
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/servicemodule/update")
-	public BaseResp<ServiceModuleVO> updateServiceModule(ServiceModuleVO serviceModuleVO);
+	BaseResp<ServiceModuleVO> updateServiceModule(ServiceModuleVO serviceModuleVO);
 	
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(method = RequestMethod.DELETE, value = "/servicemodule/delete_by_id/{id}")
-	public BaseResp<? extends Object> deleteByServiceModuleId(@PathVariable("id") Long id);
+	BaseResp deleteByServiceModuleId(@PathVariable("id") Long id);
 
 }

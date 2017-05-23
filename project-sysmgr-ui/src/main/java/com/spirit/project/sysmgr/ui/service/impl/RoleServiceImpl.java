@@ -34,12 +34,12 @@ public class RoleServiceImpl implements RoleService {
 	@Override
 	@HystrixCommand
 	public PageResult<RoleVO> findPage(PageReq pageReq) throws SpiritUIServiceException {
-		PageResult<RoleVO> pageResult = new PageResult<>();
 		BaseResp<PageResp<RoleVO>> resp = roleFeignClient.findPage(pageReq);
 		if (resp.getResultCode() != RespCodeEnum.SUCCESS.code()) {
 			throw new SpiritUIServiceException(resp.getResultCode() + "");
 		}
 		PageResp<RoleVO> pageResp = resp.getData();
+		PageResult<RoleVO> pageResult = new PageResult<>();
 		pageResult.setRows(pageResp.getResult());
 		pageResult.setTotal(pageResp.getTotalCount());
 		return pageResult;
@@ -57,8 +57,9 @@ public class RoleServiceImpl implements RoleService {
 
 	@Override
 	@HystrixCommand
+	@SuppressWarnings("rawtypes")
 	public void deleteByRoleId(Long id) throws SpiritUIServiceException {
-		BaseResp<? extends Object> resp = roleFeignClient.deleteByRoleId(id);
+		BaseResp resp = roleFeignClient.deleteByRoleId(id);
 		if (resp.getResultCode() != RespCodeEnum.SUCCESS.code()) {
 			throw new SpiritUIServiceException(resp.getResultCode() + "");
 		}
@@ -98,7 +99,7 @@ public class RoleServiceImpl implements RoleService {
 		Set<String> keySet = treeMap.keySet();
 		Iterator<String> iterNode = keySet.iterator();
 		while(iterNode.hasNext()) {
-			String key = (String) iterNode.next();
+			String key = iterNode.next();
 			AuthorityRoleTreeVO tempTree = treeMap.get(key);
 			Long pid = tempTree.getPid();
 			if(pid == null) {

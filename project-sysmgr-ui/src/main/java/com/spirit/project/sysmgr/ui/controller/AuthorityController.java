@@ -102,10 +102,11 @@ public class AuthorityController {
 	 * @param dragTreeReq
 	 * @return
 	 */
+	@SuppressWarnings("rawtypes")
 	@PreAuthorize("hasAuthority('sysmgr.authority.update')")
 	@PostMapping("/update_when_drag")
-	public BaseResp<? extends Object> updateAuthorityWhenDrap(EasyUIDragTreeReq dragTreeReq) {
-		BaseResp<? extends Object> result = new BaseResp<>();
+	public BaseResp updateAuthorityWhenDrap(EasyUIDragTreeReq dragTreeReq) {
+		BaseResp result = new BaseResp<>();
 		try {
 			dragTreeReq.setUpdateUser(LoginUserUtils.loginUserId());
 			authorityService.updateAuthorityWhenDrag(dragTreeReq);
@@ -122,10 +123,11 @@ public class AuthorityController {
 	 * @param id
 	 * @return
 	 */
+	@SuppressWarnings("rawtypes")
 	@PreAuthorize("hasAuthority('sysmgr.authority.delete')")
 	@PostMapping("/delete_by_id")
-	public BaseResp<? extends Object> deleteByAuthorityId(Long id) {
-		BaseResp<? extends Object> result = new BaseResp<>();
+	public BaseResp deleteByAuthorityId(Long id) {
+		BaseResp result = new BaseResp<>();
 		try {
 			authorityService.deleteByAuthorityId(id);
 		} catch (SpiritUIServiceException e) {

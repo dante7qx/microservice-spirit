@@ -16,39 +16,49 @@ import com.spirit.project.sysmgr.ui.constant.SpiritServiceConsts;
 import com.spirit.project.sysmgr.ui.vo.user.UserModifyPasswordVO;
 import com.spirit.project.sysmgr.ui.vo.user.UserVO;
 
-@FeignClient(name = SpiritServiceConsts.PROJECT_SYSMGR_SERVER_NAME, fallback = UserFeignClientFallback.class, configuration=FeignClientConfig.class)
+/**
+ * 用户Feign Client
+ * 
+ * @author dante
+ *
+ */
+@FeignClient(name = SpiritServiceConsts.PROJECT_SYSMGR_SERVER_NAME, fallback = UserFeignClientFallback.class, configuration = FeignClientConfig.class)
 public interface UserFeignClient {
-	
+
 	@RequestMapping(method = RequestMethod.POST, value = "/user/query_page")
-	public BaseResp<PageResp<UserVO>> findPage(PageReq pageReq);
-	
+	BaseResp<PageResp<UserVO>> findPage(PageReq pageReq);
+
 	@RequestMapping(method = RequestMethod.POST, value = "/user/query_by_id/{id}")
-	public BaseResp<UserVO> findByUserId(@PathVariable("id") Long id);
-	
+	BaseResp<UserVO> findByUserId(@PathVariable("id") Long id);
+
 	@RequestMapping(method = RequestMethod.POST, value = "/user/query_by_account/{account}")
-	public BaseResp<UserVO> findByAccount(@PathVariable("account") String account);
-	
+	BaseResp<UserVO> findByAccount(@PathVariable("account") String account);
+
 	@RequestMapping(method = RequestMethod.POST, value = "/user/query_by_role_id/{roleId}")
-	public BaseResp<List<UserVO>> findByRoleId(@PathVariable("roleId") Long roleId);
-	
+	BaseResp<List<UserVO>> findByRoleId(@PathVariable("roleId") Long roleId);
+
 	@RequestMapping(method = RequestMethod.POST, value = "/user/add")
-	public BaseResp<UserVO> addUser(UserVO userVO);
-	
+	BaseResp<UserVO> addUser(UserVO userVO);
+
 	@RequestMapping(method = RequestMethod.POST, value = "/user/update")
-	public BaseResp<UserVO> updateUser(UserVO userVO);
-	
+	BaseResp<UserVO> updateUser(UserVO userVO);
+
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(method = RequestMethod.DELETE, value = "/user/delete")
-	public BaseResp<? extends Object> deleteUser(UserVO userVO);
-	
+	BaseResp deleteUser(UserVO userVO);
+
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(method = RequestMethod.POST, value = "/user/lock_user")
-	public BaseResp<? extends Object> lockUser(UserVO userVO);
-	
+	BaseResp lockUser(UserVO userVO);
+
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(method = RequestMethod.POST, value = "/user/release_lock_user")
-	public BaseResp<? extends Object> releaseLockUser(UserVO userVO);
-	
+	BaseResp releaseLockUser(UserVO userVO);
+
 	@RequestMapping(method = RequestMethod.POST, value = "/user/check_password")
-	public BaseResp<Boolean> checkPassword(UserModifyPasswordVO userModifyPasswordVO);
-	
+	BaseResp<Boolean> checkPassword(UserModifyPasswordVO userModifyPasswordVO);
+
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(method = RequestMethod.POST, value = "/user/modify_password")
-	public BaseResp<? extends Object> modifyPassword(UserModifyPasswordVO userModifyPasswordVO);
+	BaseResp modifyPassword(UserModifyPasswordVO userModifyPasswordVO);
 }

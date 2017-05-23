@@ -16,27 +16,34 @@ import com.spirit.project.sysmgr.ui.constant.SpiritServiceConsts;
 import com.spirit.project.sysmgr.ui.vo.role.AuthorityRoleVO;
 import com.spirit.project.sysmgr.ui.vo.role.RoleVO;
 
+/**
+ * 角色Feign Client
+ * 
+ * @author dante
+ *
+ */
 @FeignClient(name = SpiritServiceConsts.PROJECT_SYSMGR_SERVER_NAME, fallback = RoleFeignClientFallback.class, configuration=FeignClientConfig.class)
 public interface RoleFeignClient {
 
 	@RequestMapping(method = RequestMethod.POST, value = "/role/query_page")
-	public BaseResp<PageResp<RoleVO>> findPage(PageReq pageReq);
+	BaseResp<PageResp<RoleVO>> findPage(PageReq pageReq);
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/role/query_by_id/{id}")
-	public BaseResp<RoleVO> findByRoleId(@PathVariable("id") Long id);
+	BaseResp<RoleVO> findByRoleId(@PathVariable("id") Long id);
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/role/query_all_role")
-	public BaseResp<List<RoleVO>> findAllRole();
+	BaseResp<List<RoleVO>> findAllRole();
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/role/query_authority_role_by_id/{id}")
-	public BaseResp<List<AuthorityRoleVO>> findAuthorityRoleByRoleId(@PathVariable("id") Long id);
+	BaseResp<List<AuthorityRoleVO>> findAuthorityRoleByRoleId(@PathVariable("id") Long id);
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/role/add")
-	public BaseResp<RoleVO> addRole(RoleVO roleVO);
+	BaseResp<RoleVO> addRole(RoleVO roleVO);
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/role/update")
-	public BaseResp<RoleVO> updateRole(RoleVO roleVO);
+	BaseResp<RoleVO> updateRole(RoleVO roleVO);
 	
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(method = RequestMethod.DELETE, value = "/role/delete_by_id/{id}")
-	public BaseResp<? extends Object> deleteByRoleId(@PathVariable("id") Long id);
+	BaseResp deleteByRoleId(@PathVariable("id") Long id);
 }

@@ -122,10 +122,11 @@ public class RoleController {
 	 * @param id
 	 * @return
 	 */
+	@SuppressWarnings("rawtypes")
 	@PreAuthorize("hasAuthority('sysmgr.role.delete')")
 	@PostMapping(value = "/delete_by_id")
-	public BaseResp<? extends Object> deleteByRoleId(Long id) {
-		BaseResp<? extends Object> result = new BaseResp<>();
+	public BaseResp deleteByRoleId(Long id) {
+		BaseResp result = new BaseResp<>();
 		try {
 			roleService.deleteByRoleId(id);
 		} catch (SpiritUIServiceException e) {

@@ -138,10 +138,11 @@ public class UserController {
 	 * @param userVO
 	 * @return
 	 */
+	@SuppressWarnings("rawtypes")
 	@PreAuthorize("hasAuthority('sysmgr.user.delete')")
 	@PostMapping(value = "/delete_user")
-	public BaseResp<? extends Object> deleteUser(UserVO userVO) {
-		BaseResp<? extends Object> result = new BaseResp<>();
+	public BaseResp deleteUser(UserVO userVO) {
+		BaseResp result = new BaseResp<>();
 		try {
 			userVO.setUpdateUser(LoginUserUtils.loginUserId());
 			userService.deleteUser(userVO);
@@ -151,17 +152,18 @@ public class UserController {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 锁定用户
 	 * 
 	 * @param userVO
 	 * @return
 	 */
+	@SuppressWarnings("rawtypes")
 	@PreAuthorize("hasAuthority('sysmgr.user.update')")
 	@PostMapping(value = "/lock_user")
-	public BaseResp<? extends Object> lockUser(UserVO userVO) {
-		BaseResp<? extends Object> result = new BaseResp<>();
+	public BaseResp lockUser(UserVO userVO) {
+		BaseResp result = new BaseResp<>();
 		try {
 			userVO.setUpdateUser(LoginUserUtils.loginUserId());
 			userService.lockUser(userVO);
@@ -171,17 +173,18 @@ public class UserController {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 解锁用户
 	 * 
 	 * @param userVO
 	 * @return
 	 */
+	@SuppressWarnings("rawtypes")
 	@PreAuthorize("hasAuthority('sysmgr.user.update')")
 	@PostMapping(value = "/release_lock_user")
-	public BaseResp<? extends Object> releaseLockUser(UserVO userVO) {
-		BaseResp<? extends Object> result = new BaseResp<>();
+	public BaseResp releaseLockUser(UserVO userVO) {
+		BaseResp result = new BaseResp<>();
 		try {
 			userVO.setUpdateUser(LoginUserUtils.loginUserId());
 			userService.releaseLockUser(userVO);
@@ -191,7 +194,7 @@ public class UserController {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 检查用户密码
 	 * 
@@ -211,17 +214,18 @@ public class UserController {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 修改用户密码
 	 * 
 	 * @param userModifyPasswordVO
 	 * @return
 	 */
+	@SuppressWarnings("rawtypes")
 	@PreAuthorize("hasAuthority('sysmgr.user.update')")
 	@PostMapping(value = "/modify_password")
-	public BaseResp<? extends Object> modifyPassword(UserModifyPasswordVO userModifyPasswordVO) {
-		BaseResp<? extends Object> result = new BaseResp<>();
+	public BaseResp modifyPassword(UserModifyPasswordVO userModifyPasswordVO) {
+		BaseResp result = new BaseResp<>();
 		try {
 			userModifyPasswordVO.setUpdateUser(LoginUserUtils.loginUserId());
 			userService.modifyPassword(userModifyPasswordVO);
