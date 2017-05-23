@@ -144,9 +144,10 @@ public class ServiceModuleController {
 	 * @param id
 	 * @return
 	 */
+	@SuppressWarnings("rawtypes")
 	@DeleteMapping(value = "/delete_by_id/{id}")
-	public BaseResp<?> deleteByServiceModuleId(@PathVariable Long id) {
-		BaseResp<?> result = new BaseResp<>();
+	public BaseResp deleteByServiceModuleId(@PathVariable Long id) {
+		BaseResp result = new BaseResp();
 		try {
 			serviceModuleService.deleteById(id);
 		} catch (SpiritAPIServiceException e) {
@@ -163,8 +164,10 @@ public class ServiceModuleController {
 	 * @return
 	 */
 	private boolean checkParam(ServiceModuleReqDTO serviceModuleReqDTO, boolean isNew) {
-		if ((!isNew && serviceModuleReqDTO.getId() == null) || StringUtils.isEmpty(serviceModuleReqDTO.getName())
-				|| StringUtils.isEmpty(serviceModuleReqDTO.getUrl()) || serviceModuleReqDTO.getUpdateUser() == null) {
+		if ((!isNew && serviceModuleReqDTO.getId() == null) 
+				|| StringUtils.isEmpty(serviceModuleReqDTO.getName())
+				|| StringUtils.isEmpty(serviceModuleReqDTO.getUrl()) 
+				|| serviceModuleReqDTO.getUpdateUser() == null) {
 			return false;
 		}
 		return true;
