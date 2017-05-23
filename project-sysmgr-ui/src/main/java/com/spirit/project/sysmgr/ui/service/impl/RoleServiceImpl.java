@@ -107,7 +107,7 @@ public class RoleServiceImpl implements RoleService {
 				Set<String> childKeySet = treeMap.keySet();
 				Iterator<String> iterChild = childKeySet.iterator();
 				while(iterChild.hasNext()) {
-					String childKey = (String) iterChild.next();
+					String childKey = iterChild.next();
 					AuthorityRoleTreeVO sameTree = treeMap.get(childKey);
 					if(childKey.equals("_"+pid)) {
 						if(CollectionUtils.isEmpty(sameTree.getChildren())) {
