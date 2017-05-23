@@ -13,9 +13,7 @@
         stage('代码检查') {
             sonarRunnerHome = tool 'Sonar Runner'
             sh "${sonarRunnerHome}/bin/sonar-scanner -Dsonar.login='dante' -Dsonar.password='iamdante' -Dsonar.host.url=http://localhost:9000"
-            /*
             sh "bash ./pipeline/checkSonarStatus.sh"
-            */
         }
     }
     stage('部署确认') {
