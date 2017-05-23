@@ -34,7 +34,7 @@ public class RoleServiceImpl implements RoleService {
 	@Override
 	@HystrixCommand
 	public PageResult<RoleVO> findPage(PageReq pageReq) throws SpiritUIServiceException {
-		PageResult<RoleVO> pageResult = new PageResult<RoleVO>();
+		PageResult<RoleVO> pageResult = new PageResult<>();
 		BaseResp<PageResp<RoleVO>> resp = roleFeignClient.findPage(pageReq);
 		if (resp.getResultCode() != RespCodeEnum.SUCCESS.code()) {
 			throw new SpiritUIServiceException(resp.getResultCode() + "");
@@ -68,7 +68,7 @@ public class RoleServiceImpl implements RoleService {
 	@HystrixCommand
 	public RoleVO updateRole(RoleVO roleVO) throws SpiritUIServiceException {
 		Long id = roleVO.getId();
-		BaseResp<RoleVO> resp = null;
+		BaseResp<RoleVO> resp;
 		if (id == null) {
 			resp = roleFeignClient.addRole(roleVO);
 		} else {

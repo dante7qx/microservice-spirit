@@ -2,7 +2,7 @@ package com.spirit.project.sysmgr.ui.constant;
 
 public interface SecurityConsts {
 	
-	public final static String ROLE_PREFIX = "AUTH_";
-	public final static String SESSION_TIMEOUT = "/session-timeout";
+	public static final String ROLE_PREFIX = "AUTH_";
+	public static final String SESSION_TIMEOUT = "/session-timeout";
 	
 }

@@ -22,6 +22,12 @@ import com.spirit.project.sysmgr.api.dto.req.ServiceModuleReqDTO;
 import com.spirit.project.sysmgr.api.dto.resp.ServiceModuleRespDTO;
 import com.spirit.project.sysmgr.api.service.ServiceModuleService;
 
+/**
+ * 服务模块 REST API
+ * 
+ * @author dante
+ *
+ */
 @RestController
 @RequestMapping("/servicemodule")
 public class ServiceModuleController {
@@ -30,9 +36,15 @@ public class ServiceModuleController {
 	@Autowired
 	private ServiceModuleService serviceModuleService;
 	
+	/**
+	 * 分页查询服务模块
+	 * 
+	 * @param pageReq
+	 * @return
+	 */
 	@PostMapping(value = "/query_page")
 	public BaseResp<PageResp<ServiceModuleRespDTO>> queryServiceModulePage(@RequestBody PageReq pageReq) {
-		BaseResp<PageResp<ServiceModuleRespDTO>> result = new BaseResp<PageResp<ServiceModuleRespDTO>>();
+		BaseResp<PageResp<ServiceModuleRespDTO>> result = new BaseResp<>();
 		try {
 			PageResp<ServiceModuleRespDTO> pageResp = serviceModuleService.findPage(pageReq);
 			result.setData(pageResp);
@@ -43,9 +55,15 @@ public class ServiceModuleController {
 		return result;
 	}
 	
+	/**
+	 * 根据Id获取服务模块
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@PostMapping(value = "/query_by_id/{id}")
 	public BaseResp<ServiceModuleRespDTO> queryByServiceModuleId(@PathVariable Long id) {
-		BaseResp<ServiceModuleRespDTO> result = new BaseResp<ServiceModuleRespDTO>();
+		BaseResp<ServiceModuleRespDTO> result = new BaseResp<>();
 		try {
 			ServiceModuleRespDTO serviceModuleResp = serviceModuleService.findById(id);
 			result.setData(serviceModuleResp);
@@ -56,9 +74,14 @@ public class ServiceModuleController {
 		return result;
 	}
 	
+	/**
+	 * 获取所有服务模块
+	 * 
+	 * @return
+	 */
 	@PostMapping(value = "/query_all")
 	public BaseResp<List<ServiceModuleRespDTO>> queryAllServiceModule() {
-		BaseResp<List<ServiceModuleRespDTO>> result = new BaseResp<List<ServiceModuleRespDTO>>();
+		BaseResp<List<ServiceModuleRespDTO>> result = new BaseResp<>();
 		try {
 			List<ServiceModuleRespDTO> serviceModuleResp = serviceModuleService.findServiceModuleResps();
 			result.setData(serviceModuleResp);
@@ -69,9 +92,15 @@ public class ServiceModuleController {
 		return result;
 	}
 	
+	/**
+	 * 新增服务模块
+	 * 
+	 * @param serviceModuleReqDto
+	 * @return
+	 */
 	@PostMapping("/add")
 	public BaseResp<ServiceModuleRespDTO> addServiceModule(@RequestBody ServiceModuleReqDTO serviceModuleReqDto) {
-		BaseResp<ServiceModuleRespDTO> result = new BaseResp<ServiceModuleRespDTO>();
+		BaseResp<ServiceModuleRespDTO> result = new BaseResp<>();
 		if(!checkParam(serviceModuleReqDto, true)) {
 			result.setResultCode(RespCodeEnum.LACK_PARAM.code());
 			return result;
@@ -86,9 +115,15 @@ public class ServiceModuleController {
 		return result;
 	}
 	
+	/**
+	 * 更新服务模块
+	 * 
+	 * @param serviceModuleReqDto
+	 * @return
+	 */
 	@PostMapping("/update")
 	public BaseResp<ServiceModuleRespDTO> updateServiceModule(@RequestBody ServiceModuleReqDTO serviceModuleReqDto) {
-		BaseResp<ServiceModuleRespDTO> result = new BaseResp<ServiceModuleRespDTO>();
+		BaseResp<ServiceModuleRespDTO> result = new BaseResp<>();
 		if(!checkParam(serviceModuleReqDto, false)) {
 			result.setResultCode(RespCodeEnum.LACK_PARAM.code());
 			return result;
@@ -103,6 +138,12 @@ public class ServiceModuleController {
 		return result;
 	}
 	
+	/**
+	 * 根据id删除服务模块（物理删除）
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@DeleteMapping(value = "/delete_by_id/{id}")
 	public BaseResp<?> deleteByServiceModuleId(@PathVariable Long id) {
 		BaseResp<?> result = new BaseResp<>();

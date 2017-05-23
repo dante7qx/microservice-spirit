@@ -15,7 +15,7 @@ import com.spirit.project.getway.ui.vo.LoginUserVO;
 
 @Component
 public class UserFeignClientFallback implements UserFeignClient {
-	private final static Logger LOGGER = LoggerFactory.getLogger(UserFeignClientFallback.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(UserFeignClientFallback.class);
 
 	@Override
 	public BaseResp<LoginUserVO> findByAccount(String account) {

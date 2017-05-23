@@ -34,7 +34,7 @@ import com.spirit.project.sysmgr.dao.po.UserPO;
 @Transactional(readOnly = true)
 public class ResourceServiceImpl implements ResourceService {
 
-	private final static Logger LOGGER = LoggerFactory.getLogger(ResourceServiceImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ResourceServiceImpl.class);
 
 	@Autowired
 	private ResourceDAO resourceDAO;
@@ -103,7 +103,10 @@ public class ResourceServiceImpl implements ResourceService {
 	}
 
 	private void buildFullId(Long pid, StringBuilder fullIdBuilder) {
-		if (pid == null || pid != null && pid < 0) {
+		if (pid == null) {
+			return;
+		}
+		if(pid != null && pid < 0) {
 			return;
 		}
 		fullIdBuilder.append("-").append(pid);
@@ -120,7 +123,6 @@ public class ResourceServiceImpl implements ResourceService {
 
 	@Override
 	public List<UserResourceRespDTO> findUserResourceByUserId(Long userId) throws SpiritAPIServiceException {
-		List<UserResourceRespDTO> userResources = Lists.newLinkedList();
 		List<Long> pids = Lists.newArrayList();
 		try {
 			pids = resourceDAO.findAllParentId();
@@ -134,6 +136,7 @@ public class ResourceServiceImpl implements ResourceService {
 		for (ResourcePO resource : resourcePOs) {
 			menuTreeMap.put(resource.getId(), convertPoToUserResourceRespDTO(resource));
 		}
+		List<UserResourceRespDTO> userResources = Lists.newLinkedList();
 		List<UserResourceRespDTO> menus = buildUserResourceTree(pids, menuTreeMap);
 		for (UserResourceRespDTO menu : menus) {
 			if (!menu.getChildren().isEmpty() || !pids.contains(menu.getPid())) {
@@ -239,6 +242,7 @@ public class ResourceServiceImpl implements ResourceService {
 
 	@Override
 	public void delete(ResourceReqDTO reqDTO) throws SpiritAPIServiceException {
+		// 逻辑删除，业务为物理删除，本方法不做实现
 	}
 
 }

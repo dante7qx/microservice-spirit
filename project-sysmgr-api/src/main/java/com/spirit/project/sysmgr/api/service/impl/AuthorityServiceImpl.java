@@ -27,7 +27,7 @@ import com.spirit.project.sysmgr.dao.po.UserPO;
 @Transactional(readOnly = true)
 public class AuthorityServiceImpl implements AuthorityService {
 
-	private final static Logger LOGGER = LoggerFactory.getLogger(AuthorityServiceImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(AuthorityServiceImpl.class);
 
 	@Autowired
 	private AuthorityDAO authorityDAO;

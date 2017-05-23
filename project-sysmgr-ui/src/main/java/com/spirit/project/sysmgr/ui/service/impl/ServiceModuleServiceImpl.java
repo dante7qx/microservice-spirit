@@ -25,7 +25,7 @@ public class ServiceModuleServiceImpl implements ServiceModuleService {
 	@Override
 	@HystrixCommand
 	public PageResult<ServiceModuleVO> findPage(PageReq pageReq) throws SpiritUIServiceException {
-		PageResult<ServiceModuleVO> pageResult = new PageResult<ServiceModuleVO>();
+		PageResult<ServiceModuleVO> pageResult = new PageResult<>();
 		BaseResp<PageResp<ServiceModuleVO>> resp = serviceModuleFeignClient.findPage(pageReq);
 		if (resp.getResultCode() != RespCodeEnum.SUCCESS.code()) {
 			throw new SpiritUIServiceException(resp.getResultCode() + "");
@@ -59,7 +59,7 @@ public class ServiceModuleServiceImpl implements ServiceModuleService {
 	@HystrixCommand
 	public ServiceModuleVO updateServiceModule(ServiceModuleVO serviceModuleVO) throws SpiritUIServiceException {
 		Long id = serviceModuleVO.getId();
-		BaseResp<ServiceModuleVO> resp = null;
+		BaseResp<ServiceModuleVO> resp;
 		if (id == null) {
 			resp = serviceModuleFeignClient.addServiceModule(serviceModuleVO);
 		} else {

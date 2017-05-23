@@ -11,7 +11,7 @@ import com.spirit.project.commom.util.DateUtils.TimeFormat;
 
 public class DateUtilsTest {
 	
-	private final static Logger LOGGER = LoggerFactory.getLogger(DateUtilsTest.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(DateUtilsTest.class);
 	
 	@Test
 	public void testGetCurrentDate() {

@@ -11,7 +11,7 @@ public interface UserConsts {
 	/**
 	 * 用户状态
 	 */
-	public final static String STATUS_NORMAL = "NORMAL";
-	public final static String STATUS_LOCK = "LOCK";
-	public final static String STATUS_DEL = "DEL";
+	public static final String STATUS_NORMAL = "NORMAL";
+	public static final String STATUS_LOCK = "LOCK";
+	public static final String STATUS_DEL = "DEL";
 }

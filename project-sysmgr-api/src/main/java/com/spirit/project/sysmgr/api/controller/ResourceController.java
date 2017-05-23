@@ -19,6 +19,12 @@ import com.spirit.project.sysmgr.api.dto.req.ResourceReqDTO;
 import com.spirit.project.sysmgr.api.dto.resp.ResourceRespDTO;
 import com.spirit.project.sysmgr.api.service.ResourceService;
 
+/**
+ * 资源 REST API
+ * 
+ * @author dante
+ *
+ */
 @RestController
 @RequestMapping("/resource")
 public class ResourceController {
@@ -27,9 +33,15 @@ public class ResourceController {
 	@Autowired
 	private ResourceService resourceService;
 	
+	/**
+	 * 根据id获取资源
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@PostMapping("/query_by_id/{id}")
 	public BaseResp<ResourceRespDTO> queryByResourceId(@PathVariable Long id) {
-		BaseResp<ResourceRespDTO> result = new BaseResp<ResourceRespDTO>();
+		BaseResp<ResourceRespDTO> result = new BaseResp<>();
 		try {
 			ResourceRespDTO resourceResp = resourceService.findById(id);
 			result.setData(resourceResp);
@@ -40,9 +52,15 @@ public class ResourceController {
 		return result;
 	}
 	
+	/**
+	 * 获取指定pid下的资源
+	 * 
+	 * @param pid
+	 * @return
+	 */
 	@PostMapping("/query_by_pid/{pid}")
 	public BaseResp<List<ResourceRespDTO>> queryByResourcePid(@PathVariable Long pid) {
-		BaseResp<List<ResourceRespDTO>> result = new BaseResp<List<ResourceRespDTO>>();
+		BaseResp<List<ResourceRespDTO>> result = new BaseResp<>();
 		try {
 			List<ResourceRespDTO> resourceResp = resourceService.findByPid(pid);
 			result.setData(resourceResp);
@@ -53,9 +71,14 @@ public class ResourceController {
 		return result;
 	}
 	
+	/**
+	 * 获取所有根资源节点
+	 * 
+	 * @return
+	 */
 	@PostMapping("/query_root")
 	public BaseResp<List<ResourceRespDTO>> queryRootResource() {
-		BaseResp<List<ResourceRespDTO>> result = new BaseResp<List<ResourceRespDTO>>();
+		BaseResp<List<ResourceRespDTO>> result = new BaseResp<>();
 		try {
 			List<ResourceRespDTO> resourceResp = resourceService.findRootResource();
 			result.setData(resourceResp);
@@ -66,9 +89,15 @@ public class ResourceController {
 		return result;
 	}
 	
+	/**
+	 * 新增资源
+	 * 
+	 * @param resourceReq
+	 * @return
+	 */
 	@PostMapping("/add")
 	public BaseResp<ResourceRespDTO> addResource(@RequestBody ResourceReqDTO resourceReq) {
-		BaseResp<ResourceRespDTO> result = new BaseResp<ResourceRespDTO>();
+		BaseResp<ResourceRespDTO> result = new BaseResp<>();
 		try {
 			ResourceRespDTO authorityResp = resourceService.persist(resourceReq);
 			result.setData(authorityResp);
@@ -79,9 +108,15 @@ public class ResourceController {
 		return result;
 	}
 	
+	/**
+	 * 更新资源
+	 * 
+	 * @param resourceReq
+	 * @return
+	 */
 	@PostMapping("/update")
 	public BaseResp<ResourceRespDTO> updateResource(@RequestBody ResourceReqDTO resourceReq) {
-		BaseResp<ResourceRespDTO> result = new BaseResp<ResourceRespDTO>();
+		BaseResp<ResourceRespDTO> result = new BaseResp<>();
 		try {
 			ResourceRespDTO authorityResp = resourceService.persist(resourceReq);
 			result.setData(authorityResp);
@@ -92,6 +127,12 @@ public class ResourceController {
 		return result;
 	}
 	
+	/**
+	 * 根据id删除资源（物理删除）
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@DeleteMapping("/delete_by_id/{id}")
 	public BaseResp<?> deleteById(@PathVariable Long id) {
 		BaseResp<?> result = new BaseResp<>();

@@ -14,7 +14,7 @@ import com.spirit.project.sysmgr.ui.vo.resource.ResourceVO;
 @Component
 public class ResourceFeignClientFallback implements ResourceFeignClient {
 
-	private final static Logger LOGGER = LoggerFactory.getLogger(ResourceFeignClientFallback.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ResourceFeignClientFallback.class);
 	
 	@Override
 	public BaseResp<ResourceVO> findByResourceId(Long id) {

@@ -19,7 +19,7 @@ import com.spirit.project.getway.ui.vo.LoginUserMenuVO;
 @Controller
 public class IndexController {
 
-	private final static Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
 	
 	@Autowired
 	private UserService userService;

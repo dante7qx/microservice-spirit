@@ -14,7 +14,7 @@ import com.spirit.project.sysmgr.ui.vo.authority.AuthorityVO;
 @Component
 public class AuthorityFeignClientFallback implements AuthorityFeignClient {
 
-	private final static Logger LOGGER = LoggerFactory.getLogger(AuthorityFeignClientFallback.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(AuthorityFeignClientFallback.class);
 
 	@Override
 	public BaseResp<AuthorityVO> findByAuthorityId(Long id) {

@@ -35,11 +35,12 @@ public class ResourceServiceImpl implements ResourceService {
 
 	@Override
 	public List<ResourceTreeVO> findResourceTrees() throws SpiritUIServiceException {
-		List<ResourceTreeVO> roots = Lists.newArrayList();
+
 		BaseResp<List<ResourceVO>> resp = resourceFeignClient.findRootResource();
 		if (resp.getResultCode() != RespCodeEnum.SUCCESS.code()) {
 			throw new SpiritUIServiceException(resp.getResultCode() + "");
 		}
+		List<ResourceTreeVO> roots = Lists.newArrayList();
 		List<ResourceVO> resourceVOs = resp.getData();
 		if (CollectionUtils.isEmpty(resourceVOs)) {
 			return roots;
@@ -87,7 +88,7 @@ public class ResourceServiceImpl implements ResourceService {
 	@Override
 	public ResourceVO updateResource(ResourceVO resourceVO) throws SpiritUIServiceException {
 		Long id = resourceVO.getId();
-		BaseResp<ResourceVO> resp = null;
+		BaseResp<ResourceVO> resp;
 		if (id == null) {
 			resp = resourceFeignClient.addResource(resourceVO);
 		} else {
@@ -129,7 +130,7 @@ public class ResourceServiceImpl implements ResourceService {
 			throws SpiritUIServiceException {
 		ResourceVO sourceResource = findByResourceId(sourceId);
 		sourceResource.setPid(targetPid);
-		sourceResource.setShowOrder(targetShowOrder > 1 ? targetShowOrder - 1 : 1);
+		sourceResource.setShowOrder(targetShowOrder > 1 ? (targetShowOrder - 1) : 1);
 		sourceResource.setUpdateUser(updateUser);
 		resourceFeignClient.updateResource(sourceResource);
 	}

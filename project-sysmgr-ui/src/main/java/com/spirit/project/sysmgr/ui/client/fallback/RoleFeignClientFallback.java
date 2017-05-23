@@ -17,7 +17,7 @@ import com.spirit.project.sysmgr.ui.vo.role.RoleVO;
 @Component
 public class RoleFeignClientFallback implements RoleFeignClient {
 	
-	private final static Logger LOGGER = LoggerFactory.getLogger(RoleFeignClientFallback.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(RoleFeignClientFallback.class);
 
 	@Override
 	public BaseResp<PageResp<RoleVO>> findPage(PageReq pageReq) {

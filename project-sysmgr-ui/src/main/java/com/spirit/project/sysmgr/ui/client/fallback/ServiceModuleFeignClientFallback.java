@@ -16,7 +16,7 @@ import com.spirit.project.sysmgr.ui.vo.servicemodule.ServiceModuleVO;
 @Component
 public class ServiceModuleFeignClientFallback implements ServiceModuleFeignClient {
 	
-	private final static Logger LOGGER = LoggerFactory.getLogger(ServiceModuleFeignClientFallback.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ServiceModuleFeignClientFallback.class);
 	
 	@Override
 	public BaseResp<PageResp<ServiceModuleVO>> findPage(PageReq pageReq) {

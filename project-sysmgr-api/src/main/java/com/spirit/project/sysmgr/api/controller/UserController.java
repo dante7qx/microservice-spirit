@@ -33,7 +33,7 @@ import com.spirit.project.sysmgr.api.service.UserService;
 @RequestMapping("/user")
 public class UserController {
 
-	private final static Logger LOGGER = LoggerFactory.getLogger(UserController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 	
 	@Autowired
 	private UserService userService;
@@ -46,7 +46,7 @@ public class UserController {
 	 */
 	@PostMapping("/query_page")
 	public BaseResp<PageResp<UserRespDTO>> queryUserPage(@RequestBody PageReq pageReq) {
-		BaseResp<PageResp<UserRespDTO>> result = new BaseResp<PageResp<UserRespDTO>>();
+		BaseResp<PageResp<UserRespDTO>> result = new BaseResp<>();
 		try {
 			PageResp<UserRespDTO> pageResp = userService.findPage(pageReq);
 			result.setData(pageResp);
@@ -65,7 +65,7 @@ public class UserController {
 	 */
 	@PostMapping(value = "/query_by_id/{id}")
 	public BaseResp<UserRespDTO> queryByUserId(@PathVariable Long id) {
-		BaseResp<UserRespDTO> result = new BaseResp<UserRespDTO>();
+		BaseResp<UserRespDTO> result = new BaseResp<>();
 		try {
 			UserRespDTO userResp = userService.findById(id);
 			result.setData(userResp);
@@ -84,7 +84,7 @@ public class UserController {
 	 */
 	@PostMapping("/add")
 	public BaseResp<UserRespDTO> addUser(@RequestBody UserReqDTO userReqDto) {
-		BaseResp<UserRespDTO> result = new BaseResp<UserRespDTO>();
+		BaseResp<UserRespDTO> result = new BaseResp<>();
 		if(!checkParam(userReqDto, true)) {
 			result.setResultCode(RespCodeEnum.LACK_PARAM.code());
 			return result;
@@ -107,7 +107,7 @@ public class UserController {
 	 */
 	@PostMapping("/update")
 	public BaseResp<UserRespDTO> updateUser(@RequestBody UserReqDTO userReqDto) {
-		BaseResp<UserRespDTO> result = new BaseResp<UserRespDTO>();
+		BaseResp<UserRespDTO> result = new BaseResp<>();
 		if(!checkParam(userReqDto, false)) {
 			result.setResultCode(RespCodeEnum.LACK_PARAM.code());
 			return result;
@@ -158,6 +158,12 @@ public class UserController {
 		return result;
 	}
 	
+	/**
+	 * 解锁用户
+	 * 
+	 * @param userReqDto
+	 * @return
+	 */
 	@PostMapping(value = "/release_lock_user")
 	public BaseResp<?> releaseLockUser(@RequestBody UserReqDTO userReqDto) {
 		BaseResp<?> result = new BaseResp<>();
@@ -170,6 +176,12 @@ public class UserController {
 		return result;
 	}
 	
+	/**
+	 * 检查用户密码
+	 * 
+	 * @param userModifyPasswordReqDTO
+	 * @return
+	 */
 	@PostMapping(value = "/check_password")
 	public BaseResp<Boolean> checkPassword(@RequestBody UserModifyPasswordReqDTO userModifyPasswordReqDTO) {
 		BaseResp<Boolean> result = new BaseResp<Boolean>();
@@ -182,6 +194,12 @@ public class UserController {
 		return result;
 	}
 	
+	/**
+	 * 修改用户密码
+	 * 
+	 * @param userModifyPasswordReqDTO
+	 * @return
+	 */
 	@PostMapping(value = "/modify_password")
 	public BaseResp<?> modifyPassword(@RequestBody UserModifyPasswordReqDTO userModifyPasswordReqDTO) {
 		BaseResp<?> result = new BaseResp<>();
@@ -198,9 +216,15 @@ public class UserController {
 		return result;
 	}
 	
+	/**
+	 * 根据account获取用户
+	 * 
+	 * @param account
+	 * @return
+	 */
 	@PostMapping(value = "/query_by_account/{account}")
 	public BaseResp<UserRespDTO> queryByAccount(@PathVariable String account) {
-		BaseResp<UserRespDTO> result = new BaseResp<UserRespDTO>();
+		BaseResp<UserRespDTO> result = new BaseResp<>();
 		try {
 			UserRespDTO userResp = userService.findByAccount(account);
 			result.setData(userResp);
@@ -210,9 +234,15 @@ public class UserController {
 		return result;
 	}
 	
+	/**
+	 * 获取指定roleId下的所有用户
+	 * 
+	 * @param roleId
+	 * @return
+	 */
 	@PostMapping(value = "/query_by_role_id/{roleId}")
 	public BaseResp<List<UserRespDTO>> queryByRoleId(@PathVariable Long roleId) {
-		BaseResp<List<UserRespDTO>> result = new BaseResp<List<UserRespDTO>>();
+		BaseResp<List<UserRespDTO>> result = new BaseResp<>();
 		try {
 			List<UserRespDTO> userResps = userService.findByRoleId(roleId);
 			result.setData(userResps);

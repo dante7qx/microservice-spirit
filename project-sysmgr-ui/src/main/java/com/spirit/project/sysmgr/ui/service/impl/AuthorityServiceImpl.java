@@ -36,11 +36,11 @@ public class AuthorityServiceImpl implements AuthorityService {
 	@Override
 	@HystrixCommand
 	public List<AuthorityTreeVO> findAuthorityTrees() throws SpiritUIServiceException {
-		List<AuthorityTreeVO> trees = Lists.newArrayList();
 		BaseResp<List<AuthorityVO>> resp = authorityFeignClient.findRootAuthority();
 		if (resp.getResultCode() != RespCodeEnum.SUCCESS.code()) {
 			throw new SpiritUIServiceException(resp.getResultCode() + "");
 		}
+		List<AuthorityTreeVO> trees = Lists.newArrayList();
 		List<AuthorityVO> authorityVOs = resp.getData();
 		if(CollectionUtils.isEmpty(authorityVOs)) {
 			return trees;
@@ -92,7 +92,7 @@ public class AuthorityServiceImpl implements AuthorityService {
 	@HystrixCommand
 	public AuthorityVO updateAuthority(AuthorityVO authorityVO) throws SpiritUIServiceException {
 		Long id = authorityVO.getId();
-		BaseResp<AuthorityVO> resp = null;
+		BaseResp<AuthorityVO> resp;
 		if(id == null) {
 			resp = authorityFeignClient.addAuthority(authorityVO);
 		} else {
@@ -107,12 +107,14 @@ public class AuthorityServiceImpl implements AuthorityService {
 	@Override
 	public void updateAuthorityWhenDrag(EasyUIDragTreeReq dragTreeReq) throws SpiritUIServiceException {
 		String point = dragTreeReq.getPoint();
-		if(EasyUITreeConsts.POINT_APPEND.equalsIgnoreCase(point)) {
+		if (EasyUITreeConsts.POINT_APPEND.equalsIgnoreCase(point)) {
 			handleDragAppend(dragTreeReq.getTargetId(), dragTreeReq.getSourceId(), dragTreeReq.getUpdateUser());
-		} else if(EasyUITreeConsts.POINT_TOP.equalsIgnoreCase(point)) {
-			handleDragTop(dragTreeReq.getTargetPid(), dragTreeReq.getTargetShowOrder(), dragTreeReq.getSourceId(), dragTreeReq.getUpdateUser());
-		} else if(EasyUITreeConsts.POINT_BOTTOM.equalsIgnoreCase(point)) {
-			handleDragBottom(dragTreeReq.getTargetPid(), dragTreeReq.getTargetShowOrder(), dragTreeReq.getSourceId(), dragTreeReq.getUpdateUser());
+		} else if (EasyUITreeConsts.POINT_TOP.equalsIgnoreCase(point)) {
+			handleDragTop(dragTreeReq.getTargetPid(), dragTreeReq.getTargetShowOrder(), dragTreeReq.getSourceId(),
+					dragTreeReq.getUpdateUser());
+		} else if (EasyUITreeConsts.POINT_BOTTOM.equalsIgnoreCase(point)) {
+			handleDragBottom(dragTreeReq.getTargetPid(), dragTreeReq.getTargetShowOrder(), dragTreeReq.getSourceId(),
+					dragTreeReq.getUpdateUser());
 		} else {
 			throw new SpiritUIServiceException("Drag point mush match 'append' 'top' 'bottom'");
 		}
@@ -128,10 +130,11 @@ public class AuthorityServiceImpl implements AuthorityService {
 	 * @throws SpiritUIServiceException 
 	 */
 	@HystrixCommand
-	private void handleDragTop(Long targetPid, int targetShowOrder, Long sourceId, Long updateUser) throws SpiritUIServiceException {
+	private void handleDragTop(Long targetPid, int targetShowOrder, Long sourceId, Long updateUser)
+			throws SpiritUIServiceException {
 		AuthorityVO sourceAuthority = findByAuthorityId(sourceId);
 		sourceAuthority.setPid(targetPid);
-		sourceAuthority.setShowOrder(targetShowOrder > 1 ?  targetShowOrder - 1 : 1);
+		sourceAuthority.setShowOrder(targetShowOrder > 1 ? (targetShowOrder - 1) : 1);
 		sourceAuthority.setUpdateUser(updateUser);
 		authorityFeignClient.updateAuthority(sourceAuthority);
 	}
@@ -146,14 +149,15 @@ public class AuthorityServiceImpl implements AuthorityService {
 	 * @throws SpiritUIServiceException 
 	 */
 	@HystrixCommand
-	private void handleDragBottom(Long targetPid, int targetShowOrder, Long sourceId, Long updateUser) throws SpiritUIServiceException {
+	private void handleDragBottom(Long targetPid, int targetShowOrder, Long sourceId, Long updateUser)
+			throws SpiritUIServiceException {
 		AuthorityVO sourceAuthority = findByAuthorityId(sourceId);
 		sourceAuthority.setPid(targetPid);
 		sourceAuthority.setShowOrder(targetShowOrder + 1);
 		sourceAuthority.setUpdateUser(updateUser);
 		authorityFeignClient.updateAuthority(sourceAuthority);
 	}
-	
+
 	/**
 	 * 将源节点移动到目标节点内
 	 * pid(source) = id(target)
@@ -165,7 +169,7 @@ public class AuthorityServiceImpl implements AuthorityService {
 	@HystrixCommand
 	private void handleDragAppend(Long targetId, Long sourceId, Long updateUser) throws SpiritUIServiceException {
 		AuthorityVO sourceAuthority = findByAuthorityId(sourceId);
-		if(targetId > 0) {
+		if (targetId > 0) {
 			sourceAuthority.setPid(targetId);
 		}
 		sourceAuthority.setUpdateUser(updateUser);

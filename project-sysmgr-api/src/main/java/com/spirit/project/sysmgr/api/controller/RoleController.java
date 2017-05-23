@@ -23,6 +23,12 @@ import com.spirit.project.sysmgr.api.dto.resp.AuthorityRoleRespDTO;
 import com.spirit.project.sysmgr.api.dto.resp.RoleRespDTO;
 import com.spirit.project.sysmgr.api.service.RoleService;
 
+/**
+ * 角色 REST API
+ * 
+ * @author dante
+ *
+ */
 @RestController
 @RequestMapping("/role")
 public class RoleController {
@@ -31,9 +37,15 @@ public class RoleController {
 	@Autowired
 	private RoleService roleService;
 	
+	/**
+	 * 分页查询角色
+	 * 
+	 * @param pageReq
+	 * @return
+	 */
 	@PostMapping(value = "/query_page")
 	public BaseResp<PageResp<RoleRespDTO>> queryRolePage(@RequestBody PageReq pageReq) {
-		BaseResp<PageResp<RoleRespDTO>> result = new BaseResp<PageResp<RoleRespDTO>>();
+		BaseResp<PageResp<RoleRespDTO>> result = new BaseResp<>();
 		try {
 			PageResp<RoleRespDTO> pageResp = roleService.findPage(pageReq);
 			result.setData(pageResp);
@@ -44,9 +56,15 @@ public class RoleController {
 		return result;
 	}
 	
+	/**
+	 * 根据id获取角色
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@PostMapping(value = "/query_by_id/{id}")
 	public BaseResp<RoleRespDTO> queryByRoleId(@PathVariable Long id) {
-		BaseResp<RoleRespDTO> result = new BaseResp<RoleRespDTO>();
+		BaseResp<RoleRespDTO> result = new BaseResp<>();
 		try {
 			RoleRespDTO roleResp = roleService.findById(id);
 			result.setData(roleResp);
@@ -57,9 +75,14 @@ public class RoleController {
 		return result;
 	}
 	
+	/**
+	 * 获取所有角色
+	 * 
+	 * @return
+	 */
 	@PostMapping(value = "/query_all_role")
 	public BaseResp<List<RoleRespDTO>> queryAllRole() {
-		BaseResp<List<RoleRespDTO>> result = new BaseResp<List<RoleRespDTO>>();
+		BaseResp<List<RoleRespDTO>> result = new BaseResp<>();
 		try {
 			List<RoleRespDTO> roleResps = roleService.findAllRoles();
 			result.setData(roleResps);
@@ -70,9 +93,15 @@ public class RoleController {
 		return result;
 	}
 	
+	/**
+	 * 获取指定角色id下的所有权限
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@PostMapping(value = "/query_authority_role_by_id/{id}")
 	public BaseResp<List<AuthorityRoleRespDTO>> queryByAuthorityRoleId(@PathVariable Long id) {
-		BaseResp<List<AuthorityRoleRespDTO>> result = new BaseResp<List<AuthorityRoleRespDTO>>();
+		BaseResp<List<AuthorityRoleRespDTO>> result = new BaseResp<>();
 		try {
 			List<AuthorityRoleRespDTO> authorityRoleRespDTOs = roleService.findAuthorityRoleByRoleId(id);
 			result.setData(authorityRoleRespDTOs);
@@ -83,6 +112,12 @@ public class RoleController {
 		return result;
 	}
 	
+	/**
+	 * 新增角色
+	 * 
+	 * @param roleReqDto
+	 * @return
+	 */
 	@PostMapping("/add")
 	public BaseResp<RoleRespDTO> addRole(@RequestBody RoleReqDTO roleReqDto) {
 		BaseResp<RoleRespDTO> result = new BaseResp<RoleRespDTO>();
@@ -100,6 +135,12 @@ public class RoleController {
 		return result;
 	}
 	
+	/**
+	 * 更新角色
+	 * 
+	 * @param roleReqDto
+	 * @return
+	 */
 	@PostMapping("/update")
 	public BaseResp<RoleRespDTO> updateRole(@RequestBody RoleReqDTO roleReqDto) {
 		BaseResp<RoleRespDTO> result = new BaseResp<RoleRespDTO>();
@@ -117,6 +158,12 @@ public class RoleController {
 		return result;
 	}
 	
+	/**
+	 * 根据id删除角色（物理删除）
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@DeleteMapping(value = "/delete_by_id/{id}")
 	public BaseResp<?> deleteByRoleId(@PathVariable Long id) {
 		BaseResp<?> result = new BaseResp<>();

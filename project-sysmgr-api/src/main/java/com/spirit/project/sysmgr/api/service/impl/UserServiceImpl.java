@@ -62,13 +62,14 @@ public class UserServiceImpl extends SpiritServiceTemplate<UserReqDTO, UserRespD
 			userAuthRespDTO = new UserAuthRespDTO();
 			BeanUtils.copyProperties(userPO, userAuthRespDTO);
 			Set<RolePO> roles = userPO.getRoles();
-			if (!CollectionUtils.isEmpty(roles)) {
-				for (RolePO rolePo : roles) {
-					Set<AuthorityPO> authoritys = rolePo.getAuthoritys();
-					if (!CollectionUtils.isEmpty(authoritys)) {
-						for (AuthorityPO authorityPO : authoritys) {
-							userAuthRespDTO.getAuthoritys().add(authorityPO.getCode());
-						}
+			if (CollectionUtils.isEmpty(roles)) {
+				return userAuthRespDTO;
+			}
+			for (RolePO rolePo : roles) {
+				Set<AuthorityPO> authoritys = rolePo.getAuthoritys();
+				if (!CollectionUtils.isEmpty(authoritys)) {
+					for (AuthorityPO authorityPO : authoritys) {
+						userAuthRespDTO.getAuthoritys().add(authorityPO.getCode());
 					}
 				}
 			}
@@ -101,7 +102,7 @@ public class UserServiceImpl extends SpiritServiceTemplate<UserReqDTO, UserRespD
 		} catch (SpiritDaoException e) {
 			throw new SpiritAPIServiceException(e);
 		}
-		if(delUserPO != null && UserConsts.STATUS_DEL.equals(delUserPO.getStatus())) {
+		if (delUserPO != null && UserConsts.STATUS_DEL.equals(delUserPO.getStatus())) {
 			return recoverDelUser(userReqDTO, delUserPO);
 		}
 		UserPO userPO = convertReqDtoToPo(userReqDTO);
@@ -117,7 +118,7 @@ public class UserServiceImpl extends SpiritServiceTemplate<UserReqDTO, UserRespD
 		userDAO.save(userPO);
 		return convertPoToRespDto(userPO);
 	}
-	
+
 	/**
 	 * 恢复已删除的用户
 	 * 
@@ -127,12 +128,13 @@ public class UserServiceImpl extends SpiritServiceTemplate<UserReqDTO, UserRespD
 	 */
 	private UserRespDTO recoverDelUser(UserReqDTO userReqDTO, UserPO delUserPO) {
 		Long id = delUserPO.getId();
-		delUserPO = convertReqDtoToPo(userReqDTO);
-		delUserPO.setId(id);
-		delUserPO.setPassword(EncryptUtils.encrypt(userReqDTO.getPassword()));
-		delUserPO.setStatus(UserConsts.STATUS_NORMAL);
-		userDAO.save(delUserPO);
-		return convertPoToRespDto(delUserPO);
+		UserPO delUser = delUserPO;
+		delUser = convertReqDtoToPo(userReqDTO);
+		delUser.setId(id);
+		delUser.setPassword(EncryptUtils.encrypt(userReqDTO.getPassword()));
+		delUser.setStatus(UserConsts.STATUS_NORMAL);
+		userDAO.save(delUser);
+		return convertPoToRespDto(delUser);
 	}
 
 	@Override
@@ -145,7 +147,7 @@ public class UserServiceImpl extends SpiritServiceTemplate<UserReqDTO, UserRespD
 		userDAO.save(userPO);
 		userDAO.deleteUserRoleByUserId(userReqDTO.getId());
 	}
-	
+
 	@Override
 	@Transactional
 	public void lockUser(UserReqDTO userReqDTO) throws SpiritAPIServiceException {
@@ -165,7 +167,7 @@ public class UserServiceImpl extends SpiritServiceTemplate<UserReqDTO, UserRespD
 		userPO.setUpdateUser(new UserPO(userReqDTO.getUpdateUser()));
 		userDAO.save(userPO);
 	}
-	
+
 	@Override
 	public UserRespDTO findById(Long id) throws SpiritAPIServiceException {
 		UserPO userPO = userDAO.findOne(id);
@@ -179,15 +181,14 @@ public class UserServiceImpl extends SpiritServiceTemplate<UserReqDTO, UserRespD
 		String dbUserPassword = userPO.getPassword();
 		return EncryptUtils.match(oldPassword, dbUserPassword);
 	}
-	
+
 	@Override
 	@Transactional
-	public void modifyPassword(UserModifyPasswordReqDTO userModifyPasswordReqDTO)
-			throws SpiritAPIServiceException {
+	public void modifyPassword(UserModifyPasswordReqDTO userModifyPasswordReqDTO) throws SpiritAPIServiceException {
 		UserPO userPO = userDAO.findOne(userModifyPasswordReqDTO.getId());
 		String oldPassword = userModifyPasswordReqDTO.getOldPassword();
 		String dbUserPassword = userPO.getPassword();
-		if(!EncryptUtils.match(oldPassword, dbUserPassword)) {
+		if (!EncryptUtils.match(oldPassword, dbUserPassword)) {
 			throw new SpiritAPIServiceException("原始密码错误");
 		}
 		String newPassword = userModifyPasswordReqDTO.getNewPassword();
@@ -197,7 +198,7 @@ public class UserServiceImpl extends SpiritServiceTemplate<UserReqDTO, UserRespD
 		}
 		userPO.setUpdateDate(DateUtils.currentDate());
 	}
-	
+
 	@Override
 	protected UserPO convertReqDtoToPo(UserReqDTO userReqDto) {
 		UserPO userPO = new UserPO();
@@ -249,6 +250,7 @@ public class UserServiceImpl extends SpiritServiceTemplate<UserReqDTO, UserRespD
 	@Override
 	@Transactional
 	public void deleteById(Long id) throws SpiritAPIServiceException {
+		// 物理删除用户，用户采用逻辑删除，本方法不做实现
 	}
 
 }

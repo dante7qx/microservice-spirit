@@ -19,6 +19,12 @@ import com.spirit.project.sysmgr.api.dto.req.AuthorityReqDTO;
 import com.spirit.project.sysmgr.api.dto.resp.AuthorityRespDTO;
 import com.spirit.project.sysmgr.api.service.AuthorityService;
 
+/**
+ * 权限 REST API
+ * 
+ * @author dante
+ *
+ */
 @RestController
 @RequestMapping("/authority")
 public class AuthorityController {
@@ -27,9 +33,15 @@ private static final Logger LOGGER = LoggerFactory.getLogger(AuthorityController
 	@Autowired
 	private AuthorityService authorityService;
 	
+	/**
+	 * 根据id获取权限
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@PostMapping("/query_by_id/{id}")
 	public BaseResp<AuthorityRespDTO> queryByAuthorityId(@PathVariable Long id) {
-		BaseResp<AuthorityRespDTO> result = new BaseResp<AuthorityRespDTO>();
+		BaseResp<AuthorityRespDTO> result = new BaseResp<>();
 		try {
 			AuthorityRespDTO authorityResp = authorityService.findById(id);
 			result.setData(authorityResp);
@@ -40,9 +52,15 @@ private static final Logger LOGGER = LoggerFactory.getLogger(AuthorityController
 		return result;
 	}
 	
+	/**
+	 * 根据pid获取资源
+	 * 
+	 * @param pid
+	 * @return
+	 */
 	@PostMapping("/query_by_pid/{pid}")
 	public BaseResp<List<AuthorityRespDTO>> queryByAuthorityPid(@PathVariable Long pid) {
-		BaseResp<List<AuthorityRespDTO>> result = new BaseResp<List<AuthorityRespDTO>>();
+		BaseResp<List<AuthorityRespDTO>> result = new BaseResp<>();
 		try {
 			List<AuthorityRespDTO> authorityResp = authorityService.findByPid(pid);
 			result.setData(authorityResp);
@@ -53,9 +71,14 @@ private static final Logger LOGGER = LoggerFactory.getLogger(AuthorityController
 		return result;
 	}
 	
+	/**
+	 * 获取所有根资源
+	 * 
+	 * @return
+	 */
 	@PostMapping("/query_root")
 	public BaseResp<List<AuthorityRespDTO>> queryRootAuthority() {
-		BaseResp<List<AuthorityRespDTO>> result = new BaseResp<List<AuthorityRespDTO>>();
+		BaseResp<List<AuthorityRespDTO>> result = new BaseResp<>();
 		try {
 			List<AuthorityRespDTO> authorityResp = authorityService.findRootAuthority();
 			result.setData(authorityResp);
@@ -66,9 +89,15 @@ private static final Logger LOGGER = LoggerFactory.getLogger(AuthorityController
 		return result;
 	}
 	
+	/**
+	 * 新增资源
+	 * 
+	 * @param authorityReq
+	 * @return
+	 */
 	@PostMapping("/add")
 	public BaseResp<AuthorityRespDTO> addAuthority(@RequestBody AuthorityReqDTO authorityReq) {
-		BaseResp<AuthorityRespDTO> result = new BaseResp<AuthorityRespDTO>();
+		BaseResp<AuthorityRespDTO> result = new BaseResp<>();
 		try {
 			AuthorityRespDTO authorityResp = authorityService.persist(authorityReq);
 			result.setData(authorityResp);
@@ -79,9 +108,15 @@ private static final Logger LOGGER = LoggerFactory.getLogger(AuthorityController
 		return result;
 	}
 	
+	/**
+	 * 更新资源
+	 * 
+	 * @param authorityReq
+	 * @return
+	 */
 	@PostMapping("/update")
 	public BaseResp<AuthorityRespDTO> updateAuthority(@RequestBody AuthorityReqDTO authorityReq) {
-		BaseResp<AuthorityRespDTO> result = new BaseResp<AuthorityRespDTO>();
+		BaseResp<AuthorityRespDTO> result = new BaseResp<>();
 		try {
 			AuthorityRespDTO authorityResp = authorityService.persist(authorityReq);
 			result.setData(authorityResp);
@@ -92,6 +127,12 @@ private static final Logger LOGGER = LoggerFactory.getLogger(AuthorityController
 		return result;
 	}
 	
+	/**
+	 * 根据id删除资源（物理删除）
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@DeleteMapping("/delete_by_id/{id}")
 	public BaseResp<?> deleteById(@PathVariable Long id) {
 		BaseResp<?> result = new BaseResp<>();
