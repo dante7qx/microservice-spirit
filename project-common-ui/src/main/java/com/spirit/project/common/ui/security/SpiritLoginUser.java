@@ -15,6 +15,7 @@ public class SpiritLoginUser implements Serializable {
 	private Set<String> authoritys;
 	
 	public SpiritLoginUser() {
+		// 默认构造函数
 	}
 	
 	public Long getId() {

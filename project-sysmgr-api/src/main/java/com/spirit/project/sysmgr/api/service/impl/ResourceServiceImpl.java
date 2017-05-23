@@ -30,6 +30,12 @@ import com.spirit.project.sysmgr.dao.po.ResourcePO;
 import com.spirit.project.sysmgr.dao.po.ServiceModulePO;
 import com.spirit.project.sysmgr.dao.po.UserPO;
 
+/**
+ * 资源服务实现类
+ * 
+ * @author dante
+ *
+ */
 @Service
 @Transactional(readOnly = true)
 public class ResourceServiceImpl implements ResourceService {

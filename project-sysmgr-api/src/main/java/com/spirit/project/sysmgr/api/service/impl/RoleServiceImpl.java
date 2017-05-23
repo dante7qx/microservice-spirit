@@ -34,6 +34,12 @@ import com.spirit.project.sysmgr.dao.po.AuthorityPO;
 import com.spirit.project.sysmgr.dao.po.RolePO;
 import com.spirit.project.sysmgr.dao.po.UserPO;
 
+/**
+ * 角色服务实现类
+ * 
+ * @author dante
+ *
+ */
 @Service
 @Transactional(readOnly = true)
 public class RoleServiceImpl extends SpiritServiceTemplate<RoleReqDTO, RoleRespDTO, RolePO> implements RoleService {
@@ -146,5 +152,6 @@ public class RoleServiceImpl extends SpiritServiceTemplate<RoleReqDTO, RoleRespD
 
 	@Override
 	public void delete(RoleReqDTO reqDTO) throws SpiritAPIServiceException {
+		// 逻辑删除，此功能使用物理删除，故本方法不做实现
 	}
 }

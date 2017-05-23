@@ -26,6 +26,12 @@ import com.spirit.project.sysmgr.dao.dao.specification.ServiceModuleSpecificatio
 import com.spirit.project.sysmgr.dao.po.ServiceModulePO;
 import com.spirit.project.sysmgr.dao.po.UserPO;
 
+/**
+ * 服务模块服务实现类
+ * 
+ * @author dante
+ *
+ */
 @Service
 @Transactional(readOnly = true)
 public class ServiceModuleServiceImpl extends SpiritServiceTemplate<ServiceModuleReqDTO, ServiceModuleRespDTO, ServiceModulePO> implements ServiceModuleService {
@@ -102,6 +108,7 @@ public class ServiceModuleServiceImpl extends SpiritServiceTemplate<ServiceModul
 
 	@Override
 	public void delete(ServiceModuleReqDTO reqDTO) throws SpiritAPIServiceException {
+		// 逻辑删除，此功能使用物理删除，故本方法不做实现
 	}
 
 }

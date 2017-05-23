@@ -35,6 +35,7 @@ public class RolePO implements Serializable {
 	private Set<AuthorityPO> authoritys;
 
 	public RolePO() {
+		// 默认构造函数
 	}
 
 	public RolePO(Long id) {

@@ -23,6 +23,12 @@ import com.spirit.project.sysmgr.dao.dao.AuthorityDAO;
 import com.spirit.project.sysmgr.dao.po.AuthorityPO;
 import com.spirit.project.sysmgr.dao.po.UserPO;
 
+/**
+ * 权限服务实现类
+ * 
+ * @author dante
+ *
+ */
 @Service
 @Transactional(readOnly = true)
 public class AuthorityServiceImpl implements AuthorityService {
@@ -124,6 +130,7 @@ public class AuthorityServiceImpl implements AuthorityService {
 
 	@Override
 	public void delete(AuthorityReqDTO reqDTO) throws SpiritAPIServiceException {
+		// 逻辑删除，此功能使用物理删除，故本方法不做实现
 	}
 
 }

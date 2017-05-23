@@ -145,8 +145,9 @@ public class ServiceModuleController {
 	 * @return
 	 */
 	@DeleteMapping(value = "/delete_by_id/{id}")
-	public BaseResp<? extends Object> deleteByServiceModuleId(@PathVariable Long id) {
-		BaseResp<? extends Object> result = new BaseResp<>();
+	@SuppressWarnings("rawtypes")
+	public BaseResp deleteByServiceModuleId(@PathVariable Long id) {
+		BaseResp result = new BaseResp<>();
 		try {
 			serviceModuleService.deleteById(id);
 		} catch (SpiritAPIServiceException e) {

@@ -14,7 +14,18 @@ import org.springframework.util.StringUtils;
 import com.google.common.collect.Lists;
 import com.spirit.project.sysmgr.dao.po.RolePO;
 
+/**
+ * 角色查询规约
+ * 
+ * @author dante
+ *
+ */
 public class RoleSpecification {
+	
+	private RoleSpecification() {
+		throw new IllegalAccessError("RoleSpecification 不可实例化！");
+	}
+	
 	public static Specification<RolePO> querySpecification(Map<String, Object> filter) {
 		return new Specification<RolePO>() {
 			@Override

@@ -9,9 +9,8 @@ package com.spirit.project.getway.ui.constant;
 public class SecurityConsts {
 	
 	private SecurityConsts() {
-		throw new IllegalAccessError("SecurityConsts  工具类，不能实例化！");
+		throw new IllegalAccessError("SecurityConsts 常量类，不能实例化！");
 	}
-	
 	
 	public static final String ROLE_PREFIX = "AUTH_";
 	public static final String LOGIN_PAGE = "/loginpage";

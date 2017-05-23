@@ -43,6 +43,7 @@ public class UserPO implements Serializable {
 	private Set<RolePO> roles;
 
 	public UserPO() {
+		// 默认构造函数
 	}
 
 	public UserPO(Long id) {

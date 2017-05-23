@@ -120,7 +120,7 @@ public class RoleController {
 	 */
 	@PostMapping("/add")
 	public BaseResp<RoleRespDTO> addRole(@RequestBody RoleReqDTO roleReqDto) {
-		BaseResp<RoleRespDTO> result = new BaseResp<RoleRespDTO>();
+		BaseResp<RoleRespDTO> result = new BaseResp<>();
 		if(!checkParam(roleReqDto)) {
 			result.setResultCode(RespCodeEnum.LACK_PARAM.code());
 			return result;
@@ -143,7 +143,7 @@ public class RoleController {
 	 */
 	@PostMapping("/update")
 	public BaseResp<RoleRespDTO> updateRole(@RequestBody RoleReqDTO roleReqDto) {
-		BaseResp<RoleRespDTO> result = new BaseResp<RoleRespDTO>();
+		BaseResp<RoleRespDTO> result = new BaseResp<>();
 		if(!checkParam(roleReqDto)) {
 			result.setResultCode(RespCodeEnum.LACK_PARAM.code());
 			return result;
@@ -165,8 +165,9 @@ public class RoleController {
 	 * @return
 	 */
 	@DeleteMapping(value = "/delete_by_id/{id}")
-	public BaseResp<? extends Object> deleteByRoleId(@PathVariable Long id) {
-		BaseResp<? extends Object> result = new BaseResp<>();
+	@SuppressWarnings("rawtypes")
+	public BaseResp deleteByRoleId(@PathVariable Long id) {
+		BaseResp result = new BaseResp<>();
 		try {
 			roleService.deleteById(id);
 		} catch (SpiritAPIServiceException e) {

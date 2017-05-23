@@ -32,6 +32,12 @@ import com.spirit.project.sysmgr.dao.po.AuthorityPO;
 import com.spirit.project.sysmgr.dao.po.RolePO;
 import com.spirit.project.sysmgr.dao.po.UserPO;
 
+/**
+ * 用户服务实现类
+ * 
+ * @author dante
+ *
+ */
 @Service
 @Transactional(readOnly = true)
 public class UserServiceImpl extends SpiritServiceTemplate<UserReqDTO, UserRespDTO, UserPO> implements UserService {

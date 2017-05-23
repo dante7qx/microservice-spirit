@@ -44,6 +44,7 @@ public class ResourcePO implements Serializable {
 	private AuthorityPO authority;
 
 	public ResourcePO() {
+		// 默认构造函数
 	}
 
 	public ResourcePO(Long id) {

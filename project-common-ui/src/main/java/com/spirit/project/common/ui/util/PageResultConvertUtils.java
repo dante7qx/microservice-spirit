@@ -9,7 +9,7 @@ import com.spirit.project.common.ui.dto.resp.PageResult;
  * @author dante
  *
  */
-public class PageResultConvertUtils {
+public class PageResultConvertUtils<T> {
 	
 	private PageResultConvertUtils() {
 		throw new IllegalAccessError("PageResultConvertUtils 工具类，不能实例化！");
@@ -21,8 +21,8 @@ public class PageResultConvertUtils {
 	 * @param pageResp
 	 * @return
 	 */
-	public static PageResult<? extends Object> convertPageRespToPageResult(PageResp<? extends Object> pageResp) {
-		PageResult<? extends Object> pageResult = new PageResult<>(pageResp.getResult(), pageResp.getTotalCount());
+	public static PageResult<?> convertPageRespToPageResult(PageResp<?> pageResp) {
+		PageResult<?> pageResult = new PageResult<>(pageResp.getResult(), pageResp.getTotalCount());
 		return pageResult;
 	}
 	

@@ -14,7 +14,18 @@ import org.springframework.util.StringUtils;
 import com.google.common.collect.Lists;
 import com.spirit.project.sysmgr.dao.po.ServiceModulePO;
 
+/**
+ * 服务模块查询规约
+ * 
+ * @author dante
+ *
+ */
 public class ServiceModuleSpecification {
+	
+	private ServiceModuleSpecification() {
+		throw new IllegalAccessError("ServiceModuleSpecification 不可实例化！");
+	}
+	
 	public static Specification<ServiceModulePO> querySpecification(Map<String, Object> filter) {
 		return new Specification<ServiceModulePO>() {
 			@Override

@@ -14,7 +14,17 @@ import com.spirit.project.sysmgr.dao.po.ResourcePO;
 import com.spirit.project.sysmgr.dao.po.RolePO;
 import com.spirit.project.sysmgr.dao.po.UserPO;
 
+/**
+ * 资源查询规约
+ * 
+ * @author dante
+ *
+ */
 public class ResourceSpecification {
+	
+	private ResourceSpecification() {
+		throw new IllegalAccessError("ResourceSpecification 不可实例化！");
+	}
 
 	/**
 	 * 获取当前登录用户的可见菜单

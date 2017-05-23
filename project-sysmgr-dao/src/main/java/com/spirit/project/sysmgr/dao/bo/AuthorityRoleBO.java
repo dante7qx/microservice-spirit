@@ -1,5 +1,11 @@
 package com.spirit.project.sysmgr.dao.bo;
 
+/**
+ * 角色、权限业务辅助BO
+ * 
+ * @author dante
+ *
+ */
 public class AuthorityRoleBO {
 	private Long id;
 	private Long pid;
@@ -11,8 +17,20 @@ public class AuthorityRoleBO {
 	private Boolean hasRelRole = false;
 
 	public AuthorityRoleBO() {
+		// 默认构造函数
 	}
 
+	/**
+	 * 构造函数参数的顺序必须与NativeSQL中查询字段顺序保持一致
+	 * 
+	 * @param id
+	 * @param name
+	 * @param code
+	 * @param authorityDesc
+	 * @param showOrder
+	 * @param pid
+	 * @param roleId
+	 */
 	public AuthorityRoleBO(Object id, Object name, Object code, Object authorityDesc, Object showOrder, Object pid,
 			Object roleId) {
 		this.id = id != null ? Long.parseLong(id.toString()) : null;

@@ -128,9 +128,10 @@ public class UserController {
 	 * @param userReqDto
 	 * @return
 	 */
+	@SuppressWarnings("rawtypes")
 	@DeleteMapping(value = "/delete")
-	public BaseResp<? extends Object> deleteUser(@RequestBody UserReqDTO userReqDto) {
-		BaseResp<? extends Object> result = new BaseResp<>();
+	public BaseResp deleteUser(@RequestBody UserReqDTO userReqDto) {
+		BaseResp result = new BaseResp<>();
 		try {
 			userService.delete(userReqDto);
 		} catch (SpiritAPIServiceException e) {
@@ -146,9 +147,10 @@ public class UserController {
 	 * @param userReqDto
 	 * @return
 	 */
+	@SuppressWarnings("rawtypes")
 	@PostMapping(value = "/lock_user")
-	public BaseResp<? extends Object> lockUser(@RequestBody UserReqDTO userReqDto) {
-		BaseResp<? extends Object> result = new BaseResp<>();
+	public BaseResp lockUser(@RequestBody UserReqDTO userReqDto) {
+		BaseResp result = new BaseResp<>();
 		try {
 			userService.lockUser(userReqDto);
 		} catch (SpiritAPIServiceException e) {
@@ -164,9 +166,10 @@ public class UserController {
 	 * @param userReqDto
 	 * @return
 	 */
+	@SuppressWarnings("rawtypes")
 	@PostMapping(value = "/release_lock_user")
-	public BaseResp<? extends Object> releaseLockUser(@RequestBody UserReqDTO userReqDto) {
-		BaseResp<? extends Object> result = new BaseResp<>();
+	public BaseResp releaseLockUser(@RequestBody UserReqDTO userReqDto) {
+		BaseResp result = new BaseResp<>();
 		try {
 			userService.releaseLockUser(userReqDto);
 		} catch (SpiritAPIServiceException e) {
@@ -200,9 +203,10 @@ public class UserController {
 	 * @param userModifyPasswordReqDTO
 	 * @return
 	 */
+	@SuppressWarnings("rawtypes")
 	@PostMapping(value = "/modify_password")
-	public BaseResp<? extends Object> modifyPassword(@RequestBody UserModifyPasswordReqDTO userModifyPasswordReqDTO) {
-		BaseResp<? extends Object> result = new BaseResp<>();
+	public BaseResp modifyPassword(@RequestBody UserModifyPasswordReqDTO userModifyPasswordReqDTO) {
+		BaseResp result = new BaseResp<>();
 		try {
 			if(!checkPasswordParam(userModifyPasswordReqDTO)) {
 				result.setResultCode(RespCodeEnum.LACK_PARAM.code());
@@ -259,23 +263,24 @@ public class UserController {
 	 * @return
 	 */
 	private boolean checkParam(UserReqDTO userReqDTO, boolean isNew) {
+		boolean checkValid = true;
 		if(isNew) {
 			if(StringUtils.isEmpty(userReqDTO.getPassword())) {
-				return false;
+				checkValid = false;
 			}
 		} else if(userReqDTO.getId() == null) {
-			return false;
+			checkValid = false;
 		}
 		if(StringUtils.isEmpty(userReqDTO.getAccount())) {
-			return false;
+			checkValid = false;
 		} else if(StringUtils.isEmpty(userReqDTO.getName())) {
-			return false;
+			checkValid = false;
 		} else if(StringUtils.isEmpty(userReqDTO.getEmail())) {
-			return false;
+			checkValid = false;
 		} else if(userReqDTO.getUpdateUser() == null) {
-			return false;
+			checkValid = false;
 		}
-		return true;
+		return checkValid;
 	}
 	
 	/**
@@ -285,15 +290,16 @@ public class UserController {
 	 * @return
 	 */
 	private boolean checkPasswordParam(UserModifyPasswordReqDTO userModifyPasswordReqDTO) {
+		boolean checkValid = true;
 		if(userModifyPasswordReqDTO.getId() == null) {
-			return false;
+			checkValid = false;
 		} else if(userModifyPasswordReqDTO.getUpdateUser() == null) {
-			return false;
+			checkValid = false;
 		} else if(StringUtils.isEmpty(userModifyPasswordReqDTO.getOldPassword())) {
-			return false;
+			checkValid = false;
 		} else if(StringUtils.isEmpty(userModifyPasswordReqDTO.getNewPassword())) {
-			return false;
+			checkValid = false;
 		}
-		return true;
+		return checkValid;
 	}
 }

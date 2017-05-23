@@ -28,6 +28,7 @@ public class ServiceModulePO implements Serializable {
 	private Date updateDate;
 
 	public ServiceModulePO() {
+		// 默认构造函数
 	}
 
 	public ServiceModulePO(Long id) {

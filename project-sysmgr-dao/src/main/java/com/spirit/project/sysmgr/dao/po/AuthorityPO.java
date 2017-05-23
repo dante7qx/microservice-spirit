@@ -33,6 +33,7 @@ public class AuthorityPO implements Serializable {
 	private AuthorityPO parentAuthority;
 
 	public AuthorityPO() {
+		// 默认构造函数
 	}
 
 	public AuthorityPO(Long id) {

@@ -17,7 +17,17 @@ import com.google.common.collect.Lists;
 import com.spirit.project.sysmgr.dao.po.RolePO;
 import com.spirit.project.sysmgr.dao.po.UserPO;
 
+/**
+ * 用户查询规约
+ * 
+ * @author dante
+ *
+ */
 public class UserSpecification {
+	
+	private UserSpecification() {
+		throw new IllegalAccessError("UserSpecification 不可实例化！");
+	}
 	
 	/**
 	 * 构造多参数查询规范
