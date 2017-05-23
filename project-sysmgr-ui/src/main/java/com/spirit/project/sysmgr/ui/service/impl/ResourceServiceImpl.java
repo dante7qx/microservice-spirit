@@ -79,7 +79,7 @@ public class ResourceServiceImpl implements ResourceService {
 
 	@Override
 	public void deleteByResourceId(Long id) throws SpiritUIServiceException {
-		BaseResp<?> resp = resourceFeignClient.deleteByResourceId(id);
+		BaseResp<? extends Object> resp = resourceFeignClient.deleteByResourceId(id);
 		if (resp.getResultCode() != RespCodeEnum.SUCCESS.code()) {
 			throw new SpiritUIServiceException(resp.getResultCode() + "");
 		}

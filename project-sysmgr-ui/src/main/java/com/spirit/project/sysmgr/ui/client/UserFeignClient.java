@@ -38,17 +38,17 @@ public interface UserFeignClient {
 	public BaseResp<UserVO> updateUser(UserVO userVO);
 	
 	@RequestMapping(method = RequestMethod.DELETE, value = "/user/delete")
-	public BaseResp<?> deleteUser(UserVO userVO);
+	public BaseResp<? extends Object> deleteUser(UserVO userVO);
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/user/lock_user")
-	public BaseResp<?> lockUser(UserVO userVO);
+	public BaseResp<? extends Object> lockUser(UserVO userVO);
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/user/release_lock_user")
-	public BaseResp<?> releaseLockUser(UserVO userVO);
+	public BaseResp<? extends Object> releaseLockUser(UserVO userVO);
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/user/check_password")
 	public BaseResp<Boolean> checkPassword(UserModifyPasswordVO userModifyPasswordVO);
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/user/modify_password")
-	public BaseResp<?> modifyPassword(UserModifyPasswordVO userModifyPasswordVO);
+	public BaseResp<? extends Object> modifyPassword(UserModifyPasswordVO userModifyPasswordVO);
 }

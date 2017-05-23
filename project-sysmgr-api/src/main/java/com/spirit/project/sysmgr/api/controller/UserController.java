@@ -129,8 +129,8 @@ public class UserController {
 	 * @return
 	 */
 	@DeleteMapping(value = "/delete")
-	public BaseResp<?> deleteUser(@RequestBody UserReqDTO userReqDto) {
-		BaseResp<?> result = new BaseResp<>();
+	public BaseResp<? extends Object> deleteUser(@RequestBody UserReqDTO userReqDto) {
+		BaseResp<? extends Object> result = new BaseResp<>();
 		try {
 			userService.delete(userReqDto);
 		} catch (SpiritAPIServiceException e) {
@@ -147,8 +147,8 @@ public class UserController {
 	 * @return
 	 */
 	@PostMapping(value = "/lock_user")
-	public BaseResp<?> lockUser(@RequestBody UserReqDTO userReqDto) {
-		BaseResp<?> result = new BaseResp<>();
+	public BaseResp<? extends Object> lockUser(@RequestBody UserReqDTO userReqDto) {
+		BaseResp<? extends Object> result = new BaseResp<>();
 		try {
 			userService.lockUser(userReqDto);
 		} catch (SpiritAPIServiceException e) {
@@ -165,8 +165,8 @@ public class UserController {
 	 * @return
 	 */
 	@PostMapping(value = "/release_lock_user")
-	public BaseResp<?> releaseLockUser(@RequestBody UserReqDTO userReqDto) {
-		BaseResp<?> result = new BaseResp<>();
+	public BaseResp<? extends Object> releaseLockUser(@RequestBody UserReqDTO userReqDto) {
+		BaseResp<? extends Object> result = new BaseResp<>();
 		try {
 			userService.releaseLockUser(userReqDto);
 		} catch (SpiritAPIServiceException e) {
@@ -201,8 +201,8 @@ public class UserController {
 	 * @return
 	 */
 	@PostMapping(value = "/modify_password")
-	public BaseResp<?> modifyPassword(@RequestBody UserModifyPasswordReqDTO userModifyPasswordReqDTO) {
-		BaseResp<?> result = new BaseResp<>();
+	public BaseResp<? extends Object> modifyPassword(@RequestBody UserModifyPasswordReqDTO userModifyPasswordReqDTO) {
+		BaseResp<? extends Object> result = new BaseResp<>();
 		try {
 			if(!checkPasswordParam(userModifyPasswordReqDTO)) {
 				result.setResultCode(RespCodeEnum.LACK_PARAM.code());

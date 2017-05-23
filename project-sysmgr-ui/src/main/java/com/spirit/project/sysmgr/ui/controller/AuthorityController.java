@@ -104,8 +104,8 @@ public class AuthorityController {
 	 */
 	@PreAuthorize("hasAuthority('sysmgr.authority.update')")
 	@PostMapping("/update_when_drag")
-	public BaseResp<?> updateAuthorityWhenDrap(EasyUIDragTreeReq dragTreeReq) {
-		BaseResp<?> result = new BaseResp<>();
+	public BaseResp<? extends Object> updateAuthorityWhenDrap(EasyUIDragTreeReq dragTreeReq) {
+		BaseResp<? extends Object> result = new BaseResp<>();
 		try {
 			dragTreeReq.setUpdateUser(LoginUserUtils.loginUserId());
 			authorityService.updateAuthorityWhenDrag(dragTreeReq);
@@ -124,8 +124,8 @@ public class AuthorityController {
 	 */
 	@PreAuthorize("hasAuthority('sysmgr.authority.delete')")
 	@PostMapping("/delete_by_id")
-	public BaseResp<?> deleteByAuthorityId(Long id) {
-		BaseResp<?> result = new BaseResp<>();
+	public BaseResp<? extends Object> deleteByAuthorityId(Long id) {
+		BaseResp<? extends Object> result = new BaseResp<>();
 		try {
 			authorityService.deleteByAuthorityId(id);
 		} catch (SpiritUIServiceException e) {

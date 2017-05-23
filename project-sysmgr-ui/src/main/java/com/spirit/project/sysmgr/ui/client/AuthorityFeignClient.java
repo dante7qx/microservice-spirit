@@ -32,5 +32,5 @@ public interface AuthorityFeignClient {
 	public BaseResp<AuthorityVO> updateAuthority(AuthorityVO authorityVO); 
 
 	@RequestMapping(method = RequestMethod.DELETE, value = "/authority/delete_by_id/{id}")
-	public BaseResp<?> deleteByAuthorityId(@PathVariable("id") Long id);
+	public BaseResp<? extends Object> deleteByAuthorityId(@PathVariable("id") Long id);
 }

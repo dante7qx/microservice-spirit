@@ -60,9 +60,9 @@ public class RoleFeignClientFallback implements RoleFeignClient {
 	}
 
 	@Override
-	public BaseResp<?> deleteByRoleId(Long id) {
+	public BaseResp<? extends Object> deleteByRoleId(Long id) {
 		LOGGER.error("deleteByRoleId id {} fallback.", id);
-		BaseResp<?> resp = new BaseResp<>();
+		BaseResp<? extends Object> resp = new BaseResp<>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;
 	}

@@ -64,7 +64,7 @@ public final class SpiritDaoUtils {
 	 * @param sortCol
 	 * @param sortDir
 	 */
-	public static void buildSpecificationOrder(Root<?> root, CriteriaQuery<?> query, CriteriaBuilder cb, String sortCol,
+	public static void buildSpecificationOrder(Root<? extends Object> root, CriteriaQuery<? extends Object> query, CriteriaBuilder cb, String sortCol,
 			String sortDir) {
 		if (!StringUtils.isEmpty(sortCol)) {
 			List<Order> orders = Lists.newArrayList();

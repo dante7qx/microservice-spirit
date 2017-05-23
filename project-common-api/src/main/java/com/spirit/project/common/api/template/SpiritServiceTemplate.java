@@ -50,7 +50,7 @@ public abstract class SpiritServiceTemplate<REQ, RESP, P> {
 		Pageable pageRequest = buildPageRequest(pageNo, pageSize, sortCol, sortDir);
 		if(!filter.isEmpty()) {
 			Specification<P> spec = buildSpecification(filter);
-			page = specificationExecutor.findAll(spec, pageRequest);
+			page = specificationExecutor.findAll(spec, pageRequest); 
 		} else {
 			page = jpaRepository.findAll(pageRequest);
 		}

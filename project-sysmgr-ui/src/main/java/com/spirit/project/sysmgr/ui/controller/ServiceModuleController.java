@@ -119,8 +119,8 @@ public class ServiceModuleController {
 	 */
 	@PreAuthorize("hasAuthority('sysmgr.servicemodule.delete')")
 	@PostMapping(value = "/delete_by_id")
-	public BaseResp<?> deleteByServiceModuleId(Long id) {
-		BaseResp<?> result = new BaseResp<>();
+	public BaseResp<? extends Object> deleteByServiceModuleId(Long id) {
+		BaseResp<? extends Object> result = new BaseResp<>();
 		try {
 			serviceModuleService.deleteByServiceModuleId(id);
 		} catch (SpiritUIServiceException e) {

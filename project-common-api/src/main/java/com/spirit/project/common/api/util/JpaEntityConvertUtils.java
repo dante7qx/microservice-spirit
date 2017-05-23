@@ -25,14 +25,14 @@ public class JpaEntityConvertUtils {
 	 * @return
 	 * @throws Exception
 	 */
-	public static <T> List<T> castEntity(List<Object[]> list, Class<T> clazz) { 
+	public static <T> List<T> castEntity(List<Object[]> list, Class<T> clazz) {  
         List<T> returnList = Lists.newArrayList();   
         try {
         	if(CollectionUtils.isEmpty(list)) {
         		return returnList;
         	}
         	Object[] co = list.get(0);    
-            Class<?>[] c2 = new Class[co.length];
+        	Class<?>[] c2 = new Class[co.length];
             for(int i = 0; i < co.length; i++){  
             	c2[i] = Object.class;  
             }    

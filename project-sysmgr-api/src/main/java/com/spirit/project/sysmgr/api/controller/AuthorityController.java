@@ -134,8 +134,8 @@ private static final Logger LOGGER = LoggerFactory.getLogger(AuthorityController
 	 * @return
 	 */
 	@DeleteMapping("/delete_by_id/{id}")
-	public BaseResp<?> deleteById(@PathVariable Long id) {
-		BaseResp<?> result = new BaseResp<>();
+	public BaseResp<? extends Object> deleteById(@PathVariable Long id) {
+		BaseResp<? extends Object> result = new BaseResp<>();
 		try {
 			authorityService.deleteById(id);
 		} catch (SpiritAPIServiceException e) {

@@ -57,9 +57,9 @@ public class ResourceFeignClientFallback implements ResourceFeignClient {
 	}
 
 	@Override
-	public BaseResp<?> deleteByResourceId(Long id) {
+	public BaseResp<? extends Object> deleteByResourceId(Long id) {
 		LOGGER.error("deleteByResourceId id {} fallback.", id);
-		BaseResp<?> resp = new BaseResp<>();
+		BaseResp<? extends Object> resp = new BaseResp<>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;
 	}

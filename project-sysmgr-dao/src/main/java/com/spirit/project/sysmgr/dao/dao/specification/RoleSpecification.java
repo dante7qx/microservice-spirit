@@ -18,7 +18,7 @@ public class RoleSpecification {
 	public static Specification<RolePO> querySpecification(Map<String, Object> filter) {
 		return new Specification<RolePO>() {
 			@Override
-			public Predicate toPredicate(Root<RolePO> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+			public Predicate toPredicate(Root<RolePO> root, CriteriaQuery<? extends Object> query, CriteriaBuilder cb) {
 				List<Predicate> predicates = Lists.newArrayList();
 				String name = (String) filter.get("name");
 

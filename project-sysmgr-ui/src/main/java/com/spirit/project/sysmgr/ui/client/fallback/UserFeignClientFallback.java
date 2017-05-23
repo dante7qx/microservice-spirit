@@ -59,9 +59,9 @@ public class UserFeignClientFallback implements UserFeignClient {
 	}
 
 	@Override
-	public BaseResp<?> deleteUser(UserVO userVO) {
+	public BaseResp<? extends Object> deleteUser(UserVO userVO) {
 		LOGGER.error("deleteUser {} fallback.", userVO);
-		BaseResp<?> resp = new BaseResp<>();
+		BaseResp<? extends Object> resp = new BaseResp<>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;
 	}
@@ -75,17 +75,17 @@ public class UserFeignClientFallback implements UserFeignClient {
 	}
 
 	@Override
-	public BaseResp<?> lockUser(UserVO userVO) {
+	public BaseResp<? extends Object> lockUser(UserVO userVO) {
 		LOGGER.error("lockUser {} fallback.", userVO);
-		BaseResp<?> resp = new BaseResp<>();
+		BaseResp<? extends Object> resp = new BaseResp<>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;
 	}
 
 	@Override
-	public BaseResp<?> releaseLockUser(UserVO userVO) {
+	public BaseResp<? extends Object> releaseLockUser(UserVO userVO) {
 		LOGGER.error("releaseLockUser {} fallback.", userVO);
-		BaseResp<?> resp = new BaseResp<>();
+		BaseResp<? extends Object> resp = new BaseResp<>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;
 	}
@@ -100,9 +100,9 @@ public class UserFeignClientFallback implements UserFeignClient {
 	}
 
 	@Override
-	public BaseResp<?> modifyPassword(UserModifyPasswordVO userModifyPasswordVO) {
+	public BaseResp<? extends Object> modifyPassword(UserModifyPasswordVO userModifyPasswordVO) {
 		LOGGER.error("modifyPassword {} fallback.", userModifyPasswordVO);
-		BaseResp<?> resp = new BaseResp<>();
+		BaseResp<? extends Object> resp = new BaseResp<>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;
 	}

@@ -18,7 +18,7 @@ public class ServiceModuleSpecification {
 	public static Specification<ServiceModulePO> querySpecification(Map<String, Object> filter) {
 		return new Specification<ServiceModulePO>() {
 			@Override
-			public Predicate toPredicate(Root<ServiceModulePO> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+			public Predicate toPredicate(Root<ServiceModulePO> root, CriteriaQuery<? extends Object> query, CriteriaBuilder cb) {
 				List<Predicate> predicates = Lists.newArrayList();
 				String name = (String) filter.get("name");
 				String url = (String) filter.get("url");

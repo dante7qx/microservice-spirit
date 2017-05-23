@@ -34,6 +34,6 @@ public interface ServiceModuleFeignClient {
 	public BaseResp<ServiceModuleVO> updateServiceModule(ServiceModuleVO serviceModuleVO);
 	
 	@RequestMapping(method = RequestMethod.DELETE, value = "/servicemodule/delete_by_id/{id}")
-	public BaseResp<?> deleteByServiceModuleId(@PathVariable("id") Long id);
+	public BaseResp<? extends Object> deleteByServiceModuleId(@PathVariable("id") Long id);
 
 }

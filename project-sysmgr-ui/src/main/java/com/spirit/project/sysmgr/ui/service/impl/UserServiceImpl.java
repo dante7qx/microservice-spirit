@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@HystrixCommand
 	public void deleteUser(UserVO userVO) throws SpiritUIServiceException {
-		BaseResp<?> resp = userFeignClient.deleteUser(userVO);
+		BaseResp<? extends Object> resp = userFeignClient.deleteUser(userVO);
 		if (resp.getResultCode() != RespCodeEnum.SUCCESS.code()) {
 			throw new SpiritUIServiceException(resp.getResultCode() + "");
 		}
@@ -97,7 +97,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void lockUser(UserVO userVO) throws SpiritUIServiceException {
-		BaseResp<?> resp = userFeignClient.lockUser(userVO);
+		BaseResp<? extends Object> resp = userFeignClient.lockUser(userVO);
 		if (resp.getResultCode() != RespCodeEnum.SUCCESS.code()) {
 			throw new SpiritUIServiceException(resp.getResultCode() + "");
 		}
@@ -105,7 +105,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void releaseLockUser(UserVO userVO) throws SpiritUIServiceException {
-		BaseResp<?> resp = userFeignClient.releaseLockUser(userVO);
+		BaseResp<? extends Object> resp = userFeignClient.releaseLockUser(userVO);
 		if (resp.getResultCode() != RespCodeEnum.SUCCESS.code()) {
 			throw new SpiritUIServiceException(resp.getResultCode() + "");
 		}
@@ -122,7 +122,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void modifyPassword(UserModifyPasswordVO userModifyPasswordVO) throws SpiritUIServiceException {
-		BaseResp<?> resp = userFeignClient.modifyPassword(userModifyPasswordVO);
+		BaseResp<? extends Object> resp = userFeignClient.modifyPassword(userModifyPasswordVO);
 		if (resp.getResultCode() != RespCodeEnum.SUCCESS.code()) {
 			throw new SpiritUIServiceException(resp.getResultCode() + "");
 		}

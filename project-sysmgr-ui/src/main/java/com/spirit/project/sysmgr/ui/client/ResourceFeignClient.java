@@ -32,6 +32,6 @@ public interface ResourceFeignClient {
 	public BaseResp<ResourceVO> updateResource(ResourceVO resourceVO);
 
 	@RequestMapping(method = RequestMethod.DELETE, value = "/resource/delete_by_id/{id}")
-	public BaseResp<?> deleteByResourceId(@PathVariable("id") Long id);
+	public BaseResp<? extends Object> deleteByResourceId(@PathVariable("id") Long id);
 
 }

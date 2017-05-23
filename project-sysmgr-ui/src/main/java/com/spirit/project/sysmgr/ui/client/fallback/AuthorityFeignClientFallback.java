@@ -57,9 +57,9 @@ public class AuthorityFeignClientFallback implements AuthorityFeignClient {
 	}
 
 	@Override
-	public BaseResp<?> deleteByAuthorityId(Long id) {
+	public BaseResp<? extends Object> deleteByAuthorityId(Long id) {
 		LOGGER.error("deleteByAuthorityId id {} fallback.", id);
-		BaseResp<?> resp = new BaseResp<>();
+		BaseResp<? extends Object> resp = new BaseResp<>();
 		resp.setResultCode(RespCodeEnum.REMOTE_FAILURE.code());
 		return resp;
 	}

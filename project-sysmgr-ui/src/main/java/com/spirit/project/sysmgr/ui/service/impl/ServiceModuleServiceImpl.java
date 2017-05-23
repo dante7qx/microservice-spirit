@@ -49,7 +49,7 @@ public class ServiceModuleServiceImpl implements ServiceModuleService {
 	@Override
 	@HystrixCommand
 	public void deleteByServiceModuleId(Long id) throws SpiritUIServiceException {
-		BaseResp<?> resp = serviceModuleFeignClient.deleteByServiceModuleId(id);
+		BaseResp<? extends Object> resp = serviceModuleFeignClient.deleteByServiceModuleId(id);
 		if (resp.getResultCode() != RespCodeEnum.SUCCESS.code()) {
 			throw new SpiritUIServiceException(resp.getResultCode() + "");
 		}

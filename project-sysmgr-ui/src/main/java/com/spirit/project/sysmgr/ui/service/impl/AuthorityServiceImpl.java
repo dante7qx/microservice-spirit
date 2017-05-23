@@ -82,7 +82,7 @@ public class AuthorityServiceImpl implements AuthorityService {
 	@Override
 	@HystrixCommand
 	public void deleteByAuthorityId(Long id) throws SpiritUIServiceException {
-		BaseResp<?> resp = authorityFeignClient.deleteByAuthorityId(id);
+		BaseResp<? extends Object> resp = authorityFeignClient.deleteByAuthorityId(id);
 		if (resp.getResultCode() != RespCodeEnum.SUCCESS.code()) {
 			throw new SpiritUIServiceException(resp.getResultCode() + "");
 		}

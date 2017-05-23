@@ -18,7 +18,7 @@ public class PageResult<T> {
 		this.total = total;
 	}
 
-	public List<T> getRows() {
+	public List<? extends Object> getRows() {
 		if(rows == null) {
 			rows = Lists.newArrayList();
 		}

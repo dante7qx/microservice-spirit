@@ -30,7 +30,7 @@ public class UserSpecification {
 	public static Specification<UserPO> querySpecification(Map<String, Object> filter) {
 		return new Specification<UserPO>(){
 			@Override
-			public Predicate toPredicate(Root<UserPO> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+			public Predicate toPredicate(Root<UserPO> root, CriteriaQuery<? extends Object> query, CriteriaBuilder cb) {
 				List<Predicate> predicates = Lists.newArrayList();
 				String account = (String) filter.get("account");
 				String name = (String) filter.get("name");
@@ -66,7 +66,7 @@ public class UserSpecification {
 	public static Specification<UserPO> queryUserByRoleId(Long roleId) {
 		return new Specification<UserPO>() {
 			@Override
-			public Predicate toPredicate(Root<UserPO> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+			public Predicate toPredicate(Root<UserPO> root, CriteriaQuery<? extends Object> query, CriteriaBuilder cb) {
 				SetJoin<UserPO, RolePO> roleJoin = root.join(root.getModel().getSet("roles", RolePO.class),
 						JoinType.LEFT);
 				Predicate eqRoleId = cb.equal(roleJoin.get("id").as(Long.class), roleId);

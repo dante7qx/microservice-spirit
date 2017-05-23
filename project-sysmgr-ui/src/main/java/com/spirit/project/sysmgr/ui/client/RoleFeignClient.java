@@ -38,5 +38,5 @@ public interface RoleFeignClient {
 	public BaseResp<RoleVO> updateRole(RoleVO roleVO);
 	
 	@RequestMapping(method = RequestMethod.DELETE, value = "/role/delete_by_id/{id}")
-	public BaseResp<?> deleteByRoleId(@PathVariable("id") Long id);
+	public BaseResp<? extends Object> deleteByRoleId(@PathVariable("id") Long id);
 }

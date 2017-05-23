@@ -87,8 +87,8 @@ public class ResourceController {
 	 */
 	@PreAuthorize("hasAuthority('sysmgr.resource.update')")
 	@PostMapping("/update_when_drag")
-	public BaseResp<?> updateResourceWhenDrap(EasyUIDragTreeReq dragTreeReq) {
-		BaseResp<?> result = new BaseResp<>();
+	public BaseResp<? extends Object> updateResourceWhenDrap(EasyUIDragTreeReq dragTreeReq) {
+		BaseResp<? extends Object> result = new BaseResp<>();
 		try {
 			dragTreeReq.setUpdateUser(LoginUserUtils.loginUserId());
 			resourceService.updateResourceWhenDrag(dragTreeReq);
@@ -107,8 +107,8 @@ public class ResourceController {
 	 */
 	@PreAuthorize("hasAuthority('sysmgr.resource.delete')")
 	@PostMapping("/delete_by_id")
-	public BaseResp<?> deleteByResourceId(Long id) {
-		BaseResp<?> result = new BaseResp<>();
+	public BaseResp<? extends Object> deleteByResourceId(Long id) {
+		BaseResp<? extends Object> result = new BaseResp<>();
 		try {
 			resourceService.deleteByResourceId(id);
 		} catch (SpiritUIServiceException e) {

@@ -25,7 +25,7 @@ public class ResourceSpecification {
 	public static Specification<ResourcePO> findResourceTreeByUserId(Long userId) {
 		return new Specification<ResourcePO>() {
 			@Override
-			public Predicate toPredicate(Root<ResourcePO> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+			public Predicate toPredicate(Root<ResourcePO> root, CriteriaQuery<? extends Object> query, CriteriaBuilder cb) {
 				Join<ResourcePO, ResourcePO> parentResourceJoin = root
 						.join(root.getModel().getSingularAttribute("parentResource", ResourcePO.class), JoinType.LEFT);
 				Root<UserPO> userRoot = query.from(UserPO.class);

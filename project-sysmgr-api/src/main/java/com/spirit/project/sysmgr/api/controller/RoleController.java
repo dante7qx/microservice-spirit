@@ -165,8 +165,8 @@ public class RoleController {
 	 * @return
 	 */
 	@DeleteMapping(value = "/delete_by_id/{id}")
-	public BaseResp<?> deleteByRoleId(@PathVariable Long id) {
-		BaseResp<?> result = new BaseResp<>();
+	public BaseResp<? extends Object> deleteByRoleId(@PathVariable Long id) {
+		BaseResp<? extends Object> result = new BaseResp<>();
 		try {
 			roleService.deleteById(id);
 		} catch (SpiritAPIServiceException e) {
