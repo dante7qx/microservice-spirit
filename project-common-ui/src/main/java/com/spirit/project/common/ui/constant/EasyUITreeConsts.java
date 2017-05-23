@@ -1,6 +1,16 @@
 package com.spirit.project.common.ui.constant;
 
+/**
+ * EasyUI Tree 常量类
+ * 
+ * @author dante
+ *
+ */
 public class EasyUITreeConsts {
+	
+	private EasyUITreeConsts() {
+		throw new IllegalAccessError("EasyUITreeConsts 常量类，不能实例化！");
+	}
 	
 	/**
 	 * 树的展开状态

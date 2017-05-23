@@ -8,6 +8,10 @@ package com.spirit.project.common.ui.constant;
  */
 public class SpiritSessionConfigConsts {
 	
+	private SpiritSessionConfigConsts() {
+		throw new IllegalAccessError("SpiritSessionConfigConsts 常量类，不能实例化！");
+	}
+	
 	/**
 	 * session在redis中的命名控件
 	 */

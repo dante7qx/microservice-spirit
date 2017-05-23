@@ -9,6 +9,12 @@ import org.springframework.util.CollectionUtils;
 
 import com.google.common.collect.Lists;
 
+/**
+ * Jpa原生SQL转换工具类
+ * 
+ * @author dante
+ *
+ */
 public class JpaEntityConvertUtils {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(JpaEntityConvertUtils.class);
