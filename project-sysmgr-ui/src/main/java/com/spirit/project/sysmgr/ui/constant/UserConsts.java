@@ -6,7 +6,11 @@ package com.spirit.project.sysmgr.ui.constant;
  * @author dante
  *
  */
-public interface UserConsts {
+public class UserConsts {
+	
+	private UserConsts() {
+		throw new IllegalAccessError("UserConsts 常量类，不能实例化！");
+	}
 	
 	/**
 	 * 用户状态

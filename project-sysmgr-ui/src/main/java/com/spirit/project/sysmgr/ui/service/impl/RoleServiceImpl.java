@@ -57,9 +57,8 @@ public class RoleServiceImpl implements RoleService {
 
 	@Override
 	@HystrixCommand
-	@SuppressWarnings("rawtypes")
 	public void deleteByRoleId(Long id) throws SpiritUIServiceException {
-		BaseResp resp = roleFeignClient.deleteByRoleId(id);
+		BaseResp<?> resp = roleFeignClient.deleteByRoleId(id);
 		if (resp.getResultCode() != RespCodeEnum.SUCCESS.code()) {
 			throw new SpiritUIServiceException(resp.getResultCode() + "");
 		}
