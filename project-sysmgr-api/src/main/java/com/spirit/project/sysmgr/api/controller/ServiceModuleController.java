@@ -35,7 +35,7 @@ public class ServiceModuleController {
 
 	@Autowired
 	private ServiceModuleService serviceModuleService;
-	
+
 	/**
 	 * 分页查询服务模块
 	 * 
@@ -54,7 +54,7 @@ public class ServiceModuleController {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 根据Id获取服务模块
 	 * 
@@ -73,7 +73,7 @@ public class ServiceModuleController {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 获取所有服务模块
 	 * 
@@ -91,7 +91,7 @@ public class ServiceModuleController {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 新增服务模块
 	 * 
@@ -101,7 +101,7 @@ public class ServiceModuleController {
 	@PostMapping("/add")
 	public BaseResp<ServiceModuleRespDTO> addServiceModule(@RequestBody ServiceModuleReqDTO serviceModuleReqDto) {
 		BaseResp<ServiceModuleRespDTO> result = new BaseResp<>();
-		if(!checkParam(serviceModuleReqDto, true)) {
+		if (!checkParam(serviceModuleReqDto, true)) {
 			result.setResultCode(RespCodeEnum.LACK_PARAM.code());
 			return result;
 		}
@@ -114,7 +114,7 @@ public class ServiceModuleController {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 更新服务模块
 	 * 
@@ -124,7 +124,7 @@ public class ServiceModuleController {
 	@PostMapping("/update")
 	public BaseResp<ServiceModuleRespDTO> updateServiceModule(@RequestBody ServiceModuleReqDTO serviceModuleReqDto) {
 		BaseResp<ServiceModuleRespDTO> result = new BaseResp<>();
-		if(!checkParam(serviceModuleReqDto, false)) {
+		if (!checkParam(serviceModuleReqDto, false)) {
 			result.setResultCode(RespCodeEnum.LACK_PARAM.code());
 			return result;
 		}
@@ -137,7 +137,7 @@ public class ServiceModuleController {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 根据id删除服务模块（物理删除）
 	 * 
@@ -145,9 +145,8 @@ public class ServiceModuleController {
 	 * @return
 	 */
 	@DeleteMapping(value = "/delete_by_id/{id}")
-	@SuppressWarnings("rawtypes")
-	public BaseResp deleteByServiceModuleId(@PathVariable Long id) {
-		BaseResp result = new BaseResp<>();
+	public BaseResp<?> deleteByServiceModuleId(@PathVariable Long id) {
+		BaseResp<?> result = new BaseResp<>();
 		try {
 			serviceModuleService.deleteById(id);
 		} catch (SpiritAPIServiceException e) {
@@ -156,7 +155,7 @@ public class ServiceModuleController {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 参数校验
 	 * 
@@ -164,18 +163,11 @@ public class ServiceModuleController {
 	 * @return
 	 */
 	private boolean checkParam(ServiceModuleReqDTO serviceModuleReqDTO, boolean isNew) {
-		boolean checkValid = true;
-		if(!isNew && serviceModuleReqDTO.getId() == null) {
-			checkValid = false;
+		if ((!isNew && serviceModuleReqDTO.getId() == null) || StringUtils.isEmpty(serviceModuleReqDTO.getName())
+				|| StringUtils.isEmpty(serviceModuleReqDTO.getUrl()) || serviceModuleReqDTO.getUpdateUser() == null) {
+			return false;
 		}
-		if(StringUtils.isEmpty(serviceModuleReqDTO.getName())) {
-			checkValid = false;
-		} else if(StringUtils.isEmpty(serviceModuleReqDTO.getUrl())) {
-			checkValid = false;
-		} else if(serviceModuleReqDTO.getUpdateUser() == null) {
-			checkValid = false;
-		}
-		return checkValid;
+		return true;
 	}
-	
+
 }

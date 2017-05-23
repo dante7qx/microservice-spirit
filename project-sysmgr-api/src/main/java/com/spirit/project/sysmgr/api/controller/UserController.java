@@ -24,7 +24,7 @@ import com.spirit.project.sysmgr.api.dto.resp.UserRespDTO;
 import com.spirit.project.sysmgr.api.service.UserService;
 
 /**
- * 用户 REST API 
+ * 用户 REST API
  * 
  * @author dante
  *
@@ -34,10 +34,10 @@ import com.spirit.project.sysmgr.api.service.UserService;
 public class UserController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	/**
 	 * 分页查询用户
 	 * 
@@ -56,7 +56,7 @@ public class UserController {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 根据id获取用户
 	 * 
@@ -75,7 +75,7 @@ public class UserController {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 新增用户
 	 * 
@@ -85,7 +85,7 @@ public class UserController {
 	@PostMapping("/add")
 	public BaseResp<UserRespDTO> addUser(@RequestBody UserReqDTO userReqDto) {
 		BaseResp<UserRespDTO> result = new BaseResp<>();
-		if(!checkParam(userReqDto, true)) {
+		if (!checkParam(userReqDto, true)) {
 			result.setResultCode(RespCodeEnum.LACK_PARAM.code());
 			return result;
 		}
@@ -98,7 +98,7 @@ public class UserController {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 更新用户
 	 * 
@@ -108,7 +108,7 @@ public class UserController {
 	@PostMapping("/update")
 	public BaseResp<UserRespDTO> updateUser(@RequestBody UserReqDTO userReqDto) {
 		BaseResp<UserRespDTO> result = new BaseResp<>();
-		if(!checkParam(userReqDto, false)) {
+		if (!checkParam(userReqDto, false)) {
 			result.setResultCode(RespCodeEnum.LACK_PARAM.code());
 			return result;
 		}
@@ -121,7 +121,7 @@ public class UserController {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 删除用户（逻辑删除）
 	 * 
@@ -140,7 +140,7 @@ public class UserController {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 锁定用户
 	 * 
@@ -159,7 +159,7 @@ public class UserController {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 解锁用户
 	 * 
@@ -178,7 +178,7 @@ public class UserController {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 检查用户密码
 	 * 
@@ -196,7 +196,7 @@ public class UserController {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 修改用户密码
 	 * 
@@ -208,7 +208,7 @@ public class UserController {
 	public BaseResp modifyPassword(@RequestBody UserModifyPasswordReqDTO userModifyPasswordReqDTO) {
 		BaseResp result = new BaseResp<>();
 		try {
-			if(!checkPasswordParam(userModifyPasswordReqDTO)) {
+			if (!checkPasswordParam(userModifyPasswordReqDTO)) {
 				result.setResultCode(RespCodeEnum.LACK_PARAM.code());
 				return result;
 			}
@@ -219,7 +219,7 @@ public class UserController {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 根据account获取用户
 	 * 
@@ -237,7 +237,7 @@ public class UserController {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 获取指定roleId下的所有用户
 	 * 
@@ -255,7 +255,7 @@ public class UserController {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 用户参数校验
 	 * 
@@ -263,26 +263,14 @@ public class UserController {
 	 * @return
 	 */
 	private boolean checkParam(UserReqDTO userReqDTO, boolean isNew) {
-		boolean checkValid = true;
-		if(isNew) {
-			if(StringUtils.isEmpty(userReqDTO.getPassword())) {
-				checkValid = false;
-			}
-		} else if(userReqDTO.getId() == null) {
-			checkValid = false;
+		if ((isNew && StringUtils.isEmpty(userReqDTO.getPassword())) || (!isNew && userReqDTO.getId() == null)
+				|| StringUtils.isEmpty(userReqDTO.getAccount()) || StringUtils.isEmpty(userReqDTO.getName())
+				|| StringUtils.isEmpty(userReqDTO.getEmail()) || userReqDTO.getUpdateUser() == null) {
+			return false;
 		}
-		if(StringUtils.isEmpty(userReqDTO.getAccount())) {
-			checkValid = false;
-		} else if(StringUtils.isEmpty(userReqDTO.getName())) {
-			checkValid = false;
-		} else if(StringUtils.isEmpty(userReqDTO.getEmail())) {
-			checkValid = false;
-		} else if(userReqDTO.getUpdateUser() == null) {
-			checkValid = false;
-		}
-		return checkValid;
+		return true;
 	}
-	
+
 	/**
 	 * 修改密码参数校验
 	 * 
@@ -290,16 +278,11 @@ public class UserController {
 	 * @return
 	 */
 	private boolean checkPasswordParam(UserModifyPasswordReqDTO userModifyPasswordReqDTO) {
-		boolean checkValid = true;
-		if(userModifyPasswordReqDTO.getId() == null) {
-			checkValid = false;
-		} else if(userModifyPasswordReqDTO.getUpdateUser() == null) {
-			checkValid = false;
-		} else if(StringUtils.isEmpty(userModifyPasswordReqDTO.getOldPassword())) {
-			checkValid = false;
-		} else if(StringUtils.isEmpty(userModifyPasswordReqDTO.getNewPassword())) {
-			checkValid = false;
+		if (userModifyPasswordReqDTO.getId() == null || userModifyPasswordReqDTO.getUpdateUser() == null
+				|| StringUtils.isEmpty(userModifyPasswordReqDTO.getOldPassword())
+				|| StringUtils.isEmpty(userModifyPasswordReqDTO.getNewPassword())) {
+			return false;
 		}
-		return checkValid;
+		return true;
 	}
 }
