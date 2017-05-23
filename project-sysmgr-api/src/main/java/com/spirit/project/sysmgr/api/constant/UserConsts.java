@@ -8,7 +8,7 @@ package com.spirit.project.sysmgr.api.constant;
  */
 public class UserConsts {
 	
-	public UserConsts() {
+	private UserConsts() {
 		throw new IllegalAccessError("UserConsts 常量类，不能实例化！");
 	}
 	
