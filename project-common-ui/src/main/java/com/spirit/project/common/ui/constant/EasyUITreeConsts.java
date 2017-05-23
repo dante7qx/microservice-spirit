@@ -6,7 +6,7 @@ package com.spirit.project.common.ui.constant;
  * @author dante
  *
  */
-public class EasyUITreeConsts {
+public final class EasyUITreeConsts {
 	
 	private EasyUITreeConsts() {
 		throw new IllegalAccessError("EasyUITreeConsts 常量类，不能实例化！");

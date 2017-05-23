@@ -6,7 +6,7 @@ package com.spirit.project.common.ui.constant;
  * @author dante
  *
  */
-public class SpiritSessionConfigConsts {
+public final class SpiritSessionConfigConsts {
 	
 	private SpiritSessionConfigConsts() {
 		throw new IllegalAccessError("SpiritSessionConfigConsts 常量类，不能实例化！");
