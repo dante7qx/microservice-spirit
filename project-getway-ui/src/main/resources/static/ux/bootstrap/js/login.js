@@ -5,7 +5,6 @@ var LoginPage = {
 		this.initLocation();
 	},
 	initLocation: function() {
-		console.log(this.location+'---->'+self.location+", ---->"+top.location);
 		if(self.location && top.location != self.location){
     	    top.location.replace('loginpage');
 			return;

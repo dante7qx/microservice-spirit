@@ -126,7 +126,6 @@ $.extend($.fn.validatebox.defaults.rules, {
 				cache: false,
 				data: {account: value}
 			}).responseText);
-			console.log(result)
 			if(result['resultCode'] != COMMON_CONFIG['SUCCESS']) {
 				return false;
 				$.fn.validatebox.defaults.rules.message = '系统错误，请稍后重试';
