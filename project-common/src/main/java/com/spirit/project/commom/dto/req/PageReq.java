@@ -17,6 +17,7 @@ public class PageReq implements Serializable {
 	
 	private static final int DEFAULT_PAGENO = 1;
 	private static final int DEFAULT_PAGESIZE = 20;
+	// 最大每页查询记录数
 	private static final int MAX_PAGESIZE = 500;
 	
 	public static final String ASC = "asc";
@@ -27,6 +28,7 @@ public class PageReq implements Serializable {
 	private String sort;
 	private String order = ASC;
 
+	// 查询参数
 	private Map<String, Object> q;
 	
 	public PageReq() {

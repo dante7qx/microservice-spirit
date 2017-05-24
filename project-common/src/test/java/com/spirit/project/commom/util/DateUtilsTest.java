@@ -9,6 +9,12 @@ import org.slf4j.LoggerFactory;
 
 import com.spirit.project.commom.util.DateUtils.TimeFormat;
 
+/**
+ * 日期工具类测试类
+ * 
+ * @author dante
+ *
+ */
 public class DateUtilsTest {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(DateUtilsTest.class);

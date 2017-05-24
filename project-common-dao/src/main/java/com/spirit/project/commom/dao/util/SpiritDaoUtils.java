@@ -91,6 +91,12 @@ public final class SpiritDaoUtils {
 		}
 	}
 
+	/**
+	 * 构造排序
+	 * 
+	 * @param sortDir
+	 * @return
+	 */
 	private static Direction buildDirection(String sortDir) {
 		Direction direction = Direction.ASC;
 		switch (sortDir.trim().toLowerCase(Locale.ENGLISH)) {

@@ -3,6 +3,12 @@ package com.spirit.project.common.ui.security;
 import java.io.Serializable;
 import java.util.Set;
 
+/**
+ * 当前登录用户（登录后存入redis session）
+ * 
+ * @author dante
+ *
+ */
 public class SpiritLoginUser implements Serializable {
 
 	private static final long serialVersionUID = -5339236104490631398L;

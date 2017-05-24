@@ -4,6 +4,13 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 
+/**
+ * EasyUI 分页返回类
+ * 
+ * @author dante
+ *
+ * @param <T>
+ */
 public class PageResult<T> {
 
 	private List<T> rows;

@@ -33,6 +33,11 @@ public class LoginUserUtils {
 		return loginUser;
 	}
 	
+	/**
+	 * 当前登录用户Id
+	 * 
+	 * @return
+	 */
 	public static Long loginUserId() {
 		Long loginUserId = null;
 		SpiritLoginUser loginUser = loginUser();

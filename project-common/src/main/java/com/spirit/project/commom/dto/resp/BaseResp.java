@@ -9,8 +9,11 @@ package com.spirit.project.commom.dto.resp;
  */
 public class BaseResp<T> {
 	
+	// 状态码（在 RespCodeEnum 中定义）
 	private int resultCode = RespCodeEnum.SUCCESS.code();
+	// 返回数据集
 	private T data;
+	// 错误描述
 	private String errorMsg;
 	
 	public BaseResp() {

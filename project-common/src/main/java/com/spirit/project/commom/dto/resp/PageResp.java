@@ -4,16 +4,28 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 
+/**
+ * 公共分页返回基类
+ * 
+ * @author dante
+ *
+ * @param <T>
+ */
 public class PageResp<T> {
 
+	// 结果
 	private List<T> result;
 
+	// 当前页数
 	private int pageNo;
 
+	// 每页显示记录数
 	private int pageSize;
 
+	// 总页数
 	private int totalPage;
 
+	// 总记录数
 	private long totalCount;
 	
 	public PageResp() {

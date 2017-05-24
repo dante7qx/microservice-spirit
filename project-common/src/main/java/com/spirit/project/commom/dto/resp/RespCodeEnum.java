@@ -1,5 +1,11 @@
 package com.spirit.project.commom.dto.resp;
 
+/**
+ * 请求返回状态码
+ * 
+ * @author dante
+ *
+ */
 public enum RespCodeEnum {
 	SUCCESS(1, "响应成功"), 
 	LACK_PARAM(10001, "缺少参数"), 

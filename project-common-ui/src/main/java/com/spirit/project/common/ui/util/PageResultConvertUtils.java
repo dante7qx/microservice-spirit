@@ -16,7 +16,7 @@ public final class PageResultConvertUtils {
 	}
 	
 	/**
-	 * 将 PageResp 转化为 PageResult
+	 * 将 PageResp 转化为 EasyUI PageResult
 	 * 
 	 * @param pageResp
 	 * @return
