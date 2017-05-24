@@ -24,12 +24,10 @@ public class LoginUserUtils {
 	public static SpiritLoginUser loginUser() {
 		SpiritLoginUser loginUser = null;
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		
-		if(principal != null && principal instanceof SpiritLoginUser) {
+		if(principal != null) {
 			SpiritPrincipal spiritPrincipal = (SpiritPrincipal) principal;
 			loginUser = spiritPrincipal.getSpiritLoginUser();
 		}
-		
 		return loginUser;
 	}
 	

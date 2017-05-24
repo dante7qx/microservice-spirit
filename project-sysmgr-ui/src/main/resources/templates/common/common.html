@@ -24,7 +24,10 @@ $(function() {
 		},
 		complete: function(xhr, textStatus) {
 			if(xhr.status == "401") {
-				window.location = '/login';
+				if(self.location && top.location != self.location){
+		    	    top.location.replace('loginpage');
+					return;
+		    	}
 			} else if(xhr.status == "403") {
 				alert('没有权限！');
 			}
