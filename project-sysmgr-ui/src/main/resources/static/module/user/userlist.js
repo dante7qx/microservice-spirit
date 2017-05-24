@@ -119,7 +119,7 @@ var UserPage = {
 		},
 		releaseLock: function() {
 			var row = $('#userGridlist').datagrid('getChecked');
-			if(row.length == 0) {
+			if(row.length === 0) {
 				$.messager.alert('提示','请至少选择一个用户！');
 				return;
 			}
@@ -159,7 +159,6 @@ $.extend($.fn.validatebox.defaults.rules, {
 					oldPassword: value
 				}
 			}).responseText);
-			console.log(result)
 			if(result['resultCode'] != COMMON_CONFIG['SUCCESS']) {
 				return false;
 				$.fn.validatebox.defaults.rules.message = '系统错误，请稍后重试';
