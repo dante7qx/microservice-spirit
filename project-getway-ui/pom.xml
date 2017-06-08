@@ -33,4 +33,24 @@
 			<version>${bootstrap.version}</version>
 		</dependency>
 	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin> 
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+                    <mainClass>com.spirit.project.getway.ui.GetwayUIApplication</mainClass>
+                    <layout>ZIP</layout>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>
