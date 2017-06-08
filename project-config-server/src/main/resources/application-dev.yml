@@ -6,11 +6,9 @@ spring:
           uri: https://github.com/dante7qx/microservice-spirit
           search-paths:
             - project-config-repo
-#          username: dante7qx
-#          password: Dante2012
   rabbitmq:
-    host: localhost
-    port: 5672
-    username: dante
-    password: 123456
+    host: ${rabbitmq.host:localhost}
+    port: ${rabbitmq.port:5672}
+    username: ${rabbitmq.username:dante}
+    password: ${rabbitmq.password:123456}
     virtual-host: /project-config
