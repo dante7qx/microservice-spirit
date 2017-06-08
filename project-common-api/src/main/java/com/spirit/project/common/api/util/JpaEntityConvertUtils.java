@@ -52,7 +52,4 @@ public class JpaEntityConvertUtils {
         return returnList;    
     } 
 	
-	public static void main(String[] args) {
-		// for maven package
-	}
 }

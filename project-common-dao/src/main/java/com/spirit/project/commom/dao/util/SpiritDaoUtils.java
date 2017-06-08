@@ -112,7 +112,4 @@ public final class SpiritDaoUtils {
 		return direction;
 	}
 
-	public static void main(String[] args) {
-		// for maven package
-	}
 }
