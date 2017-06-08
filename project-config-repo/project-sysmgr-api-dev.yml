@@ -26,8 +26,8 @@ spring:
         enable_lazy_load_no_trans: true
         format_sql: true
   rabbitmq:
-    host: localhost
-    port: 5672
-    username: dante
-    password: 123456
+    host: ${rabbitmq.host:localhost}
+    port: ${rabbitmq.port:5672}
+    username: ${rabbitmq.username:dante}
+    password: ${rabbitmq.password:123456}
     virtual-host: /project-config
