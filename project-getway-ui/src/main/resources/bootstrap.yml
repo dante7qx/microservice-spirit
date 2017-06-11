@@ -12,6 +12,7 @@ spring:
         service-id: PROJECT-CONFIG-SERVER
 eureka:
   instance:
+    home-page-url: /project
     prefer-ip-address: true
   client:
     service-url:
