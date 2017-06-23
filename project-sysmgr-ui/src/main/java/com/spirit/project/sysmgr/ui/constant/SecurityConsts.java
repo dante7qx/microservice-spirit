@@ -1,6 +1,12 @@
 package com.spirit.project.sysmgr.ui.constant;
 
-public class SecurityConsts {
+/**
+ * Spring Security 常量类
+ * 
+ * @author dante
+ *
+ */
+public final class SecurityConsts {
 	
 	private SecurityConsts() {
 		throw new IllegalAccessError("SecurityConsts 常量类，不能实例化！");
