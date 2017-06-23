@@ -19,6 +19,7 @@ body {
 	text-align: right;
 }
 
+/*
 a.bdhref:link {
 	color: #337ab7;
 	text-decoration: none;
@@ -37,6 +38,7 @@ a.bdhref:hover {
 a.bdhref:active {
 	color: #337ab7;
 }
+*/
 
 .bdgridtoolbar {
 	padding:5px;
@@ -90,4 +92,12 @@ table.tbcontent .tbtitle {
 
 .p-hide, .combo-hide {
 	margin: 0;
+}
+
+.textbox-text{
+	color:#000;
+}
+
+.datagrid-row-selected a{
+	color:#fff;
 }

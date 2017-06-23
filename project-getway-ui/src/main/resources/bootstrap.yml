@@ -10,11 +10,16 @@ spring:
       discovery:
         enabled: true
         service-id: PROJECT-CONFIG-SERVER
+  thymeleaf:
+    mode: HTML    
 eureka:
   instance:
     home-page-url: /project
     prefer-ip-address: true
   client:
     service-url:
-      defaultZone: http://${eureka.host:localhost}:${eureka.port:8761}/eureka/
+      defaultZone: ${eureka.cluster:http://${eureka.host:localhost}:${eureka.port:8761}/eureka/}
 hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 50000
+ribbon: 
+  ConnectTimeout: 30000
+  ReadTimeout: 30000

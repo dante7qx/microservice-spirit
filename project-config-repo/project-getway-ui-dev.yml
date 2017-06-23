@@ -8,6 +8,11 @@ spring:
     username: ${rabbitmq.username:dante}
     password: ${rabbitmq.password:123456}
     virtual-host: /project-config
+  sleuth:
+    sampler:
+      percentage: ${config.sampler:0.3}
+  zipkin:
+    base-url: ${zipkin.server:http://localhost:9411/}
 zuul:
   routes:
     project-sysmgr-ui:
