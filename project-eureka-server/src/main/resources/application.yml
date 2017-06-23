@@ -27,7 +27,7 @@ eureka:
     prefer-ip-address: true
   client:
     serviceUrl:
-      defaultZone: http://${amp.eureka.node2}:${server.port}/eureka/,http://${amp.eureka.node3}:${server.port}/eureka/
+      defaultZone: http://${eureka.node2}:${server.port}/eureka/,http://${eureka.node3}:${server.port}/eureka/
 
 --- 
 spring:
@@ -39,7 +39,7 @@ eureka:
     prefer-ip-address: true
   client:
     serviceUrl:
-      defaultZone: http://${amp.eureka.node1}:${server.port}/eureka/,http://${amp.eureka.node3}:${server.port}/eureka/
+      defaultZone: http://${eureka.node1}:${server.port}/eureka/,http://${eureka.node3}:${server.port}/eureka/
       
 --- 
 spring:
@@ -52,4 +52,4 @@ eureka:
     prefer-ip-address: true
   client:
     serviceUrl:
-      defaultZone: http://${amp.eureka.node1}:${server.port}/eureka/,http://${amp.eureka.node2}:${server.port}/eureka/
+      defaultZone: http://${eureka.node1}:${server.port}/eureka/,http://${eureka.node2}:${server.port}/eureka/
