@@ -1,5 +1,11 @@
 package com.spirit.project.sysmgr.api.dto.req;
 
+/**
+ * 用户密码修改请求参数
+ * 
+ * @author dante
+ *
+ */
 public class UserModifyPasswordReqDTO {
 	
 	private Long id;

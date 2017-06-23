@@ -4,6 +4,12 @@ import java.util.Set;
 
 import com.google.common.collect.Sets;
 
+/**
+ * 用户请求返回参数
+ * 
+ * @author dante
+ *
+ */
 public class UserRespDTO {
 	private Long id;
 	private String account;
@@ -80,4 +86,12 @@ public class UserRespDTO {
 	public void setRoleIds(Set<Long> roleIds) {
 		this.roleIds = roleIds;
 	}
+
+	@Override
+	public String toString() {
+		return "UserRespDTO [id=" + id + ", account=" + account + ", name=" + name + ", email=" + email
+				+ ", updateUserName=" + updateUserName + ", updateDate=" + updateDate + ", roleIds=" + roleIds
+				+ ", status=" + status + "]";
+	}
+
 }

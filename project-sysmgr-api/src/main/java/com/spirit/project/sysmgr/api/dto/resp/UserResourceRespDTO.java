@@ -4,6 +4,12 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 
+/**
+ * 当前用户所有资源返回参数
+ * 
+ * @author dante
+ *
+ */
 public class UserResourceRespDTO {
 	private Long id;
 	private String name;
@@ -44,7 +50,7 @@ public class UserResourceRespDTO {
 	}
 
 	public List<UserResourceRespDTO> getChildren() {
-		if(this.children == null) {
+		if (this.children == null) {
 			this.children = Lists.newLinkedList();
 		}
 		return children;
@@ -52,6 +58,12 @@ public class UserResourceRespDTO {
 
 	public void setChildren(List<UserResourceRespDTO> children) {
 		this.children = children;
+	}
+
+	@Override
+	public String toString() {
+		return "UserResourceRespDTO [id=" + id + ", name=" + name + ", url=" + url + ", pid=" + pid + ", children="
+				+ children + "]";
 	}
 
 }

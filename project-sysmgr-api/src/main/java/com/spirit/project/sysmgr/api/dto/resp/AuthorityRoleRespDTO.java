@@ -1,5 +1,11 @@
 package com.spirit.project.sysmgr.api.dto.resp;
 
+/**
+ * 权限角色返回参数
+ * 
+ * @author dante
+ *
+ */
 public class AuthorityRoleRespDTO {
 	private Long id;
 	private Long pid;
@@ -75,6 +81,13 @@ public class AuthorityRoleRespDTO {
 
 	public void setHasRelRole(Boolean hasRelRole) {
 		this.hasRelRole = hasRelRole;
+	}
+
+	@Override
+	public String toString() {
+		return "AuthorityRoleRespDTO [id=" + id + ", pid=" + pid + ", name=" + name + ", code=" + code
+				+ ", authorityDesc=" + authorityDesc + ", showOrder=" + showOrder + ", roleId=" + roleId
+				+ ", hasRelRole=" + hasRelRole + "]";
 	}
 
 }

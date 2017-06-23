@@ -4,6 +4,12 @@ import java.util.Set;
 
 import com.google.common.collect.Sets;
 
+/**
+ * 角色返回参数
+ * 
+ * @author dante
+ *
+ */
 public class RoleRespDTO {
 	private Long id;
 	private String name;
@@ -53,7 +59,7 @@ public class RoleRespDTO {
 	}
 
 	public Set<Long> getAuthorityIds() {
-		if(authorityIds == null) {
+		if (authorityIds == null) {
 			authorityIds = Sets.newHashSet();
 		}
 		return authorityIds;
@@ -62,4 +68,11 @@ public class RoleRespDTO {
 	public void setAuthorityIds(Set<Long> authorityIds) {
 		this.authorityIds = authorityIds;
 	}
+
+	@Override
+	public String toString() {
+		return "RoleRespDTO [id=" + id + ", name=" + name + ", roleDesc=" + roleDesc + ", authorityIds=" + authorityIds
+				+ ", updateUserName=" + updateUserName + ", updateDate=" + updateDate + "]";
+	}
+
 }

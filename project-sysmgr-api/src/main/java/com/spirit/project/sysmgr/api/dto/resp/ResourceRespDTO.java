@@ -1,5 +1,11 @@
 package com.spirit.project.sysmgr.api.dto.resp;
 
+/**
+ * 资源返回参数
+ * 
+ * @author dante
+ *
+ */
 public class ResourceRespDTO {
 	private Long id;
 	private String name;
@@ -90,6 +96,14 @@ public class ResourceRespDTO {
 
 	public void setServiceModuleUrl(String serviceModuleUrl) {
 		this.serviceModuleUrl = serviceModuleUrl;
+	}
+
+	@Override
+	public String toString() {
+		return "ResourceRespDTO [id=" + id + ", name=" + name + ", url=" + url + ", authorityId=" + authorityId
+				+ ", serviceModuleId=" + serviceModuleId + ", serviceModuleName=" + serviceModuleName
+				+ ", serviceModuleUrl=" + serviceModuleUrl + ", fullId=" + fullId + ", showOrder=" + showOrder
+				+ ", pid=" + pid + "]";
 	}
 
 }

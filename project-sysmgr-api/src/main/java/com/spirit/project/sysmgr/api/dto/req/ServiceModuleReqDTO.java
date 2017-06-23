@@ -1,5 +1,11 @@
 package com.spirit.project.sysmgr.api.dto.req;
 
+/**
+ * 服务模块请求参数
+ * 
+ * @author dante
+ *
+ */
 public class ServiceModuleReqDTO {
 	private Long id;
 	private String name;

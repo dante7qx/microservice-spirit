@@ -1,5 +1,11 @@
 package com.spirit.project.sysmgr.api.dto.req;
 
+/**
+ * 资源请求参数
+ * 
+ * @author dante
+ *
+ */
 public class ResourceReqDTO {
 	private Long id;
 	private String name;
@@ -81,6 +87,13 @@ public class ResourceReqDTO {
 
 	public void setUpdateUser(Long updateUser) {
 		this.updateUser = updateUser;
+	}
+
+	@Override
+	public String toString() {
+		return "ResourceReqDTO [id=" + id + ", name=" + name + ", url=" + url + ", authorityId=" + authorityId
+				+ ", serviceModuleId=" + serviceModuleId + ", fullId=" + fullId + ", showOrder=" + showOrder + ", pid="
+				+ pid + ", updateUser=" + updateUser + "]";
 	}
 
 }

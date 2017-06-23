@@ -2,6 +2,12 @@ package com.spirit.project.sysmgr.api.dto.req;
 
 import java.util.Set;
 
+/**
+ * 角色请求参数
+ * 
+ * @author dante
+ *
+ */
 public class RoleReqDTO {
 
 	private Long id;
@@ -48,6 +54,12 @@ public class RoleReqDTO {
 
 	public void setAuthorityIds(Set<Long> authorityIds) {
 		this.authorityIds = authorityIds;
+	}
+
+	@Override
+	public String toString() {
+		return "RoleReqDTO [id=" + id + ", name=" + name + ", roleDesc=" + roleDesc + ", updateUser=" + updateUser
+				+ ", authorityIds=" + authorityIds + "]";
 	}
 
 }

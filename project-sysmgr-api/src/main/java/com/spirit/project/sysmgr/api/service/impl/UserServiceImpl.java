@@ -45,11 +45,17 @@ public class UserServiceImpl extends SpiritServiceTemplate<UserReqDTO, UserRespD
 	@Autowired
 	private UserDAO userDAO;
 
+	/**
+	 * 分页查询用户
+	 */
 	@Override
 	public PageResp<UserRespDTO> findPage(PageReq pageReq) throws SpiritAPIServiceException {
 		return super.findPage(pageReq);
 	}
 
+	/**
+	 * 根据account获取用户
+	 */
 	@Override
 	public UserRespDTO findByAccount(String account) throws SpiritAPIServiceException {
 		try {
@@ -60,6 +66,9 @@ public class UserServiceImpl extends SpiritServiceTemplate<UserReqDTO, UserRespD
 		}
 	}
 
+	/**
+	 * 用户登录 
+	 */
 	@Override
 	public UserAuthRespDTO loginAccount(String account) throws SpiritAPIServiceException {
 		UserAuthRespDTO userAuthRespDTO = null;
@@ -85,6 +94,9 @@ public class UserServiceImpl extends SpiritServiceTemplate<UserReqDTO, UserRespD
 		return userAuthRespDTO;
 	}
 
+	/**
+	 * 根据roleId获取用户
+	 */
 	@Override
 	public List<UserRespDTO> findByRoleId(Long roleId) throws SpiritAPIServiceException {
 		List<UserRespDTO> userResps = Lists.newArrayList();
@@ -99,6 +111,9 @@ public class UserServiceImpl extends SpiritServiceTemplate<UserReqDTO, UserRespD
 		return userResps;
 	}
 
+	/**
+	 * 持久化用户
+	 */
 	@Override
 	@Transactional
 	public UserRespDTO persist(UserReqDTO userReqDTO) throws SpiritAPIServiceException {
@@ -142,6 +157,9 @@ public class UserServiceImpl extends SpiritServiceTemplate<UserReqDTO, UserRespD
 		return convertPoToRespDto(delUser);
 	}
 
+	/**
+	 * 逻辑删除用户
+	 */
 	@Override
 	@Transactional
 	public void delete(UserReqDTO userReqDTO) throws SpiritAPIServiceException {
@@ -153,6 +171,9 @@ public class UserServiceImpl extends SpiritServiceTemplate<UserReqDTO, UserRespD
 		userDAO.deleteUserRoleByUserId(userReqDTO.getId());
 	}
 
+	/**
+	 * 锁定用户
+	 */
 	@Override
 	@Transactional
 	public void lockUser(UserReqDTO userReqDTO) throws SpiritAPIServiceException {
@@ -163,6 +184,9 @@ public class UserServiceImpl extends SpiritServiceTemplate<UserReqDTO, UserRespD
 		userDAO.save(userPO);
 	}
 
+	/**
+	 * 解锁用户
+	 */
 	@Override
 	@Transactional
 	public void releaseLockUser(UserReqDTO userReqDTO) throws SpiritAPIServiceException {
@@ -173,12 +197,18 @@ public class UserServiceImpl extends SpiritServiceTemplate<UserReqDTO, UserRespD
 		userDAO.save(userPO);
 	}
 
+	/**
+	 * 根据id获取用户
+	 */
 	@Override
 	public UserRespDTO findById(Long id) throws SpiritAPIServiceException {
 		UserPO userPO = userDAO.findOne(id);
 		return convertPoToRespDto(userPO);
 	}
 
+	/**
+	 * 检查用户原始密码是否正确
+	 */
 	@Override
 	public Boolean checkPassword(UserModifyPasswordReqDTO userModifyPasswordReqDTO) throws SpiritAPIServiceException {
 		UserPO userPO = userDAO.findOne(userModifyPasswordReqDTO.getId());
@@ -187,6 +217,9 @@ public class UserServiceImpl extends SpiritServiceTemplate<UserReqDTO, UserRespD
 		return EncryptUtils.match(oldPassword, dbUserPassword);
 	}
 
+	/**
+	 * 修改用户密码
+	 */
 	@Override
 	@Transactional
 	public void modifyPassword(UserModifyPasswordReqDTO userModifyPasswordReqDTO) throws SpiritAPIServiceException {
@@ -204,6 +237,9 @@ public class UserServiceImpl extends SpiritServiceTemplate<UserReqDTO, UserRespD
 		userPO.setUpdateDate(DateUtils.currentDate());
 	}
 
+	/**
+	 * 将 UserReqDTO 转化为 UserPO
+	 */
 	@Override
 	protected UserPO convertReqDtoToPo(UserReqDTO userReqDto) {
 		UserPO userPO = new UserPO();
@@ -226,6 +262,9 @@ public class UserServiceImpl extends SpiritServiceTemplate<UserReqDTO, UserRespD
 		return userPO;
 	}
 
+	/**
+	 * 将 UserPO 转化为 UserRespDTO
+	 */
 	@Override
 	protected UserRespDTO convertPoToRespDto(UserPO userPO) {
 		UserRespDTO userRespDTO = new UserRespDTO();
@@ -247,6 +286,9 @@ public class UserServiceImpl extends SpiritServiceTemplate<UserReqDTO, UserRespD
 		return userRespDTO;
 	}
 
+	/**
+	 * 构造用户查询条件
+	 */
 	@Override
 	protected Specification<UserPO> buildSpecification(Map<String, Object> filter) {
 		return UserSpecification.querySpecification(filter);

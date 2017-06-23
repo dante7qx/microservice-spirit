@@ -1,5 +1,11 @@
 package com.spirit.project.sysmgr.api.dto.req;
 
+/**
+ * 权限请求参数
+ * 
+ * @author dante
+ *
+ */
 public class AuthorityReqDTO {
 	private Long id;
 	private String code;
@@ -74,4 +80,12 @@ public class AuthorityReqDTO {
 		this.updateDate = updateDate;
 	}
 
+	@Override
+	public String toString() {
+		return "AuthorityReqDTO [id=" + id + ", code=" + code + ", name=" + name + ", authorityDesc=" + authorityDesc
+				+ ", showOrder=" + showOrder + ", pid=" + pid + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + "]";
+	}
+
+	
 }

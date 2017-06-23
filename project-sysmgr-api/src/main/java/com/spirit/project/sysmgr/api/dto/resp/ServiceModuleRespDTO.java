@@ -1,5 +1,11 @@
 package com.spirit.project.sysmgr.api.dto.resp;
 
+/**
+ * 服务模块返回参数
+ * 
+ * @author dante
+ *
+ */
 public class ServiceModuleRespDTO {
 	private Long id;
 	private String name;
@@ -45,6 +51,12 @@ public class ServiceModuleRespDTO {
 
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
+	}
+
+	@Override
+	public String toString() {
+		return "ServiceModuleRespDTO [id=" + id + ", name=" + name + ", url=" + url + ", updateUserName="
+				+ updateUserName + ", updateDate=" + updateDate + "]";
 	}
 
 }

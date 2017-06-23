@@ -2,6 +2,12 @@ package com.spirit.project.sysmgr.api.dto.req;
 
 import java.util.Set;
 
+/**
+ * 用户请求参数
+ * 
+ * @author dante
+ *
+ */
 public class UserReqDTO {
 
 	private Long id;

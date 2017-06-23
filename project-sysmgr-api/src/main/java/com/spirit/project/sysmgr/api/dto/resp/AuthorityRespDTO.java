@@ -1,5 +1,11 @@
 package com.spirit.project.sysmgr.api.dto.resp;
 
+/**
+ * 权限返回参数
+ * 
+ * @author dante
+ *
+ */
 public class AuthorityRespDTO {
 	private Long id;
 	private String code;
@@ -54,6 +60,12 @@ public class AuthorityRespDTO {
 
 	public void setShowOrder(Integer showOrder) {
 		this.showOrder = showOrder;
+	}
+
+	@Override
+	public String toString() {
+		return "AuthorityRespDTO [id=" + id + ", code=" + code + ", name=" + name + ", authorityDesc=" + authorityDesc
+				+ ", pid=" + pid + ", showOrder=" + showOrder + "]";
 	}
 
 }
