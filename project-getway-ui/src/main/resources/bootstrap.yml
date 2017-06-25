@@ -11,11 +11,12 @@ spring:
         enabled: true
         service-id: PROJECT-CONFIG-SERVER
   thymeleaf:
-    mode: HTML    
+    mode: HTML
 eureka:
   instance:
     home-page-url: /project
     prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
   client:
     service-url:
       defaultZone: ${eureka.cluster:http://${eureka.host:localhost}:${eureka.port:8761}/eureka/}
