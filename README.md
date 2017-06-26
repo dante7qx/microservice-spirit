@@ -41,6 +41,16 @@
 
 统一配置组件。==第二个启动的==
 
+#### project-config-repo
+
+所有的微服务配置文件所在目录，每个配置文件的命名规则如下
+
+**${application}-${profile}.yml**
+
+其中：application: 每个微服务的 spring.application.name
+
+​	   profile: 运行环境，dev、uat、prod
+
 #### **project-sysmgr-dao**
 
 系统管理DAO组件，不算微服务。所有直接访问数据库的操作只能写到这个组件中。
