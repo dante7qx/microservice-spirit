@@ -1,0 +1,33 @@
+project-eureka-server:
+  image: spirit/project-eureka-server:latest
+  ports:
+  - 8761:8761
+  hostname: eureka
+project-config-server:
+  image: spirit/project-config-server:latest
+  ports:
+  - 8888:8888
+  hostname: configserver
+  links:
+  - project-eureka-server
+project-sysmgr-api:
+  image: spirit/project-sysmgr-api:latest
+  ports:
+  - 9009:9009
+  links:
+  - project-eureka-server
+  - project-config-server
+project-sysmgr-ui:
+  image: spirit/project-sysmgr-ui:latest
+  ports:
+  - 8001:8001
+  links:
+  - project-eureka-server
+  - project-config-server
+project-getway-ui:
+  image: spirit/project-getway-ui:latest
+  ports:
+  - 8080:8080
+  links:
+  - project-eureka-server
+  - project-config-server
