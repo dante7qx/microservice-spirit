@@ -11,7 +11,7 @@ WORKDIR $APPS_HOME/
 ADD project-eureka-server-1.0-SNAPSHOT.jar $APPS_HOME/app.jar
 
 RUN sh -c 'touch $APPS_HOME/app.jar'
-ENV JAVA_OPTS="-Xmx512m -Xms256m"
+ENV JAVA_OPTS="-Xmx256m -Xms256m"
 
 VOLUME ["$APPS_HOME/logs"]
 

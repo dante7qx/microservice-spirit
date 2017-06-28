@@ -11,7 +11,7 @@ ADD run.sh $APPS_HOME/
 RUN sh -c 'touch $APPS_HOME/app.jar'
 RUN chmod a+x run.sh
 
-ENV JAVA_OPTS="-Xmx1024m -Xms512m"
+ENV JAVA_OPTS="-Xms1024m -Xmx1024m"
 
 VOLUME ["$APPS_HOME/logs"]
 
