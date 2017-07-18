@@ -51,4 +51,19 @@ public class DateUtilsTest {
 		LOGGER.debug("\n dateStr: {} \n dateTimeStr: {} \n yearMonth: {}", dateStr, dateTimeStr, yearMonth);
 	}
 	
+	@Test
+	public void testParseDate() {
+		String str = "2016-03-06";
+		LOGGER.debug("" + DateUtils.parseDate(str));
+		
+		String str1 = "20160306";
+		LOGGER.debug("" + DateUtils.parseDate(str1, TimeFormat.SHORT_DATE_PATTERN_NONE));
+		
+		String str2 = "2016-03-06 22:23:34";
+		LOGGER.debug("" + DateUtils.parseDateTime(str2));
+		
+		String str3 = "2016-03-06 22:23:34";
+		LOGGER.debug("" + DateUtils.parseDateTime(str3, TimeFormat.LONG_DATE_PATTERN_WITH_MILSEC_LINE));
+	}
+	
 }

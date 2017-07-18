@@ -69,18 +69,18 @@ public class DateUtils {
      * @return
      */
     public static Date parseDate(String timeStr) {
-        return localDateTimeToDate(LocalDateTime.parse(timeStr, TimeFormat.SHORT_DATE_PATTERN_LINE.formatter));
+        return localDateToDate(LocalDate.parse(timeStr, TimeFormat.SHORT_DATE_PATTERN_LINE.formatter));
     }
 
 	/**
-     * String 转 Date
+     * String 转 Date (不能设置 hh, mm ,ss)
      *
      * @param timeStr
      * @param format
      * @return
      */
     public static Date parseDate(String timeStr, TimeFormat format) {
-        return localDateTimeToDate(LocalDateTime.parse(timeStr, format.formatter));
+        return localDateToDate(LocalDate.parse(timeStr, format.formatter));
     }
     
     /**
@@ -92,6 +92,17 @@ public class DateUtils {
      */
     public static LocalDateTime parseLocalDateTime(String timeStr, TimeFormat format) {
         return LocalDateTime.parse(timeStr, format.formatter);
+    }
+    
+    /**
+     * String 转 Date (设置 hh, mm ,ss)
+     *
+     * @param timeStr
+     * @param format
+     * @return
+     */
+    public static Date parseDateTime(String timeStr, TimeFormat format) {
+        return localDateTimeToDate(LocalDateTime.parse(timeStr, format.formatter));
     }
     
     /**
@@ -135,6 +146,10 @@ public class DateUtils {
     	return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
     }
     
+    private static Date localDateToDate(LocalDate localDate) {
+    	return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+    }
+    
     /**
      * Date 转 LocalDateTime
      * 
@@ -171,10 +186,14 @@ public class DateUtils {
         /**
          * 长时间格式 带毫秒
          */
-        LONG_DATE_PATTERN_WITH_MILSEC_LINE("yyyy-MM-dd HH:mm:ss.SSS"),
-        LONG_DATE_PATTERN_WITH_MILSEC_SLASH("yyyy/MM/dd HH:mm:ss.SSS"),
-        LONG_DATE_PATTERN_WITH_MILSEC_DOUBLE_SLASH("yyyy\\MM\\dd HH:mm:ss.SSS"),
-        LONG_DATE_PATTERN_WITH_MILSEC_NONE("yyyyMMdd HH:mm:ss.SSS");
+        LONG_DATE_PATTERN_WITH_MILSEC_LINE("yyyy-MM-dd HH:mm:ss"),
+        LONG_DATE_PATTERN_WITH_MILSEC_SLASH("yyyy/MM/dd HH:mm:ss"),
+        LONG_DATE_PATTERN_WITH_MILSEC_DOUBLE_SLASH("yyyy\\MM\\dd HH:mm:ss"),
+        LONG_DATE_PATTERN_WITH_MILSEC_NONE("yyyyMMdd HH:mm:ss"),
+        LONG_DATE_PATTERN_WITH_WMILSEC_LINE("yyyy-MM-dd HH:mm:ss.SSS"),
+        LONG_DATE_PATTERN_WITH_WMILSEC_SLASH("yyyy/MM/dd HH:mm:ss.SSS"),
+        LONG_DATE_PATTERN_WITH_WMILSEC_DOUBLE_SLASH("yyyy\\MM\\dd HH:mm:ss.SSS"),
+        LONG_DATE_PATTERN_WITH_WMILSEC_NONE("yyyyMMdd HH:mm:ss.SSS");
 
         private transient DateTimeFormatter formatter;
 
