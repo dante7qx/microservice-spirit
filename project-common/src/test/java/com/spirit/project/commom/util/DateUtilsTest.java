@@ -62,7 +62,7 @@ public class DateUtilsTest {
 		String str2 = "2016-03-06 22:23:34";
 		LOGGER.debug("" + DateUtils.parseDateTime(str2));
 		
-		String str3 = "2016-03-06 22:23:34";
+		String str3 = "2016-03-06 22:23:34.213";
 		LOGGER.debug("" + DateUtils.parseDateTime(str3, TimeFormat.LONG_DATE_PATTERN_WITH_MILSEC_LINE));
 	}
 	
