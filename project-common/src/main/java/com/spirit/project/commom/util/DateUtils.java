@@ -146,6 +146,12 @@ public class DateUtils {
     	return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
     }
     
+    /**
+     * localDate 转 Date
+     * 
+     * @param localDate
+     * @return
+     */
     private static Date localDateToDate(LocalDate localDate) {
     	return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
     }
