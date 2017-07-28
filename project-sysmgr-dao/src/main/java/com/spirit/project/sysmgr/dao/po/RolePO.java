@@ -15,8 +15,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 @Entity
 @Table(name = "t_role")
+@Data
 public class RolePO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -40,54 +43,6 @@ public class RolePO implements Serializable {
 
 	public RolePO(Long id) {
 		this.id = id;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getRoleDesc() {
-		return roleDesc;
-	}
-
-	public void setRoleDesc(String roleDesc) {
-		this.roleDesc = roleDesc;
-	}
-
-	public Set<AuthorityPO> getAuthoritys() {
-		return authoritys;
-	}
-
-	public void setAuthoritys(Set<AuthorityPO> authoritys) {
-		this.authoritys = authoritys;
-	}
-
-	public UserPO getUpdateUser() {
-		return updateUser;
-	}
-
-	public void setUpdateUser(UserPO updateUser) {
-		this.updateUser = updateUser;
-	}
-
-	public Date getUpdateDate() {
-		return updateDate;
-	}
-
-	public void setUpdateDate(Date updateDate) {
-		this.updateDate = updateDate;
 	}
 
 }

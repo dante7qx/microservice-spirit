@@ -6,6 +6,15 @@ import org.springframework.util.CollectionUtils;
 
 import com.spirit.project.common.ui.constant.EasyUITreeConsts;
 
+import lombok.Data;
+
+/**
+ * 权限角色树 VO
+ * 
+ * @author dante
+ *
+ */
+@Data
 public class AuthorityRoleTreeVO {
 
 	private Long id;
@@ -14,6 +23,10 @@ public class AuthorityRoleTreeVO {
 	private Long pid;
 	private Boolean checked;
 	private List<AuthorityRoleTreeVO> children;
+	
+	public AuthorityRoleTreeVO() {
+		// 默认构造函数
+	}
 
 	public AuthorityRoleTreeVO(AuthorityRoleVO authorityRole) {
 		this.id = authorityRole.getId();
@@ -22,56 +35,12 @@ public class AuthorityRoleTreeVO {
 		this.pid = authorityRole.getPid();
 		this.checked = authorityRole.getHasRelRole();
 	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getText() {
-		return text;
-	}
-
-	public void setText(String text) {
-		this.text = text;
-	}
-
+	
 	public String getState() {
 		if(CollectionUtils.isEmpty(children)) {
 			state = EasyUITreeConsts.STATE_OPEN;
 		}
 		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public Long getPid() {
-		return pid;
-	}
-
-	public void setPid(Long pid) {
-		this.pid = pid;
-	}
-
-	public Boolean getChecked() {
-		return checked;
-	}
-
-	public void setChecked(Boolean checked) {
-		this.checked = checked;
-	}
-
-	public List<AuthorityRoleTreeVO> getChildren() {
-		return children;
-	}
-
-	public void setChildren(List<AuthorityRoleTreeVO> children) {
-		this.children = children;
 	}
 
 }

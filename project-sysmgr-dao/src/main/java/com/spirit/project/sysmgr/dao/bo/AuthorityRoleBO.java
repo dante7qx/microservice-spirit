@@ -1,11 +1,14 @@
 package com.spirit.project.sysmgr.dao.bo;
 
+import lombok.Data;
+
 /**
  * 角色、权限业务辅助BO
  * 
  * @author dante
  *
  */
+@Data
 public class AuthorityRoleBO {
 	private Long id;
 	private Long pid;
@@ -40,66 +43,6 @@ public class AuthorityRoleBO {
 		this.authorityDesc = authorityDesc != null ? authorityDesc.toString() : null;
 		this.showOrder = showOrder != null ? Integer.parseInt(showOrder.toString()) : 1;
 		this.roleId = roleId != null ? Long.parseLong(roleId.toString()) : null;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Long getPid() {
-		return pid;
-	}
-
-	public void setPid(Long pid) {
-		this.pid = pid;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	public int getShowOrder() {
-		return showOrder;
-	}
-
-	public void setShowOrder(int showOrder) {
-		this.showOrder = showOrder;
-	}
-
-	public Long getRoleId() {
-		return roleId;
-	}
-
-	public void setRoleId(Long roleId) {
-		this.roleId = roleId;
-	}
-
-	public String getAuthorityDesc() {
-		return authorityDesc;
-	}
-
-	public void setAuthorityDesc(String authorityDesc) {
-		this.authorityDesc = authorityDesc;
-	}
-
-	public Boolean getHasRelRole() {
-		return hasRelRole;
 	}
 
 }

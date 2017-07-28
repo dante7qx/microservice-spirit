@@ -1,45 +1,19 @@
 package com.spirit.project.sysmgr.api.dto.req;
 
+import lombok.Data;
+
 /**
  * 用户密码修改请求参数
  * 
  * @author dante
  *
  */
+@Data
 public class UserModifyPasswordReqDTO {
 	
 	private Long id;
 	private String oldPassword;
 	private String newPassword;
 	private Long updateUser;
-	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getOldPassword() {
-		return oldPassword;
-	}
-	public void setOldPassword(String oldPassword) {
-		this.oldPassword = oldPassword;
-	}
-	public String getNewPassword() {
-		return newPassword;
-	}
-	public void setNewPassword(String newPassword) {
-		this.newPassword = newPassword;
-	}
-	public Long getUpdateUser() {
-		return updateUser;
-	}
-	public void setUpdateUser(Long updateUser) {
-		this.updateUser = updateUser;
-	}
-	@Override
-	public String toString() {
-		return "UserModifyPasswordReqDTO [id=" + id + ", updateUser=" + updateUser + "]";
-	}
 	
 }

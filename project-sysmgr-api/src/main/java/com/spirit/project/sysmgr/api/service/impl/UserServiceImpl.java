@@ -235,6 +235,7 @@ public class UserServiceImpl extends SpiritServiceTemplate<UserReqDTO, UserRespD
 			userPO.setUpdateUser(new UserPO(userModifyPasswordReqDTO.getUpdateUser()));
 		}
 		userPO.setUpdateDate(DateUtils.currentDate());
+		userDAO.save(userPO);
 	}
 
 	/**

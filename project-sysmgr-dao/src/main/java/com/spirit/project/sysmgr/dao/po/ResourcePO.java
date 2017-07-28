@@ -13,8 +13,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 @Entity
 @Table(name = "t_resource")
+@Data
 public class ResourcePO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -49,86 +52,6 @@ public class ResourcePO implements Serializable {
 
 	public ResourcePO(Long id) {
 		this.id = id;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	public ResourcePO getParentResource() {
-		return parentResource;
-	}
-
-	public void setParentResource(ResourcePO parentResource) {
-		this.parentResource = parentResource;
-	}
-
-	public String getFullId() {
-		return fullId;
-	}
-
-	public void setFullId(String fullId) {
-		this.fullId = fullId;
-	}
-
-	public Integer getShowOrder() {
-		return showOrder;
-	}
-
-	public void setShowOrder(Integer showOrder) {
-		this.showOrder = showOrder;
-	}
-
-	public AuthorityPO getAuthority() {
-		return authority;
-	}
-
-	public void setAuthority(AuthorityPO authority) {
-		this.authority = authority;
-	}
-
-	public UserPO getUpdateUser() {
-		return updateUser;
-	}
-
-	public void setUpdateUser(UserPO updateUser) {
-		this.updateUser = updateUser;
-	}
-
-	public Date getUpdateDate() {
-		return updateDate;
-	}
-
-	public void setUpdateDate(Date updateDate) {
-		this.updateDate = updateDate;
-	}
-
-	public ServiceModulePO getServiceModule() {
-		return serviceModule;
-	}
-
-	public void setServiceModule(ServiceModulePO serviceModule) {
-		this.serviceModule = serviceModule;
 	}
 
 }

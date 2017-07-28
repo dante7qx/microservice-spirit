@@ -21,15 +21,14 @@ import com.spirit.project.commom.dto.resp.PageResp;
 import com.spirit.project.commom.util.DateUtils;
 import com.spirit.project.common.api.exception.SpiritAPIServiceException;
 import com.spirit.project.common.api.template.SpiritServiceTemplate;
-import com.spirit.project.common.api.util.JpaEntityConvertUtils;
 import com.spirit.project.sysmgr.api.dto.req.RoleReqDTO;
 import com.spirit.project.sysmgr.api.dto.resp.AuthorityRoleRespDTO;
 import com.spirit.project.sysmgr.api.dto.resp.RoleRespDTO;
 import com.spirit.project.sysmgr.api.service.RoleService;
 import com.spirit.project.sysmgr.dao.bo.AuthorityRoleBO;
-import com.spirit.project.sysmgr.dao.dao.AuthorityDAO;
 import com.spirit.project.sysmgr.dao.dao.RoleDAO;
 import com.spirit.project.sysmgr.dao.dao.specification.RoleSpecification;
+import com.spirit.project.sysmgr.dao.mapper.AuthorityMapper;
 import com.spirit.project.sysmgr.dao.po.AuthorityPO;
 import com.spirit.project.sysmgr.dao.po.RolePO;
 import com.spirit.project.sysmgr.dao.po.UserPO;
@@ -47,7 +46,7 @@ public class RoleServiceImpl extends SpiritServiceTemplate<RoleReqDTO, RoleRespD
 	@Autowired
 	private RoleDAO roleDAO;
 	@Autowired
-	private AuthorityDAO authorityDAO;
+	private AuthorityMapper authorityMapper;
 
 	@Override
 	public PageResp<RoleRespDTO> findPage(PageReq pageReq) throws SpiritAPIServiceException {
@@ -76,8 +75,8 @@ public class RoleServiceImpl extends SpiritServiceTemplate<RoleReqDTO, RoleRespD
 	public List<AuthorityRoleRespDTO> findAuthorityRoleByRoleId(Long roleId) throws SpiritAPIServiceException {
 		List<AuthorityRoleRespDTO> authorityRoleRespDtos = Lists.newArrayList();
 		try {
-			List<AuthorityRoleBO> authorityRoleBOs = JpaEntityConvertUtils
-					.castEntity(authorityDAO.findAuthorityRoleByRoleId(roleId), AuthorityRoleBO.class);
+//			List<AuthorityRoleBO> authorityRoleBOs = JpaEntityConvertUtils.castEntity(authorityDAO.findAuthorityRoleByRoleId(roleId), AuthorityRoleBO.class);
+			List<AuthorityRoleBO> authorityRoleBOs = authorityMapper.findAuthorityRoleByRoleId(roleId);
 			if (!CollectionUtils.isEmpty(authorityRoleBOs)) {
 				for (AuthorityRoleBO authorityRoleBO : authorityRoleBOs) {
 					AuthorityRoleRespDTO authorityRoleRespDTO = new AuthorityRoleRespDTO();
