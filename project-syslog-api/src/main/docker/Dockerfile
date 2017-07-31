@@ -5,7 +5,7 @@ ENV APPS_HOME=/AppServer
 RUN mkdir -p $APPS_HOME/
 WORKDIR $APPS_HOME/
 
-ADD project-sysmgr-api-1.0-SNAPSHOT.jar $APPS_HOME/app.jar
+ADD project-syslog-api-1.0-SNAPSHOT.jar $APPS_HOME/app.jar
 ADD run.sh $APPS_HOME/
 
 RUN sh -c 'touch $APPS_HOME/app.jar'
@@ -15,6 +15,6 @@ ENV JAVA_OPTS="-Xms1024m -Xmx1024m"
 
 VOLUME ["$APPS_HOME/logs"]
 
-EXPOSE 9009
+EXPOSE 9010
 
 ENTRYPOINT [ "/AppServer/run.sh" ]

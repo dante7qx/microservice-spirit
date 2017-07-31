@@ -4,7 +4,7 @@
 		<resetJUL>true</resetJUL>
 	</contextListener>
 	
-	<property name="SERVICE_HOME" value="project-sysmgr-api"/>
+	<property name="SERVICE_HOME" value="project-syslog-api"/>
 	<property name="LOG_HOME" value="logs" /> 
 	
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -41,7 +41,7 @@
 		</logger>
 	</springProfile>
 
-	<springProfile name="uat,prod">
+	<springProfile name="sit,uat,prod">
 		<root level="WARN">
 			<appender-ref ref="STDOUT" />
 			<appender-ref ref="FILE" />

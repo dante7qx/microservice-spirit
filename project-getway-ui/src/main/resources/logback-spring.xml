@@ -43,9 +43,10 @@
 		
 		<!-- Feign Log -->
 		<logger name="com.spirit.project.getway.ui.client.UserFeignClient" level="DEBUG" />
+		<logger name="com.spirit.project.getway.ui.client.SysLogFeignClient" level="DEBUG" />
 	</springProfile>
 
-	<springProfile name="uat,prod">
+	<springProfile name="sit,uat,prod">
 		<root level="WARN">
 			<appender-ref ref="STDOUT" />
 			<appender-ref ref="FILE" />

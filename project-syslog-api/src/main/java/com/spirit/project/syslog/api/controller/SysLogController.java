@@ -51,8 +51,6 @@ public class SysLogController {
 		return result;
 	}
 
-	
-
 	/**
 	 * 新增系统日志
 	 * 

@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.spirit.feignconfig.FeignClientConfig;
 import com.spirit.project.commom.dto.resp.BaseResp;
-import com.spirit.project.feignconfig.FeignClientConfig;
 import com.spirit.project.sysmgr.ui.client.fallback.ResourceFeignClientFallback;
 import com.spirit.project.sysmgr.ui.constant.SpiritServiceConsts;
 import com.spirit.project.sysmgr.ui.vo.resource.ResourceVO;
