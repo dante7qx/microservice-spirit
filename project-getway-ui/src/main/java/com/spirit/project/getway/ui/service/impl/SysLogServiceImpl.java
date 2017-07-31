@@ -1,6 +1,7 @@
 package com.spirit.project.getway.ui.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.spirit.project.common.ui.exception.SpiritUIServiceException;
@@ -15,6 +16,7 @@ public class SysLogServiceImpl implements SysLogService {
 
 	@Override
 	@HystrixCommand
+	@Async("sysLogAsync")
 	public void recordUserVisitLog(SysLogVO sysLogVO) throws SpiritUIServiceException {
 		sysLogFeingClient.addSysLog(sysLogVO);
 	}
