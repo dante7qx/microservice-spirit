@@ -9,5 +9,5 @@
 \       /|  |    (_|  |   |  |\  \(_|  |      |  |    
  `-----' `--'      `--'   `--' '--' `--'      `--'    
   
-                            Spirit MicroService Eureka Server   
+                            Spirit MicroService Config Server   
 **************************************************************  

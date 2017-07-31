@@ -55,6 +55,8 @@
 		<module>project-sysmgr-dao</module>
 		<module>project-sysmgr-api</module>
 		<module>project-sysmgr-ui</module>
+		<module>project-syslog-dao</module>
+		<module>project-syslog-api</module>
 	</modules>
 
 	<parent>

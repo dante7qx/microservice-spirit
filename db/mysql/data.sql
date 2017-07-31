@@ -1,3 +1,6 @@
+-- 初始化数据
+USE `microservice-spirit-sysmgr`;
+
 -- 用户数据
 insert into t_user(id, account,name,password,status,email) values
 (1, 'superadmin','超级管理员','$2a$10$tjOiDRuFyuyLCszfrFIlfeu.ODX29jaem3wKJ0.Gq0.fY0p3QvfF.','NORMAL','-');

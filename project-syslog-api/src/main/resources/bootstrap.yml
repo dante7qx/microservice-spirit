@@ -1,6 +1,6 @@
 spring:
   application:
-    name: project-sysmgr-api
+    name: project-syslog-api
   profiles:
     active: ${config.profile:dev}
   cloud:
