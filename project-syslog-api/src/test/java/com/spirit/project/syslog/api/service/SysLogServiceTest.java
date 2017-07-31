@@ -33,7 +33,7 @@ public class SysLogServiceTest extends BaseSysLogAPITest {
 	public void testFindPage() {
 		try {
 			PageReq pageReq = new PageReq();
-			pageReq.getQ().put("ip", "88.202");
+			pageReq.getQ().put("ip", "88.214");
 			pageReq.getQ().put("visitStartTime", "2017-07-28");
 			pageReq.getQ().put("visitEndTime", "2017-08-01");
 			PageResp<SysLogRespDTO> pageResult = sysLogService.findPage(pageReq);
@@ -51,6 +51,7 @@ public class SysLogServiceTest extends BaseSysLogAPITest {
 		SysLogReqDTO sysLogReqDTO = new SysLogReqDTO();
 		try {
 			sysLogReqDTO.setIp("10.71.88.214");
+			sysLogReqDTO.setUserAccount("dante");
 			sysLogReqDTO.setRequestUrl("/sysmgr/user/query_page");
 			sysLogReqDTO.setRequestMethod("POST");
 			SysLogRespDTO sysLogRespDTO = sysLogService.persist(sysLogReqDTO);
