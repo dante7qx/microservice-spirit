@@ -16,4 +16,6 @@ public class SysLogReqDTO {
 	private String userAccount;
 	private String requestUrl;
 	private String requestMethod;
+	private String requestParameter;
+	private String visitTime;
 }

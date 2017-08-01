@@ -121,8 +121,9 @@ CREATE TABLE t_sys_log (
   id bigint(20) NOT NULL AUTO_INCREMENT,
   ip varchar(32) NOT NULL COMMENT '用户IP', 
   user_account varchar(32) NOT NULL COMMENT '用户帐号', 
-  request_url varchar(32) NOT NULL COMMENT '请求URL', 
+  request_url varchar(256) NOT NULL COMMENT '请求URL', 
   request_method varchar(16) NOT NULL COMMENT '请求方法', 
+  request_parameter longtext COMMENT '请求参数', 
   visit_time datetime NOT NULL default CURRENT_TIMESTAMP COMMENT '访问时间', 
   update_date datetime NOT NULL default CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (id)

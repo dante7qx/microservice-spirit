@@ -17,4 +17,5 @@ zuul:
   routes:
     project-sysmgr-ui:
       path: /sysmgr/**
-      sensitive-headers: null
+    project-syslog-ui:
+      path: /syslog/**

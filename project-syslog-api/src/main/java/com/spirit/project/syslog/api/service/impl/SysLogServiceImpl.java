@@ -1,5 +1,6 @@
 package com.spirit.project.syslog.api.service.impl;
 
+import java.util.Date;
 import java.util.Map;
 
 import org.springframework.beans.BeanUtils;
@@ -81,7 +82,7 @@ public class SysLogServiceImpl extends SpiritServiceTemplate<SysLogReqDTO, SysLo
 		SysLogPO sysLogPO = new SysLogPO();
 		if(reqDTO != null) {
 			BeanUtils.copyProperties(reqDTO, sysLogPO);
-			sysLogPO.setVisitTime(DateUtils.currentDate());
+			sysLogPO.setVisitTime(new Date(Long.parseLong(reqDTO.getVisitTime())));
 			sysLogPO.setUpdateDate(DateUtils.currentDate());
 		}
 		return sysLogPO;

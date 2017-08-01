@@ -3,9 +3,12 @@ package com.spirit.project.syslog.dao.po;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -29,6 +32,9 @@ public class SysLogPO implements Serializable {
 	private String userAccount;
 	private String requestUrl;
 	private String requestMethod;
+	@Lob
+	@Basic(fetch = FetchType.LAZY)
+	private String requestParameter;
 	private Date visitTime;
 	private Date updateDate;
 

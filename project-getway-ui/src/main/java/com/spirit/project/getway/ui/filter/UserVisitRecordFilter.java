@@ -15,6 +15,7 @@ import com.spirit.project.common.ui.security.SpiritLoginUser;
 import com.spirit.project.common.ui.util.IPUtils;
 import com.spirit.project.common.ui.util.LoginUserUtils;
 import com.spirit.project.getway.ui.service.SysLogService;
+import com.spirit.project.getway.ui.util.RequestParamterUtils;
 import com.spirit.project.getway.ui.vo.SysLogVO;
 
 /**
@@ -40,18 +41,19 @@ public class UserVisitRecordFilter extends ZuulFilter {
 	public Object run() {
 		RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest request = ctx.getRequest();
-		String ip = IPUtils.getIpAddr(request);
-		if("127.0.0.1".equals(ip) || "0:0:0:0:0:0:0:1".equals(ip)) {
+		final String ip = IPUtils.getIpAddr(request);
+		final String requestUri = request.getRequestURI();
+		if(!requestUri.matches(".*(?<!.gif|.jpg|.png|.bmp|.jpeg|.tiff|.js|.css)$") || "127.0.0.1".equals(ip) || "0:0:0:0:0:0:0:1".equals(ip)) {
 			return null;
 		}
-		final String requestUri = request.getRequestURI();
+		
         final String method = request.getMethod();
-        String date = DateUtils.getCurrentDatetime();
+        final String requestDate = DateUtils.getCurrentDateWithMilliSecond();
         SpiritLoginUser loginUser = LoginUserUtils.loginUser();
         if(loginUser != null) {
-        	addSysLog(ip, loginUser.getAccount(), requestUri, method);
+        	addSysLog(ip, loginUser.getAccount(), requestUri, method, RequestParamterUtils.getRequestQueryString(request), System.currentTimeMillis());
         } else {
-        	LOGGER.info("IP [{}] at [{}] request [{}] method [{}]", ip, date, requestUri, method);
+        	LOGGER.info("IP [{}] at [{}] request [{}] method [{}]", ip, requestDate, requestUri, method);
         }
         
 		return null;
@@ -75,12 +77,14 @@ public class UserVisitRecordFilter extends ZuulFilter {
 	 * @param url
 	 * @param method
 	 */
-	private void addSysLog(String ip, String account, String url, String method) {
+	private void addSysLog(String ip, String account, String url, String method, String parameter, Long visitTime) {
 		SysLogVO sysLog = new SysLogVO();
 		sysLog.setIp(ip);
 		sysLog.setUserAccount(account);
 		sysLog.setRequestUrl(url);
 		sysLog.setRequestMethod(method);
+		sysLog.setRequestParameter(parameter);
+		sysLog.setVisitTime("" + visitTime);
 		try {
 			sysLogService.recordUserVisitLog(sysLog);
 		} catch (SpiritUIServiceException e) {

@@ -15,6 +15,7 @@ public class SysLogRespDTO {
 	private String userAccount;
 	private String requestUrl;
 	private String requestMethod;
+	private String requestParameter;
 	private String visitTime;	// 访问时间 (yyyy-MM-dd HH:mm:ss)
 	private String updateDate;	// 更新时间 (yyyy-MM-dd HH:mm:ss)
 

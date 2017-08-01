@@ -36,14 +36,17 @@ insert into t_authority(id, code, name, authority_desc, pid, show_order, update_
 (19, 'public', '服务模块管理', '服务模块管理', 2, 5, 1, now()),
 (20, 'sysmgr.servicemodule.query', '查询服务模块', '查询服务模块', 19, 1, 1, now()),
 (21, 'sysmgr.servicemodule.update', '更新服务模块', '更新服务模块', 19, 2, 1, now()),
-(22, 'sysmgr.servicemodule.delete', '删除服务模块', '删除服务模块', 19, 3, 1, now());
+(22, 'sysmgr.servicemodule.delete', '删除服务模块', '删除服务模块', 19, 3, 1, now()),
+
+(23, 'syslog.syslog.query', '系统日志管理', '系统日志管理', 1, 2, 1, now());
 
 alter table t_authority add constraint t_authority_pk primary key (id) ;
 alter table t_authority modify column id bigint(20) not null auto_increment;
 
 -- 微服务模块数据
 insert into t_service_module (id, name, url, update_user, update_date) values
-(1, '系统管理服务模块', 'sysmgr', 1, now());
+(1, '系统管理服务模块', 'sysmgr', 1, now()),
+(2, '系统日志服务模块', 'syslog', 1, now());
 
 alter table t_service_module add constraint t_service_module_pk primary key (id) ;
 alter table t_service_module modify column id bigint(20) not null auto_increment;
@@ -55,7 +58,8 @@ insert into t_resource(id, name, url, service_module_id, pid, authority_id, full
 (3, '角色管理', 'role', 1, 1, 8, '3-1', 2, '角色管理', 1, now()),
 (4, '权限管理', 'authority', 1, 1, 12, '4-1', 3, '权限管理', 1, now()),
 (5, '菜单管理', 'menu', 1, 1, 16, '5-1', 4, '菜单管理', 1, now()),
-(6, '服务模块管理', 'servicemodule', 1, 1, 16, '6-1', 5, '服务模块管理', 1, now());
+(6, '服务模块管理', 'servicemodule', 1, 1, 16, '6-1', 5, '服务模块管理', 1, now()),
+(7, '系统日志管理', 'syslog', 2, null, 23, '71', 5, '系统日志管理', 1, now());
 
 alter table t_resource add constraint t_resource_pk primary key (id) ;
 alter table t_resource add constraint t_resource_authority_id_fk foreign key (authority_id) references t_authority (id);
@@ -87,7 +91,8 @@ insert into t_role_authority(id, role_id, authority_id) values
 (13, 1, 18),
 (14, 1, 20),
 (15, 1, 21),
-(16, 1, 22);
+(16, 1, 22),
+(17, 1, 23);
 
 alter table t_role_authority add constraint t_role_authority_pk primary key (id);
 alter table t_role_authority add constraint t_role_authority_authority_id_fk foreign key (authority_id) references t_authority (id);
