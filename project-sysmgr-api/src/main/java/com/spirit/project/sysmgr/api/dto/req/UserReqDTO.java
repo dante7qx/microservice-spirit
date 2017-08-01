@@ -18,6 +18,7 @@ public class UserReqDTO {
 	private String name;
 	private String password;
 	private String email;
+	private Boolean ldapUser;
 	private Long updateUser;
 	private Set<Long> roleIds;
 	

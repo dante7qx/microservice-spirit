@@ -20,7 +20,7 @@ public class UserServiceTest extends BaseSysMgrAPITest {
 	public void testFindPage() {
 		try {
 			PageReq pageReq = new PageReq();
-			pageReq.getQ().put("account", "superadmin");
+			pageReq.getQ().put("account", "dante");
 			PageResp<UserRespDTO> pageResult = userService.findPage(pageReq);
 			Assert.assertNotNull(pageResult);
 		} catch (SpiritAPIServiceException e) {

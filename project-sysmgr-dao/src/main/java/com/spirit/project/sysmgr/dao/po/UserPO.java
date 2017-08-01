@@ -32,6 +32,7 @@ public class UserPO implements Serializable {
 	private String name;
 	private String password;
 	private String email;
+	private Boolean ldapUser;
 	private String status;
 	@ManyToOne(cascade = { CascadeType.REFRESH }, fetch = FetchType.LAZY)
 	@JoinColumn(name = "update_user")
@@ -88,6 +89,14 @@ public class UserPO implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Boolean getLdapUser() {
+		return ldapUser;
+	}
+
+	public void setLdapUser(Boolean ldapUser) {
+		this.ldapUser = ldapUser;
 	}
 
 	public Set<RolePO> getRoles() {

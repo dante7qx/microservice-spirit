@@ -16,10 +16,14 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 					<td>
 						<table>
 							<tr>
-								<td class="searchtitle">名称</td>
-								<td><input id="queryName" name="name" type="text"/></td>
-								<td class="searchtitle">URL</td>
-								<td><input id="queryUrl" name="url" type="text"/></td>
+								<td class="searchtitle">访问URL</td>
+								<td><input id="queryUrl" name="url" class="easyui-textbox"/></td>
+								<td class="searchtitle">用户</td>
+								<td><input id="queryUserAccount" name="userAccount" class="easyui-textbox"/></td>
+								<td class="searchtitle">访问时间</td>
+								<td><input id="visitStartTime" name="visitStartTime" type="text" class="easyui-datebox" /></td>
+								<td><label>&nbsp;~&nbsp;</label></td>
+								<td><input id="visitEndTime" name="visitEndTime" type="text" class="easyui-datebox" /></td>
 								<td class="searchtitle">
 									<a href="javascript:;" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="SysLogPage.search();">查询</a>
 								</td>

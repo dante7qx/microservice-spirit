@@ -15,15 +15,19 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 				</tr>
 				<tr>
 					<td class="tbtitle">姓名</td>
-					<td><input id="name" name="name" type="text" class="easyui-validatebox" required="true" style="width: 180px;"></td>
+					<td><input id="name" name="name" class="easyui-textbox" required="true" style="width: 180px;"></td>
 				</tr>
 				<tr id="passwordTr">
 					<td class="tbtitle">密码</td>
-					<td><input id="password" name="password" type="password" class="easyui-validatebox" required="true" style="width: 180px;"></td>
+					<td><input id="password" name="password" type="password" class="easyui-validatebox" required="true" style="width: 180px;"/></td>
 				</tr>
 				<tr>
 					<td class="tbtitle">邮箱</td>
-					<td><input id="email" name="email" type="text" validType="email" class="easyui-validatebox" required="true" style="width: 180px;"></td>
+					<td><input id="email" name="email" type="text" validType="email" class="easyui-textbox" required="true" style="width: 180px;"/></td>
+				</tr>
+				<tr>
+					<td class="tbtitle">域帐号</td>
+					<td><input id="ldapUser" name="ldapUser" class="easyui-switchbutton" data-options="onText:'是',offText:'否'" value="true" checked/></td>
 				</tr>
 				<tr>
 					<td class="tbtitle">角色</td>

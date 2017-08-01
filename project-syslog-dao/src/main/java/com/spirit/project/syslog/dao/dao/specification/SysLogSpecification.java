@@ -52,11 +52,11 @@ public class SysLogSpecification {
 					predicates.add(ipLike);
 				}
 				if(!StringUtils.isEmpty(account)) {
-					Predicate accountLike = cb.like(root.get("user_account").as(String.class), "%"+account.trim()+"%");
+					Predicate accountLike = cb.like(root.get("userAccount").as(String.class), "%"+account.trim()+"%");
 					predicates.add(accountLike);
 				}
 				if(!StringUtils.isEmpty(url)) {
-					Predicate urlLike = cb.like(root.get("url").as(String.class), "%"+url.trim()+"%");
+					Predicate urlLike = cb.like(root.get("requestUrl").as(String.class), "%"+url.trim()+"%");
 					predicates.add(urlLike);
 				}
 				if(!StringUtils.isEmpty(visitStartTime)) {

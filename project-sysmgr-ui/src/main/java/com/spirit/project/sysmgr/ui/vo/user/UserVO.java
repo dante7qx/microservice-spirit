@@ -18,6 +18,7 @@ public class UserVO {
 	private String email;
 	private String password;
 	private Long updateUser;
+	private Boolean ldapUser = false;
 	private String status;
 	private Set<Long> roleIds;
 	private String updateUserName;

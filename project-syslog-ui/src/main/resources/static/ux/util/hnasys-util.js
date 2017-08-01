@@ -35,6 +35,7 @@ hnasys.util = {
 	            }else{
 	            	$('.combo', '#' + id).removeClass('formborder').find('.combo-arrow').show();
 	            	$('.numberbox', '#' + id).removeClass('formborder');
+	            	$('.numberbox', '#' + id).removeClass('formborder');
 	            }
 	        } else {
 	            $('input[type="text"]'+val+',textarea'+val+',input[type="file"]'+val+'', '#' + id).each(function(){

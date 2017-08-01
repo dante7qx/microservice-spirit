@@ -28,7 +28,9 @@ var ServiceModuleDetailPage = {
 					}
 					$('#serviceModuleDetailForm').form('clear').form('load', result['data']);
 					ServiceModuleDetailPage.loadUpdateInfo(result['data']);
-					hnasys.util.isEditForm('serviceModuleDetailForm', editable);
+					setTimeout(function() {
+						hnasys.util.isEditForm('serviceModuleDetailForm', editable);
+					}, 0);
 				}
 			});
 		},
