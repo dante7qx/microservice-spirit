@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.spirit.project.sysmgr.dao.BaseSysMgrDaoTest;
-import com.spirit.project.sysmgr.dao.dao.UserDAO;
 import com.spirit.project.sysmgr.dao.po.UserPO;
 
 public class UserDAOTest extends BaseSysMgrDaoTest {
