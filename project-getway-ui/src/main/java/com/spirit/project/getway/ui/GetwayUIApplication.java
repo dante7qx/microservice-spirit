@@ -7,8 +7,8 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
 
-import com.spirit.project.getway.ui.filter.UserVisitRecordFilter;
 import com.spirit.project.getway.ui.prop.SpiritProperties;
+import com.spirit.project.getway.ui.zuulfilter.UserVisitRecordFilter;
 
 @SpringBootApplication
 @EnableFeignClients

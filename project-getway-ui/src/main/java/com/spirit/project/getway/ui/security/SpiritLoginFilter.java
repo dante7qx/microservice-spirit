@@ -3,6 +3,8 @@ package com.spirit.project.getway.ui.security;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.security.authentication.AuthenticationServiceException;
@@ -18,17 +20,28 @@ import com.spirit.project.getway.ui.constant.SecurityConsts;
 import com.spirit.project.getway.ui.exception.KaptchaException;
 import com.spirit.project.getway.ui.prop.SpiritProperties;
 import com.spirit.project.getway.ui.service.LdapAuthenticationService;
+import com.spirit.project.getway.ui.service.SysLogService;
 import com.spirit.project.getway.ui.service.UserService;
+import com.spirit.project.getway.ui.util.SysLogUtils;
 import com.spirit.project.getway.ui.vo.LoginUserVO;
 
-
+/**
+ * 自定义登录认证过滤器
+ * 
+ * @author dante
+ *
+ */
 @RefreshScope
 public class SpiritLoginFilter extends UsernamePasswordAuthenticationFilter {
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(SpiritLoginFilter.class);
 	
 	@Autowired
 	private UserService userService;
 	@Autowired
 	private LdapAuthenticationService ldapAuthenticationService;
+	@Autowired
+	private SysLogService sysLogService;
 	@Autowired
 	private SpiritProperties spiritProperties;
 
@@ -73,9 +86,22 @@ public class SpiritLoginFilter extends UsernamePasswordAuthenticationFilter {
 		UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(
 				username, password);
 		super.setDetails(request, authRequest);
-		return this.getAuthenticationManager().authenticate(authRequest);
+		Authentication authentication = this.getAuthenticationManager().authenticate(authRequest);
+		if(authentication.isAuthenticated()) {
+			try {
+				sysLogService.recordUserVisitLog(SysLogUtils.buildSysLoginLog(username, loginUser.getLdapUser(), request));
+			} catch (SpiritUIServiceException e) {
+				LOGGER.error("系统日志记录失败，{}", username, e);
+			}
+		}
+		return authentication;
 	}
 	
+	/**
+	 * 验证码校验
+	 * 
+	 * @param request
+	 */
 	private void checkKaptcha(HttpServletRequest request) {
 		if(spiritProperties.getKaptcha()) {
 			String kaptchaCode = request.getParameter("kaptcha");
@@ -89,4 +115,5 @@ public class SpiritLoginFilter extends UsernamePasswordAuthenticationFilter {
 	private String obtainGenKaptcha(HttpServletRequest request) {
 		return (String) request.getSession().getAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
 	}
+	
 }

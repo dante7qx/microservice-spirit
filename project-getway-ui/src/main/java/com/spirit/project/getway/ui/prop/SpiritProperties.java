@@ -16,4 +16,9 @@ public class SpiritProperties {
 	 * 域服务器URL
 	 */
 	private String ldapurl;
+	
+	/**
+	 * 安全检查
+	 */
+	private Boolean safeCheck;
 }

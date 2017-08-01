@@ -21,4 +21,5 @@ zuul:
       path: /syslog/**
 spirit:
   kaptcha: true
+  safeCheck: true
   ldapurl: ${ldapUrl:ldap://hna.net:389/}

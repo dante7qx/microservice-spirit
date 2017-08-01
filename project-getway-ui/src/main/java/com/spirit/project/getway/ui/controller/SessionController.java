@@ -31,20 +31,23 @@ public class SessionController {
 	 */
 	@RequestMapping(value = "/session-timeout")
 	public void sessionTimeout(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		// Ajax 超时处理
-		if ("XMLHttpRequest".equalsIgnoreCase(request.getHeader("x-requested-with"))) {
-			// 设置超时标识
-			response.getWriter().print("timeout");
+		if (request.getHeader("x-requested-with") != null
+				&& request.getHeader("x-requested-with").equalsIgnoreCase("XMLHttpRequest")) { // ajax
+																								// 超时处理
+			response.getWriter().print("timeout"); // 设置超时标识
 			response.setStatus(HttpStatus.UNAUTHORIZED.value());
 			response.getWriter().close();
 		} else {
-			SpiritLoginUser loginUser = LoginUserUtils.loginUser();
-			if (loginUser != null) {
-				response.sendRedirect(request.getContextPath() + SecurityConsts.INDEX_PAGE);
-			} else {
+			try {
+				SpiritLoginUser loginUser = LoginUserUtils.loginUser();
+				if (loginUser != null) {
+					response.sendRedirect(request.getContextPath() + SecurityConsts.INDEX_PAGE);
+				} else {
+					response.sendRedirect(request.getContextPath() + SecurityConsts.LOGIN_PAGE);
+				}
+			} catch (Exception e) {
 				response.sendRedirect(request.getContextPath() + SecurityConsts.LOGIN_PAGE);
 			}
-
 		}
 	}
 }

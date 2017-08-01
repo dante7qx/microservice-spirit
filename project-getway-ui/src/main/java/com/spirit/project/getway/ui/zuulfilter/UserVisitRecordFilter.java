@@ -1,4 +1,4 @@
-package com.spirit.project.getway.ui.filter;
+package com.spirit.project.getway.ui.zuulfilter;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,7 +16,7 @@ import com.spirit.project.common.ui.util.IPUtils;
 import com.spirit.project.common.ui.util.LoginUserUtils;
 import com.spirit.project.getway.ui.service.SysLogService;
 import com.spirit.project.getway.ui.util.RequestParamterUtils;
-import com.spirit.project.getway.ui.vo.SysLogVO;
+import com.spirit.project.getway.ui.util.SysLogUtils;
 
 /**
  * 用户请求日志记录 Filter
@@ -51,7 +51,11 @@ public class UserVisitRecordFilter extends ZuulFilter {
         final String requestDate = DateUtils.getCurrentDateWithMilliSecond();
         SpiritLoginUser loginUser = LoginUserUtils.loginUser();
         if(loginUser != null) {
-        	addSysLog(ip, loginUser.getAccount(), requestUri, method, RequestParamterUtils.getRequestQueryString(request), System.currentTimeMillis());
+        	try {
+    			sysLogService.recordUserVisitLog(SysLogUtils.buildSysVisitLog(ip, loginUser.getAccount(), requestUri, method, RequestParamterUtils.getRequestQueryString(request)));
+    		} catch (SpiritUIServiceException e) {
+    			LOGGER.error("系统日志记录失败，{}", loginUser.getAccount() + " --> " + requestUri, e);
+    		}
         } else {
         	LOGGER.info("IP [{}] at [{}] request [{}] method [{}]", ip, requestDate, requestUri, method);
         }
@@ -66,30 +70,7 @@ public class UserVisitRecordFilter extends ZuulFilter {
 
 	@Override
 	public int filterOrder() {
-		return 1;
+		return 2;
 	}
 	
-	/**
-	 * 记录系统访问日志
-	 * 
-	 * @param ip
-	 * @param account
-	 * @param url
-	 * @param method
-	 */
-	private void addSysLog(String ip, String account, String url, String method, String parameter, Long visitTime) {
-		SysLogVO sysLog = new SysLogVO();
-		sysLog.setIp(ip);
-		sysLog.setUserAccount(account);
-		sysLog.setRequestUrl(url);
-		sysLog.setRequestMethod(method);
-		sysLog.setRequestParameter(parameter);
-		sysLog.setVisitTime("" + visitTime);
-		try {
-			sysLogService.recordUserVisitLog(sysLog);
-		} catch (SpiritUIServiceException e) {
-			LOGGER.error("系统日志记录失败，{}", sysLog, e);
-		}
-	}
-
 }

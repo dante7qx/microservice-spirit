@@ -20,7 +20,9 @@ public class SysLogServiceImpl implements SysLogService {
 	@HystrixCommand
 	@Async("sysLogAsync")
 	public void recordUserVisitLog(SysLogVO sysLogVO) throws SpiritUIServiceException {
-		sysLogFeingClient.addSysLog(sysLogVO);
+		if(sysLogVO != null) {
+			sysLogFeingClient.addSysLog(sysLogVO);
+		}
 	}
 
 }
