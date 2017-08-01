@@ -22,4 +22,4 @@ zuul:
 spirit:
   kaptcha: true
   safeCheck: true
-  ldapurl: ${ldapUrl:ldap://hna.net:389/}
+  ldapurl: '{cipher}AQB+ogHC4ThGR7F+waKvPWETYVivLv0mh0/riMwBj3E9FVDVGHKwKQOXy9wEL/52l3FOvRuhjPYzDPPjP/txBFQm7QecXhqKPaYNeJqXiT2gfx5JFJGr/fD/ilX8XDf9cDF1SfOISkchDJcHNL3F2Y2b3HXhO+0JUOogf2LH3UXYH/nTJ9ro/IbuiH5W6FOY+L/wcAJIMrSZKC9TNPGUWTDB057P+71K3u2t4XZnueZeCHzNq9TUMTvQ4sF0J7R2XZKIURQsamgQMeMD0ifFtGQW2jfBPyFt+8O0piy0/ExrLETok9Lu2+l4Na/CVKs6TU/UwgSGYqGqNNUhcCVLs6ITD3Kl1Ilup24UcnitVkiUONH1Fgf6mqgEQtmqjxPIrIHBDdfnuRy47ccmgoJ6KVFY'

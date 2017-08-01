@@ -4,7 +4,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost/microservice-spirit-sysmgr
     username: root
-    password: iamdante
+    password: '{cipher}AQB1YFRFBddpD0m819yHGJSVsGiNcBZwzGFziUzzf0axAlz2XwVmTwnU+IL30sRnprBvVwZeAmcv5L+QE3+IiyxNOJG7S1eOGw9nzAIGP/12TA2wdMYEVCVbY9+HGl+jwcMcw1T1H6zF4Ga9sHvhhLb0YvJd4DDCAj1vme0kIegAMuIuPfydy2Dr/ITfFhsjULTU1SYJY0/r318XpLxPM5ngNhx/mKW08PxevsZayyOXHQCF8LUcngUqul6F7sFBDeoJHV3Uc/sRRIhfV9PuzyGNiXbgG5NbQOUXSTYKP6rF/UstEQ3XsSAyL0G/G4hvpAbslnde6yszz24Y6973pG/odlS6K4DZAhntWjQHv4/ow2KRISS6C61Bn6GhjPsZbRA='
     initialSize: 10
     minIdle: 10
     maxActive: 50
