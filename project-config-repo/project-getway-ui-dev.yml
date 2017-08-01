@@ -19,3 +19,6 @@ zuul:
       path: /sysmgr/**
     project-syslog-ui:
       path: /syslog/**
+spirit:
+  kaptcha: true
+  ldapurl: ${ldapUrl:ldap://hna.net:389/}

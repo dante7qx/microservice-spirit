@@ -29,6 +29,8 @@
 		<mybatis.version>1.3.0</mybatis.version>
 		<pagehelper.version>4.2.1</pagehelper.version>
 		<spring-session.version>1.3.0.RELEASE</spring-session.version>
+		<spring-ldap.version>2.3.1.RELEASE</spring-ldap.version>
+		<kaptcha.version>0.0.9</kaptcha.version>
 		<docker-maven-plugin.version>0.4.14</docker-maven-plugin.version>
 		<docker-prefix>spirit</docker-prefix>
 		

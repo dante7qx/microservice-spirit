@@ -2,42 +2,38 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link th:href="@{ux/bootstrap/css/login/login.css}" rel="stylesheet"/>
 <title th:fragment="title">登录</title>
 </head>
-<body>
-	<div th:fragment="content">
-		<p th:text="${#servletContext.contextPath}">Welcome to our grocery store!</p>
-		<form name="loginForm" th:action="@{/login}" method="post">
-			<fieldset>
-				<legend>
-					<span>请先登录</span>
-					<span th:text="${#dates.format(new java.util.Date(),'yyyy-MM-dd HH:mm:ss')}"></span>
-				</legend>
-				<div th:if="${param.error}" class="alert alert-error">
-					<label>用户名或密码错误</label>
+<body class="theme-login-layout">
+	<div class="theme-login-header"></div>
+	<div id="theme-login-form">
+		<form id="form" class="theme-login-form" data-parsley-validate="validate" onsubmit="return false">
+			<div class="form-contain">
+				<div class="form-group">
+					<input id="username" name="username" type="text"
+						class="theme-login-text" data-parsley-error-message="* 请输入用户名" required="required"/> <span class="i-username i-con"><i></i></span>
 				</div>
-				<div th:if="${param.logout}" class="alert alert-success">
-					<label>你已经注销了</label>
+				<div class="form-group">
+					<input id="password" name="password" type="password"
+						class="theme-login-text" data-parsley-error-message="* 请输入密码" required="required"/> <span class="i-password i-con"><i></i></span>
 				</div>
-				<div th:if="${param.expired}" class="alert alert-success">
-					<label>你在其它地方已经登录了</label>
+				<div class="form-group">
+					<input id="code" name="code" type="text" class="theme-login-code" data-parsley-error-message="* 请输入验证码" required="required"/>
+					<span class="i-code i-con"><i></i></span> 
+					<span class="span-code"><img class="theme-kaptcha-img" alt="验证码" th:src="@{/images/kaptcha.jpg}"></span>
+					<div class="error">密码不正确</div>
 				</div>
-				<div th:if="${param.invalidSession}" class="alert alert-success">
-					<label>会话失效，请重新登录</label>
+				<div>
+					<button id="login" class="submit" >LOGIN</button>
 				</div>
-				<label for="username">用户名</label>
-				<input type="text" id="username" name="username"/>
-				<label for="password">密码</label>
-				<input type="password" id="password" name="password"/>
-				<div class="form-actions">
-					<button type="submit" class="btn">登录</button>
-				</div>
-			</fieldset>
+			</div>
 		</form>
 	</div>
 </body>
 <script th:src="@{webjars/jquery/1.11.3/jquery.min.js}" type="text/javascript"></script>
 <script th:src="@{ux/bootstrap/js/login.js}" type="text/javascript"></script>
+<script th:src="@{ux/bootstrap/js/parsley.min.js}" type="text/javascript"></script>
 <script th:inline="javascript">
     $(function() {
     	var today = [[${#dates.format(new java.util.Date(),'yyyy-MM-dd HH:mm:ss')}]];

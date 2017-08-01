@@ -2,8 +2,10 @@ package com.spirit.project.getway.ui.config;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,7 +13,10 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.session.CompositeSessionAuthenticationStrategy;
 import org.springframework.security.web.authentication.session.ConcurrentSessionControlAuthenticationStrategy;
 import org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy;
@@ -21,11 +26,16 @@ import org.springframework.security.web.session.ConcurrentSessionFilter;
 
 import com.google.common.collect.Lists;
 import com.spirit.project.getway.ui.constant.SecurityConsts;
+import com.spirit.project.getway.ui.prop.SpiritPasswordEncoder;
+import com.spirit.project.getway.ui.security.SpiritLoginFilter;
 import com.spirit.project.getway.ui.security.SpiritUserDetailsService;
 
 
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	@Autowired
+	private AuthenticationManager authenticationManager;
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -39,17 +49,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.sameOrigin()
 			.and()
 			.authorizeRequests()
-				.antMatchers("/images/**", "/ux/**", "/webjars/**").permitAll()
+				.antMatchers("/images/**", "/ux/**", "/webjars/**", SecurityConsts.LOGIN_PAGE, SecurityConsts.SESSION_TIMEOUT).permitAll()
 				.anyRequest().authenticated()
 			.and()
-				.formLogin().
-					loginPage("/login")
+				.formLogin()
+					.loginPage(SecurityConsts.LOGIN_PAGE)
+					.loginProcessingUrl("/login")
 					.defaultSuccessUrl("/", true)
 				.permitAll()
 			.and()
 				.logout()
 				.deleteCookies("JSESSIONID").permitAll()
 			.and()
+				.addFilterBefore(spiritLoginFilter(), UsernamePasswordAuthenticationFilter.class)
 				.addFilterAt(concurrencyFilter(), ConcurrentSessionFilter.class)
 				.sessionManagement()
 				.sessionAuthenticationStrategy(compositeSessionAuthenticationStrategy())
@@ -61,17 +73,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		super.configure(web);
 	}
 	
-	
-	
 	@Bean
 	public SpiritUserDetailsService userDetailsService() {
 		return new SpiritUserDetailsService();
 	}
 	
 	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		return passwordEncoder;
+	public PasswordEncoder passwordEncoder() {
+		return new SpiritPasswordEncoder();
 	}
 	
 	@Bean
@@ -79,7 +88,32 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
 		authenticationProvider.setUserDetailsService(userDetailsService());
 		authenticationProvider.setPasswordEncoder(passwordEncoder());
+		authenticationProvider.setHideUserNotFoundExceptions(false);
 		return authenticationProvider;
+	}
+	
+	@Bean
+	public SpiritLoginFilter spiritLoginFilter() {
+		SpiritLoginFilter spiritLoginFilter = new SpiritLoginFilter();
+		spiritLoginFilter.setAuthenticationManager(authenticationManager);
+		spiritLoginFilter.setAuthenticationSuccessHandler(authenticationSuccessHandler());
+		spiritLoginFilter.setAuthenticationFailureHandler(authenticationFailureHandler());
+		return spiritLoginFilter;
+	}
+	
+	@Bean
+	public SavedRequestAwareAuthenticationSuccessHandler authenticationSuccessHandler() {
+		SavedRequestAwareAuthenticationSuccessHandler authenticationSuccessHandler = new SavedRequestAwareAuthenticationSuccessHandler();
+		authenticationSuccessHandler.setDefaultTargetUrl("/");
+		authenticationSuccessHandler.setAlwaysUseDefaultTargetUrl(true);
+		return authenticationSuccessHandler;
+	}
+	
+	@Bean
+	public SimpleUrlAuthenticationFailureHandler authenticationFailureHandler() {
+		SimpleUrlAuthenticationFailureHandler authenticationFailureHandler = new SimpleUrlAuthenticationFailureHandler();
+		authenticationFailureHandler.setDefaultFailureUrl(SecurityConsts.LOGIN_PAGE);
+		return authenticationFailureHandler;
 	}
 	
 	@Bean

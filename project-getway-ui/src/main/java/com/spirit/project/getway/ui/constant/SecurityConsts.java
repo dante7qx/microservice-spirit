@@ -17,4 +17,11 @@ public class SecurityConsts {
 	public static final String INDEX_PAGE = "/";
 	public static final String SESSION_TIMEOUT = "/session-timeout";
 	
+	/**
+	 * 用户状态
+	 */
+	public static final String STATUS_NORMAL = "NORMAL";
+	public static final String STATUS_LOCK = "LOCK";
+	public static final String STATUS_DEL = "DEL";
+	
 }

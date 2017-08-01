@@ -18,6 +18,8 @@ public class LoginUserVO {
 	private String password;
 	private String name;
 	private String email;
+	private Boolean ldapUser;
 	private Set<String> authoritys;
+	private String status;
 
 }
