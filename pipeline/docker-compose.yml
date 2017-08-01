@@ -24,6 +24,20 @@ project-sysmgr-ui:
   links:
   - project-eureka-server
   - project-config-server
+project-syslog-api:
+  image: spirit/project-syslog-api:latest
+  ports:
+  - 9010:9010
+  links:
+  - project-eureka-server
+  - project-config-server
+project-syslog-ui:
+  image: spirit/project-syslog-ui:latest
+  ports:
+  - 8002:8002
+  links:
+  - project-eureka-server
+  - project-config-server
 project-getway-ui:
   image: spirit/project-getway-ui:latest
   ports:
