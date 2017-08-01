@@ -12,3 +12,9 @@ spring:
     username: ${rabbitmq.username:dante}
     password: ${rabbitmq.password:123456}
     virtual-host: /project-config
+encrypt:
+  keyStore:
+    location: classpath:server.jks 
+    password: 1234@@qwer       
+    alias: SpiritKey
+    secret: 12,qw,as
