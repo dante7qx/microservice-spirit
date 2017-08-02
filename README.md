@@ -23,7 +23,7 @@
 
 #### project-common-dao
 
-依赖 `project-common`，包含 DAO 操作的工具类、自定义异常类 *SpiritAPIDaoException*。
+依赖 `project-common`，包含 DAO 操作的工具类、自定义异常类 *SpiritAPIDaoException*。并且集成了 Mybatis。
 
 #### **project-common-api**
 
@@ -210,6 +210,14 @@ templates
 - ***templates***
 
   所有的功能页面都放到 templates 目录下，按照业务建立相应的文件夹，**全部小写**。
+
+#### project-syslog-api
+
+系统日志API微服务。用于记录用户登录、登出以及用户的所有操作行为。
+
+#### project-syslog-ui
+
+系统日志UI微服务。
 
 #### project-getway-ui
 
