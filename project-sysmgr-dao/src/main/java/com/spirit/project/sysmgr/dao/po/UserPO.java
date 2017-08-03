@@ -31,6 +31,7 @@ public class UserPO implements Serializable {
 	private String account;
 	private String name;
 	private String password;
+	private Date lastPasswordUpdateTime;
 	private String email;
 	private Boolean ldapUser;
 	private String status;
@@ -81,6 +82,14 @@ public class UserPO implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Date getLastPasswordUpdateTime() {
+		return lastPasswordUpdateTime;
+	}
+
+	public void setLastPasswordUpdateTime(Date lastPasswordUpdateTime) {
+		this.lastPasswordUpdateTime = lastPasswordUpdateTime;
 	}
 
 	public String getEmail() {

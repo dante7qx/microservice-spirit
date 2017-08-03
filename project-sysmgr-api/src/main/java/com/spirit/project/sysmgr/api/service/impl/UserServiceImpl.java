@@ -130,10 +130,12 @@ public class UserServiceImpl extends SpiritServiceTemplate<UserReqDTO, UserRespD
 		Long id = userPO.getId();
 		if (id == null) {
 			userPO.setPassword(EncryptUtils.encrypt(userReqDTO.getPassword()));
+			userPO.setLastPasswordUpdateTime(DateUtils.currentDate());
 			userPO.setStatus(UserConsts.STATUS_NORMAL);
 		} else {
 			UserPO oldUserPo = userDAO.findOne(id);
 			userPO.setPassword(oldUserPo.getPassword());
+			userPO.setLastPasswordUpdateTime(oldUserPo.getLastPasswordUpdateTime());
 			userPO.setStatus(oldUserPo.getStatus());
 		}
 		userDAO.save(userPO);
@@ -234,6 +236,7 @@ public class UserServiceImpl extends SpiritServiceTemplate<UserReqDTO, UserRespD
 		if (userModifyPasswordReqDTO.getUpdateUser() != null) {
 			userPO.setUpdateUser(new UserPO(userModifyPasswordReqDTO.getUpdateUser()));
 		}
+		userPO.setLastPasswordUpdateTime(DateUtils.currentDate());
 		userPO.setUpdateDate(DateUtils.currentDate());
 		userDAO.save(userPO);
 	}

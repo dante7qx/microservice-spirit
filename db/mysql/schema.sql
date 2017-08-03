@@ -34,6 +34,7 @@ CREATE TABLE t_user (
   account varchar(32) NOT NULL COMMENT '帐号',
   name varchar(64) NOT NULL COMMENT '用户名',
   password varchar(256) NOT NULL COMMENT '密码',
+  last_password_update_time datetime NOT NULL default CURRENT_TIMESTAMP COMMENT '密码最后修改时间',
   email varchar(128) NOT NULL DEFAULT '' COMMENT '邮箱',
   status varchar(6) NOT NULL DEFAULT 'NORMAL' COMMENT '状态，NORMAL: 正常。LOCK: 锁定。DEL: 删除。',
   ldap_user bool NOT NULL DEFAULT 0 COMMENT '是否域帐号',
@@ -86,7 +87,7 @@ CREATE TABLE t_authority (
   id bigint(20) NOT NULL,  
   code varchar(64) NOT NULL COMMENT '权限编码', 
   name varchar(64) NOT NULL COMMENT '权限名称',
-  authority_desc varchar(100) NOT NULL DEFAULT '' COMMENT '权限描述', 
+  authority_desc varchar(128) NOT NULL DEFAULT '' COMMENT '权限描述', 
   pid bigint(20) NULL COMMENT '父节点',
   show_order int NOT NULL DEFAULT 1 COMMENT '显示顺序',
   update_user bigint(20) not null DEFAULT 1 COMMENT '更新人',
@@ -116,6 +117,7 @@ COMMENT '服务模块表' ;
 CREATE DATABASE IF NOT EXISTS `microservice-spirit-syslog` DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
 
 USE `microservice-spirit-syslog`;
+
 DROP TABLE IF EXISTS t_sys_log;
 CREATE TABLE t_sys_log (
   id bigint(20) NOT NULL AUTO_INCREMENT,

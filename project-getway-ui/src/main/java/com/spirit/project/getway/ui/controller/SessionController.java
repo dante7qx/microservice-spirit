@@ -32,8 +32,7 @@ public class SessionController {
 	@RequestMapping(value = "/session-timeout")
 	public void sessionTimeout(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		if (request.getHeader("x-requested-with") != null
-				&& request.getHeader("x-requested-with").equalsIgnoreCase("XMLHttpRequest")) { // ajax
-																								// 超时处理
+				&& request.getHeader("x-requested-with").equalsIgnoreCase("XMLHttpRequest")) { // ajax 超时处理
 			response.getWriter().print("timeout"); // 设置超时标识
 			response.setStatus(HttpStatus.UNAUTHORIZED.value());
 			response.getWriter().close();

@@ -1,3 +1,6 @@
+-- 系统管理数据库
+USE "microservice-spirit-sysmgr";
+
 -- 用户数据
 SET IDENTITY_INSERT dbo.t_user ON;  
 insert into t_user(id, account,name,password,status,email) values
@@ -33,13 +36,16 @@ insert into t_authority(id, code, name, authority_desc, pid, show_order, update_
 (19, 'public', '服务模块管理', '服务模块管理', 2, 5, 1, getdate()),
 (20, 'sysmgr.servicemodule.query', '查询服务模块', '查询服务模块', 19, 1, 1, getdate()),
 (21, 'sysmgr.servicemodule.update', '更新服务模块', '更新服务模块', 19, 2, 1, getdate()),
-(22, 'sysmgr.servicemodule.delete', '删除服务模块', '删除服务模块', 19, 3, 1, getdate());
+(22, 'sysmgr.servicemodule.delete', '删除服务模块', '删除服务模块', 19, 3, 1, getdate()),
+
+(23, 'syslog.syslog.query', '系统日志管理', '系统日志管理', 1, 2, 1, getdate());
 SET IDENTITY_INSERT dbo.t_authority OFF;
 
 -- 微服务模块数据
 SET IDENTITY_INSERT dbo.t_service_module ON;
 insert into t_service_module (id, name, url, update_user, update_date) values
-(1, '系统管理服务模块', 'sysmgr', 1, getdate());
+(1, '系统管理服务模块', 'sysmgr', 1, getdate()),
+(2, '系统日志服务模块', 'syslog', 1, getdate());
 SET IDENTITY_INSERT dbo.t_service_module OFF;
 
 -- 资源数据
@@ -50,7 +56,8 @@ insert into t_resource(id, name, url, service_module_id, pid, authority_id, full
 (3, '角色管理', 'role', 1, 1, 8, '3-1', 2, '角色管理', 1, getdate()),
 (4, '权限管理', 'authority', 1, 1, 12, '4-1', 3, '权限管理', 1, getdate()),
 (5, '菜单管理', 'menu', 1, 1, 16, '5-1', 4, '菜单管理', 1, getdate()),
-(6, '服务模块管理', 'servicemodule', 1, 1, 16, '6-1', 5, '服务模块管理', 1, getdate());
+(6, '服务模块管理', 'servicemodule', 1, 1, 16, '6-1', 5, '服务模块管理', 1, getdate()),
+(7, '系统日志管理', 'syslog', 2, null, 23, '71', 5, '系统日志管理', 1, getdate());
 SET IDENTITY_INSERT dbo.t_resource OFF;
 
 -- 角色数据
@@ -77,7 +84,8 @@ insert into t_role_authority(id, role_id, authority_id) values
 (13, 1, 18),
 (14, 1, 20),
 (15, 1, 21),
-(16, 1, 22);
+(16, 1, 22),
+(17, 1, 23);
 SET IDENTITY_INSERT dbo.t_role_authority OFF;
 
 -- 用户角色数据
