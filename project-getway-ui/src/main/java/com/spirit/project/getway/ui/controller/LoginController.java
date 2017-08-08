@@ -47,6 +47,19 @@ public class LoginController {
 	}
 	
 	/**
+	 * 登录页2
+	 * 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/loginpage2", method = RequestMethod.GET)
+	public String login2(HttpServletRequest request, Model model) {
+		model.addAttribute("kaptcha", spiritProperties.getKaptcha());
+		return "login2";
+	}
+	
+	/**
 	 * 用户注销
 	 * 
 	 * @param request

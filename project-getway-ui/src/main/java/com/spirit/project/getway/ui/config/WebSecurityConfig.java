@@ -49,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.sameOrigin()
 			.and()
 			.authorizeRequests()
-				.antMatchers("/images/**", "/ux/**", "/webjars/**", SecurityConsts.LOGIN_PAGE, SecurityConsts.SESSION_TIMEOUT).permitAll()
+				.antMatchers("/images/**", "/ux/**", "/webjars/**", SecurityConsts.LOGIN_PAGE+"?", SecurityConsts.SESSION_TIMEOUT).permitAll()
 				.anyRequest().authenticated()
 			.and()
 				.formLogin()
